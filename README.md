@@ -116,6 +116,8 @@ Je déclare et initialise une variable contenant un vecteur de type numeric
 [1] "character"
 Vérifie le type de données dans le vecteur
 
+### Opération du vecteur
+
 > monVecteur1 = seq(from=1, to=10)
 > monVecteur1
  [1]  1  2  3  4  5  6  7  8  9 10
@@ -161,6 +163,143 @@ Si on essait on obtient cette erreur.
 > concatenation=c(monVecteur1, monVecteur2)
 Permet de concatener donc ajouter a concaténation vecteur1 et vecteur2
 
+### Manipuler les vecteurs grâce aux indexs
+
+> monVecteur2
+ [1]  6  7  8  9 10 11 12 13 14 15
+> monVecteur2[2]
+[1] 7
+affiche la valeur à cette index dans le vecteur
+
+> monVecteur2[1:3]
+[1] 6 7 8
+affiche les vecteurs compris entre les indexs compris entre les crochets
+
+> monVecteur2[c(1, 6, 2)]
+[1]  6 11  7
+affiche les valeurs des index fournit dans la fonction c
+
+> superieur=monVecteur2 > 8
+> superieur
+ [1] FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+[10]  TRUE
+affecte à cette variable pour toutes les valeurs du vecteurs si cette condition est vérifié
+
+> monVecteur2[superieur]
+[1]  9 10 11 12 13 14 15
+affiche toutes les valeurs supérieur à 8 grace à la condition plus haut. Chaque index de supérieur est soit vrai soit faux
+
+### Qu'est ce qu'une fonction en R
+> #affiche la moyenne
+> mean(monVecteur2)
+[1] 10.5
+calcule la moyenne pour toutes les valeurs du vecteur
+
+> ?mean
+affiche la page de documentation de cette fonction
+
+mean(x, trim = 0, na.rm = FALSE, ...)
+na.rm = FALSE
+permet d'éviter les valeurs qui sont null
+
+### Utiliser les fonctions fournis par R
+> length(monVecteur2)
+[1] 10
+permet d'affciher la taille de ce vecteur
+
+> names(monVecteur2)
+NULL
+affiche les nom des valeurs de ce vecteur.
+il n'y a pas de nom pour les valeurs dans ce vecteur
+
+> names(monVecteur2)=paste("ma valeur", monVecteur2, sep=" ")
+> monVecteur2
+ ma valeur 6  ma valeur 7  ma valeur 8  ma valeur 9 ma valeur 10 ma valeur 11 ma valeur 12 
+           6            7            8            9           10           11           12 
+ma valeur 13 ma valeur 14 ma valeur 15 
+          13           14           15 
+permet de d'ajouter "ma valeur" en index pour le vecteur2 avec un séparateur espace
+
+> names(monVecteur2)
+ [1] "ma valeur 6"  "ma valeur 7"  "ma valeur 8"  "ma valeur 9"  "ma valeur 10"
+ [6] "ma valeur 11" "ma valeur 12" "ma valeur 13" "ma valeur 14" "ma valeur 15"
+ affiche les noms des clés du vecteur2
+
+ > sort(monVecteur2)
+ ma valeur 6  ma valeur 7  ma valeur 8  ma valeur 9 ma valeur 10 ma valeur 11 ma valeur 12 
+           6            7            8            9           10           11           12 
+ma valeur 13 ma valeur 14 ma valeur 15 
+          13           14           15 
+affiche mon vecteur2 trié
+
+> ?sort
+affiche la doc de la fonction
+
+> sort(monVecteur2, decreasing = TRUE)
+> sort(monVecteur2, TRUE)
+ma valeur 15 ma valeur 14 ma valeur 13 ma valeur 12 ma valeur 11 ma valeur 10  ma valeur 9 
+          15           14           13           12           11           10            9 
+ ma valeur 8  ma valeur 7  ma valeur 6 
+           8            7            6 
+Avec l'option decreasing on peut trier par ordre décroissant en passant l'option a true
+
+> rank(monVecteur2)
+ ma valeur 6  ma valeur 7  ma valeur 8  ma valeur 9 ma valeur 10 ma valeur 11 ma valeur 12 
+           1            2            3            4            5            6            7 
+ma valeur 13 ma valeur 14 ma valeur 15 
+           8            9           10 
+affiche la position de clé valeur dans le vecteur
+
+> sum(monVecteur2)
+[1] 105
+affiche la somme de toutes les valeurs dans ce vecteur
+
+> min(monVecteur2)
+[1] 6
+permet d'afficher la valeur minimale de ce vecteur
+
+> max(monVecteur2)
+[1] 15
+permet d'afficher la valeur maximale de ce vecteur
+
+> summary(monVecteur2)
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   6.00    8.25   10.50   10.50   12.75   15.00 
+permet d'afficher un résumé du vecteur2
+- min
+- 1er quantil
+- la médianne
+- la moyenne
+- 3eme quantil 
+- max
+
+> median(monVecteur2)
+[1] 10.5
+affiche la median du vecteur2
+
+### Qu'est-ce qu'un package R ?
+> library("ggplot2")
+Il n'y a pas de message de chargement donc le package est installé
+
+> search()
+ [1] ".GlobalEnv"        "package:ggplot2"   "tools:rstudio"     "package:stats"    
+ [5] "package:graphics"  "package:grDevices" "package:utils"     "package:datasets" 
+ [9] "package:methods"   "Autoloads"         "org:r-lib"         "package:base"     
+affiche tous les packages installés
+
+### Savoir utiliser l'aide de R
+> ?print
+affiche dans l'onglet en bas a droite l'aide de la fonction en anglais 
+
+> help(print)
+> help("print")
+c'est la deuxième fonction pour afficher l'aide. Il y a deux manière de l'utiliser
+
+> help.start()
+renvoie une page html avec des liens cliquable pour afficher l'aide de R
+
+> help.search("mean")
+permet de voir toutes les fonctions avec ce mot clé
 
 # shortcut qui marche :
 command c copier
