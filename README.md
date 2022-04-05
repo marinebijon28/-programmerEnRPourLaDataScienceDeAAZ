@@ -301,6 +301,263 @@ renvoie une page html avec des liens cliquable pour afficher l'aide de R
 > help.search("mean")
 permet de voir toutes les fonctions avec ce mot clé
 
+### Qu'est-ce qu'une matrice en R ?
+Les vecteurs sont une sorte de tableau a une dimension. Une matrice c'est un tableau a 2 dimensions. IL y aura plusieurs colonnes et plusieurs lignes. Les matrices ne peut contenir que deux types de données soit numeric soit character
+
+> notes=sample(1:20, 15)
+> notes
+ [1] 16  9  2 13 14 11  5  4 12  7 10  1 17  6  3
+> matrix(notes, ncol=3, nrow=5)
+     [,1] [,2] [,3]
+[1,]   16   11   10
+[2,]    9    5    1
+[3,]    2    4   17
+[4,]   13   12    6
+[5,]   14    7    3
+on initialise un vecteur qu'on passe en paramètre à la matrice avec on nombre de colonnes de 3 et 5 lignes. La matrice se remplit par colonne.
+
+> matrix(notes, ncol=3, nrow=5, byrow = TRUE)
+     [,1] [,2] [,3]
+[1,]   16    9    2
+[2,]   13   14   11
+[3,]    5    4   12
+[4,]    7   10    1
+[5,]   17    6    3
+byrow TRUE permet de remplir par ligne la matrice
+
+> notes2=c(sample(1:20, 10), "a", "b", "c", "d", "e")
+> notes2
+ [1] "7"  "2"  "14" "1"  "5"  "8"  "6"  "12" "16" "3"  "a"  "b"  "c"  "d"  "e" 
+ Créer un vecteur de character, pour avoir des valeur character, il faut une valeur entre "" dans le vecteur.
+
+> matrix(notes2, ncol=3, nrow=5, byrow = TRUE)
+     [,1] [,2] [,3]
+[1,] "7"  "2"  "14"
+[2,] "1"  "5"  "8" 
+[3,] "6"  "12" "16"
+[4,] "3"  "a"  "b" 
+[5,] "c"  "d"  "e" 
+Dans les matrices ont peut avoir qu'un seul type de données.
+
+# colnames() et rownames()
+Quand on travaille sur les matrices nous avons une section dans environnement un nouvelle ligne séparées des autres variables. une ligne data ou on peut voir les matrice et cliquez sur le nom de la variable afin d'afficher la matrice.
+
+> colnames(notesDesEleves)=c("SVT", "Mathématiques", "Français")
+> notesDesEleves
+     SVT Mathématiques Français
+[1,]  16            11       10
+[2,]   9             5        1
+[3,]   2             4       17
+[4,]  13            12        6
+[5,]  14             7        3
+On peut voir que notre colsname est présent
+
+> rownames(notesDesEleves)=c("Jean", "Léa", "Thomas", "Julien", "Zoé")
+> notesDesEleves
+       SVT Mathématiques Français
+Jean    16            11       10
+Léa      9             5        1
+Thomas   2             4       17
+Julien  13            12        6
+Zoé     14             7        3
+On voit qu'on a nos rownames, on voit que cest une matrice de note d'élèves. Dans environnement on voit qu'on a un tableau et qu'on peut trier.
+
+### Accéder aux éléments d'une matrice
+> notesDesEleves[1,]
+          SVT Mathématiques      Français 
+           16            11            10 
+le premier indice à gauche est pour les lignes. SI je ne mets que le premier indice on affiche la première ligne et comme on ne met pas de valeur à droite. Il va afficher toutes les colonnes.
+
+> notesDesEleves[,1]
+  Jean    Léa Thomas Julien    Zoé 
+    16      9      2     13     14 
+Si on veut afficher que la première colonne. Je mets rien à gauche et je met lindex 1 à gauche. C'est les notes de SVT pour tous les élèves.
+
+> notesDesEleves[1,2]
+[1] 11
+Maintenant, si je veux lees notes de Jean en mathématique. Je vais afficher la première ligne et la deuxième colonne.
+
+> notesDesEleves[1,c(2, 3)]
+Mathématiques      Français 
+           11            10
+affiche les colonnes de 2 et 3
+> notesDesEleves[1,2:3]
+Mathématiques      Français 
+           11            10 
+Je veux afficher la note de mathématique et en français. J'affiche les colonnes de 2 à 3.
+
+> notesDesEleves["Thomas", "Français"]
+[1] 17
+On peut afficher la valeure en utilisant les colonnes et les lignes.
+
+> notesDesEleves[c("Léa", "Thomas"), "Français"]
+   Léa Thomas 
+     1     17 
+On peut afficher plusieurs valeurs en précisant dans un vecteur
+
+### Modifier une matrice
+> notesDesEleves[c("Léa", "Thomas"), "Français"]=c(15, 10)
+> notesDesEleves
+       SVT Mathématiques Français
+Jean    16            11       10
+Léa      9             5       15
+Thomas   2             4       10
+Julien  13            12        6
+Zoé     14             7        3
+Comme on modifie les valeurs, il faut bien respecter l'ordre des valeurs
+
+> notes
+ [1] 16  9  2 13 14 11  5  4 12  7 10  1 17  6  3
+> notes[3]=15
+> notes
+ [1] 16  9 15 13 14 11  5  4 12  7 10  1 17  6  3
+On veut modifier la valeur d'un vecteur
+
+### Opérations sur les matrices
+> notes2=c(rep(0.5, times=5), rep(1, times=5), rep(0.9, times=5))
+> notes2
+ [1] 0.5 0.5 0.5 0.5 0.5 1.0 1.0 1.0 1.0 1.0 0.9 0.9 0.9 0.9 0.9
+> matriceDesNotes = matrix(notes2, ncol=3, nrow=5)
+> matriceDesNotes
+     [,1] [,2] [,3]
+[1,]  0.5    1  0.9
+[2,]  0.5    1  0.9
+[3,]  0.5    1  0.9
+[4,]  0.5    1  0.9
+[5,]  0.5    1  0.9
+
+> notesDesEleves * matriceDesNotes
+       SVT Mathématiques Français
+Jean   8.0            11      9.0
+Léa    4.5             5     13.5
+Thomas 1.0             4      9.0
+Julien 6.5            12      5.4
+Zoé    7.0             7      2.7
+On peut faire des opérations avec des autres matrices
+
+> notesDesEleves + matriceDesNotes
+        SVT Mathématiques Français
+Jean   16.5            12     10.9
+Léa     9.5             6     15.9
+Thomas  2.5             5     10.9
+Julien 13.5            13      6.9
+Zoé    14.5             8      3.9
+
+> notesDesEleves / matriceDesNotes
+       SVT Mathématiques  Français
+Jean    32            11 11.111111
+Léa     18             5 16.666667
+Thomas   4             4 11.111111
+Julien  26            12  6.666667
+Zoé     28             7  3.333333
+
+> rowSums(notesDesEleves)
+  Jean    Léa Thomas Julien    Zoé 
+    37     29     16     31     24 
+On connaît la somme des notes de chaque élèves 
+
+> colSums(notesDesEleves)
+          SVT Mathématiques      Français 
+           54            39            44 
+Calcul la somme des notes par matières
+
+> rowMeans(notesDesEleves)
+     Jean       Léa    Thomas    Julien       Zoé 
+12.333333  9.666667  5.333333 10.333333  8.000000 
+C'est la moyenne de chaque élèves dans toutes les matières
+
+> colMeans(notesDesEleves)
+          SVT Mathématiques      Français 
+         10.8           7.8           8.8 
+La moyenne des élèves par matière
+
+
+### Exercice : manipuler une matrice
+install.packages("Stat2Data")
+Dans Stat2Data, il y a jeu de données test
+
+> library("Stat2Data")
+charge le package
+
+> matricePrixCheval=as.matrix(HorsePrices[, -c(1,5)])
+créer une matrice à partir d'une matrice en enlévant la première et la dernière ligne
+
+> rownames(matricePrixCheval)=HorsePrices[,1]
+nommes les lignes avec l'id du cheval au lieu d'avoir une colonne ID
+
+> colnames(matricePrixCheval)=c("Prix", "Age", "Taille")
+permet de nommer les colonnes de la matrice
+
+> matricePrixCheval[,3]= matricePrixCheval[,3] * 0.1016
+Je sais qu'un hand fait 0.1016 mètres. On va multiplier la troisième colonne par 0.1016
+
+> matricePrixCheval[,1]= matricePrixCheval[,1] * 0.86
+Je sais qu'un hand fait 0.86 euros . On va multiplier la première par 0.86
+
+> dim(matricePrixCheval)
+[1] 50  3
+donne le nombre de lignes et de colonnes
+
+> summary(matricePrixCheval)
+      Prix            Age            Taille     
+ Min.   :  946   Min.   : 0.50   Min.   :1.448  
+ 1st Qu.:12900   1st Qu.: 4.00   1st Qu.:1.626  
+ Median :21500   Median : 6.00   Median :1.676  
+ Mean   :23082   Mean   : 7.11   Mean   :1.659  
+ 3rd Qu.:34185   3rd Qu.: 8.00   3rd Qu.:1.702  
+ Max.   :51600   Max.   :20.00   Max.   :1.753  
+                                 NA's   :3     
+recapitulatif des colonnes de la matrice
+
+> matricePrixCheval=na.omit(matricePrixCheval)
+enlever des lignes NA (qui n'ont pas de valeur)
+
+> matricePrixCheval[matricePrixCheval[,1] == 946, ]
+   Prix     Age  Taille 
+946.000  19.000   1.651 
+affiche toutes les ligne du cheval avec la plus petite taille. Récupérer par le prix qui est sur la première colonne.
+
+> matricePrixCheval[matricePrixCheval[,1] == 946, ]=c(2500, 19, 1.651)
+Change la ligne avec le cheval avec la plus petite taille
+
+> matricePrixCheval[matricePrixCheval[,1] == 2500, ]
+    Prix      Age   Taille 
+2500.000   19.000    1.651 
+Affiche la ligne modifier avec la nouvelle valeur
+
+> matricePrixCheval[matricePrixCheval[,1] > 23082, ]
+     Prix Age Taille
+97  32680   3 1.7018
+156 34400   5 1.7272
+184 30100   8 1.6510
+88  30100   5 1.6764
+35  34400   7 1.7018
+148 38700   3 1.6002
+102 38700   6 1.7018
+96  41280   6 1.6764
+31  30100   5 1.6510
+234 28380   4 1.6764
+141 25800   8 1.7018
+63  43000   6 1.7018
+4   38700  14 1.7272
+57  38700   5 1.6764
+38  43000   7 1.7526
+2   43000   8 1.6764
+248 33540  11 1.7526
+13  23650   5 1.6256
+232 51600  13 1.7018
+152 43000   4 1.6764
+36  25800   9 1.6764
+249 34400   7 1.7526
+afficher toutes les valeur qui sont supérieure a la moyenne
+
+> colMeans(matricePrixCheval[matricePrixCheval[,3] > 1.6, ])
+       Prix         Age      Taille 
+25101.90476     8.02381     1.67640 
+fait la moyenne des chevaux plus grand qu'un 1.6
+
+
+
 # shortcut qui marche :
 command c copier
 command v coller
