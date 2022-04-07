@@ -86,4 +86,4 @@ rownames(dataIrisQualitative)=rownames(iris)
 ?merge
 irisComplet=merge(dataIrisQuantitative, dataIrisQualitative, by="row.names")
 rownames(irisComplet)=irisComplet[, 1]
-irisComplet=irisComplet[-c(1,)]
+irisComplet=irisComplet[, -c(1)]
