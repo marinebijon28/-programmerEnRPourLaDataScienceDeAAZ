@@ -556,7 +556,153 @@ afficher toutes les valeur qui sont supérieure a la moyenne
 25101.90476     8.02381     1.67640 
 fait la moyenne des chevaux plus grand qu'un 1.6
 
+### dataframes en R
+## Qu'est-ce qu'un dataframe R
+> data.frame(c(18,26,54,78), c(56, 84, 76, 62), c("M", "F", "M", "F"), c(TRUE, TRUE, TRUE, FALSE))
+  c.18..26..54..78. c.56..84..76..62. c..M....F....M....F..
+1                18                56                     M
+2                26                84                     F
+3                54                76                     M
+4                78                62                     F
+  c.TRUE..TRUE..TRUE..FALSE.
+1                       TRUE
+2                       TRUE
+3                       TRUE
+4                      FALSE
+se remplit par colonne un vecteur par colonne
+on a mit des caractères et contrairement à la matrice ça ne met pas tous en caractères. chaque colonne garde bien son type et de type différent
 
+## colnames() et rownames()
+>colnames(monDataFrame)=c("Age", "Poids", "Sexe", 'Ma valeur booléenne')
+nom des colonnes
+
+>rownames(monDataFrame)=c("Jean", "Zoé", "Lucas", 'Chloé')
+nom des lignes
+
+## importation de données
+> dataIris=read.table("iris.csv", header =TRUE, sep=',', row.names = 1);
+nom du fichier. si y a un header dans le fichier. comment les lignes sont séparé. on veut que la première colonne deviennent les nom de ligne
+
+>read.csv("iris.csv", row.names = 1)
+ pareil permet d'ouvrir plus facilement un fichier csv
+
+>data("iris")
+charge les données du package iris
+>ls()
+affiche les packages
+
+## exportation de données
+>write.table(dataIris, file="iris2.csv", sep=',', row.names = TRUE)
+Ècrit un csv par rapport une dataframe. Le nom de fichier. On précise le type de séparateur. On garde le nom de ligne et il garde le nom du header du tableau
+
+>write.csv(dataIris, file= "iris3.csv", row.names = TRUE)
+pareil permet d'écrire un csv
+
+On peut faire des fichiers qu'on ne pourra pas lire sur notre ordinateur, mais on pourra l'importer dans n'importe quel session R facilement. C'est l'objet qui est enregistré dans R donc si on travaille avec des gros jeux de données. Il vaut mieux faire des objets R
+
+>save(dataIris, file="iris.Rdata")
+pour créer un objet R
+
+>load("iris.Rdata")
+pour récupérer le jeux de données
+
+Pour clean toutes les variables en haut à droite. Il faut appuyer sur le pinceau
+
+## Accéder aux éléments d'un dataframe
+>head(dataIris[, c(1:3)])
+affiche le header et les premières lignes
+
+>head(dataIris[c(1, 50, 60), c(1:3)])
+affiche le header et les lignes passés au premier vecteur
+
+>head(dataIris[c(1, 50, 60), c("Sepal.Length", "Sepal.Width", "Petal.Length")])
+affiche les mêmes lignes en utilisant le noms des colonnes
+
+> head(iris$Species)
+[1] setosa setosa setosa setosa setosa setosa
+Levels: setosa versicolor virginica
+affiche une colonne grâce au $nomcol. Ainsi que les types d'espèces. Il faut appeler le packet chargé
+
+## Créer un sous-ensemble à partir d'un dataframe
+>dim(dataIris[dataIris$Species == "setosa", ])
+nombre de ligne et de colonnes pour ce sous-élément. un Vecteur qui a de booléen par rapport à la condition 
+
+>dataIris[which(dataIris$Species == "setosa"), ]
+permet d'avoir les index de ces lignes pour cette condition
+
+>dataIris[which(dataIris$Species == "setosa" & dataIris$Petal.Length == 1.4), ]
+permet d'avoir deux conditions en regardant deux colonnes 
+
+>dataIris[which(dataIris$Species == "setosa" & dataIris$Petal.Length == 1.4), ]
+permet d'avoir le numéro de ligne pour les deux conditions en regardant deux colonnes 
+
+>dataIris[dataIris$Species %in% c("setosa"),]
+permet de rechercher dans la colonne species tous les noms avec setosa dedans
+
+>dataIris[dataIris$Species %in% c("setosa", "versicolor"),]
+permet de rechercher dans la colonne species tous les noms avec setosa et versicolor dedans
+
+>subset(dataIris, Species == "setosa")
+permet de rechercher dans la colonne Species la valeur setosa
+
+>subset(dataIris, Species == "setosa" & Petal.Length == 1.4)
+permet de rechercher dans la colonne Species la valeur setosa et le petal.length équivalent 1.4
+
+>subset(dataIris, Species == "setosa" & Petal.Length == 1.4, select = c("Petal.Length"))
+il crée la tableau précédent et n'affiche que la colonne donnée en paramètre au select
+
+## Exercice : manipuler les dataframes
+# Notion de facteur 
+Un facteur c'est une structure de données comme le vecteur, les matrices. Les facteurs c'est un type de vecteur. Les vecteurs contiennent des types numériques : des chiffres, des notes des élèves, une liste de poids, une liste d'âge. C'est des valeurs sur lesquels on peut faire des opérations comme des additions, multiplications ou des soustractions. En faite un facteur contient des modalités : des couleurs, des familles ou ici des espèces d'iris. Donc généralement les vecteurs contiennent des valeurs quantitatives. Des variables qui sont numériques sur lesquelles on va pouvoir faire des opérations contrairement au facteur où des types de variables qualitatives. ça nous permet de créer des groupes au sein d'un jeux de données. On a un ensemble d'invidu qu'on va pouvoir mettre dans un groupe qui s'appelle setosa. On en utilisera pas mal dans les exercices de dataSciences pour ranger les individus par classe.
+
+> head(iris$Species)
+[1] setosa setosa setosa setosa setosa setosa
+Levels: setosa versicolor virginica
+
+> colnames(iris)=c("Longueur des sépales", "Largeur des pétales", "Longueur de pétales", "Largeur de pétales", "Espèces")
+> rownames(iris)=paste("iris_", rownames(iris), sep="")
+Permet de changer le nom des colonnes en mettant iris sur tous lignes ainsi que leur ID.
+
+> summary(iris)
+ Longueur des sépales Largeur des pétales Longueur de pétales Largeur de pétales
+ Min.   :4.300        Min.   :2.000       Min.   :1.000       Min.   :0.100     
+ 1st Qu.:5.100        1st Qu.:2.800       1st Qu.:1.600       1st Qu.:0.300     
+ Median :5.800        Median :3.000       Median :4.350       Median :1.300     
+ Mean   :5.843        Mean   :3.057       Mean   :3.758       Mean   :1.199     
+ 3rd Qu.:6.400        3rd Qu.:3.300       3rd Qu.:5.100       3rd Qu.:1.800     
+ Max.   :7.900        Max.   :4.400       Max.   :6.900       Max.   :2.500     
+       Espèces  
+ setosa    :50  
+ versicolor:50  
+ virginica :50  
+
+>min(iris[iris$"Espèces"=="setosa", ])
+quand on a une colonne avec des accents il faut mettre des guillemets. Min n'est pas utilisable sur des valeurs qualitatives
+
+>min(iris[iris$"Espèces"=="setosa", 3])
+sort un minimum vue qu'on regarde une colonne avec une valeur numérique et une condition qualitative espèces équivalent à setosa
+
+> mean(iris[iris$"Espèces"=="setosa", 3])
+[1] 1.462
+sort la moyenne vue qu'on regarde une colonne avec une valeur numérique et une condition qualitative espèces équivalent à setosa
+
+>dataIrisQualitative=as.data.frame(iris[,5])
+transforme un vecteur en dataframe
+
+>rownames(dataIrisQualitative)=rownames(iris)
+Permet de changer le nom des colonnes en mettant iris sur tous lignes ainsi que leur ID de ligne.
+
+>irisComplet=merge(dataIrisQuantitative, dataIrisQualitative, by="row.names")
+Permet de merger les deux tableaux dans un troisième tableau en ayant le nom des lignes pareils pour fusionner correctement
+
+>irisComplet=irisComplet[, -c(1)]
+Recopie le tableau irisComplet moins la première la colonne
+
+>cbind(tab1, tab2)
+met deux tableaux a côté sans verifier les lignes correspondent
+
+>rbind(tab1, tab2)
+met deux tableaux l'un a la suite de l'autre
 
 # shortcut qui marche :
 command c copier
