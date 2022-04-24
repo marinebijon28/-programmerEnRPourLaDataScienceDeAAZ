@@ -704,6 +704,58 @@ met deux tableaux a côté sans verifier les lignes correspondent
 >rbind(tab1, tab2)
 met deux tableaux l'un a la suite de l'autre
 
+### Les bases de la programmation en R
+## les opérateurs logiques
+- opérateur strictement supérieur >
+- opérateur strictement inférieur <
+- opérateur inférieur ou égale <=
+- opérateur supérieur ou égale >=
+- opérateur équivalent ==
+- opérateur différent !=
+- opérateur ET &
+Plus précis vérifie toute les conditions dans des vecteurs
+- opérateur ET &&
+Ne vérifie pas les valeurs après la position 1 d'un vecteur
+- opérateur |
+- opérateur ||
+
+## les instructions de condition (if else)
+if (condition) {
+     action1
+} else {
+     action2
+}
+
+## les instructions de boucles(for)
+for (valeur in vecteur) {
+  actions
+}
+s'inrémente tous seul
+
+## instructions de boucle while : tant que 
+while (condition) {
+     actions
+}
+risque de boucle infini
+
+## Exercice sur les instructions de condition et les boucles en R
+> dim(iris)
+[1] 150   5
+C'est un dataframe avec 150 de valeurs et 5 colonnes. C'est les dimensions de la dataframe
+
+## Comment créer sa propre fonction en R
+> nomDeNotreFonction<-function(argument1, argument2) {
+  instructions
+  bloc code
+  return (résultat)
+}
+
+
+
+
+
+
+
 # shortcut qui marche :
 command c copier
 command v coller
