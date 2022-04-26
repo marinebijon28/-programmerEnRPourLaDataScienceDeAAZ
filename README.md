@@ -750,10 +750,123 @@ C'est un dataframe avec 150 de valeurs et 5 colonnes. C'est les dimensions de la
   return (résultat)
 }
 
+## Manipulation avancée des données
+# apply(x, MARGIN, FUN)
+x : dataframe, une matrice. Ce sera des objets à deux dimensions.
 
+MARGIN : 1 : pour les lignes, 2 : par les colonnes, 3 par lignes et colonnes. Permet de dire si on veut traiter notre tableau par ligne ou colonne ou par colonne et par ligne
 
+FUN : fonction qu'on souhaite appliqué à notre tableau (mean, sum, summary…) ou une fonction qu'on a créer.
 
+> apply(iris[,-5], 1, mean)
+> apply(iris[,-5], 2, mean)
+> apply(iris[,-5], 2, summary)
+Dans le cas des colonnes, il va itéré sur chaque colonne comme pour les lignes
 
+## aggregate() et by()
+On veut faire des statistique par groupe qui sont des caractère
+
+# by(x, INDICES, FUN) : x : dataframe, INDICES : qui est le groupe la colonne par laquelle on veut faire le 
+# sous-ensemble de données iris$Species, FUN : function
+
+> by(iris, iris$Species, summary)
+iris$Species: setosa
+  Sepal.Length    Sepal.Width     Petal.Length    Petal.Width          Species  
+ Min.   :4.300   Min.   :2.300   Min.   :1.000   Min.   :0.100   setosa    :50  
+ 1st Qu.:4.800   1st Qu.:3.200   1st Qu.:1.400   1st Qu.:0.200   versicolor: 0  
+ Median :5.000   Median :3.400   Median :1.500   Median :0.200   virginica : 0  
+ Mean   :5.006   Mean   :3.428   Mean   :1.462   Mean   :0.246                  
+ 3rd Qu.:5.200   3rd Qu.:3.675   3rd Qu.:1.575   3rd Qu.:0.300                  
+ Max.   :5.800   Max.   :4.400   Max.   :1.900   Max.   :0.600                  
+--------------------------------------------------------------- 
+iris$Species: versicolor
+  Sepal.Length    Sepal.Width     Petal.Length   Petal.Width          Species  
+ Min.   :4.900   Min.   :2.000   Min.   :3.00   Min.   :1.000   setosa    : 0  
+ 1st Qu.:5.600   1st Qu.:2.525   1st Qu.:4.00   1st Qu.:1.200   versicolor:50  
+ Median :5.900   Median :2.800   Median :4.35   Median :1.300   virginica : 0  
+ Mean   :5.936   Mean   :2.770   Mean   :4.26   Mean   :1.326                  
+ 3rd Qu.:6.300   3rd Qu.:3.000   3rd Qu.:4.60   3rd Qu.:1.500                  
+ Max.   :7.000   Max.   :3.400   Max.   :5.10   Max.   :1.800                  
+--------------------------------------------------------------- 
+iris$Species: virginica
+  Sepal.Length    Sepal.Width     Petal.Length    Petal.Width          Species  
+ Min.   :4.900   Min.   :2.200   Min.   :4.500   Min.   :1.400   setosa    : 0  
+ 1st Qu.:6.225   1st Qu.:2.800   1st Qu.:5.100   1st Qu.:1.800   versicolor: 0  
+ Median :6.500   Median :3.000   Median :5.550   Median :2.000   virginica :50  
+ Mean   :6.588   Mean   :2.974   Mean   :5.552   Mean   :2.026                  
+ 3rd Qu.:6.900   3rd Qu.:3.175   3rd Qu.:5.875   3rd Qu.:2.300                  
+ Max.   :7.900   Max.   :3.800   Max.   :6.900   Max.   :2.500  
+c'est une structure donnée : une liste. On ne l'a pas vue parce que c'est une chose de très utilisées. Le premier élément de la liste c'est sétosa et on a le summary de l'ensemble des valeur ou l'espèce est égale à sétosa. On a les ensemble de données pour verginica et versicolor.
+
+# matrice de corrélation 
+Une matrice de colération elle se crée avec la function cor
+
+> by(iris[,-5], iris$Species, cor)
+iris$Species: setosa
+             Sepal.Length Sepal.Width Petal.Length Petal.Width
+Sepal.Length    1.0000000   0.7425467    0.2671758   0.2780984
+Sepal.Width     0.7425467   1.0000000    0.1777000   0.2327520
+Petal.Length    0.2671758   0.1777000    1.0000000   0.3316300
+Petal.Width     0.2780984   0.2327520    0.3316300   1.0000000
+--------------------------------------------------------------- 
+iris$Species: versicolor
+             Sepal.Length Sepal.Width Petal.Length Petal.Width
+Sepal.Length    1.0000000   0.5259107    0.7540490   0.5464611
+Sepal.Width     0.5259107   1.0000000    0.5605221   0.6639987
+Petal.Length    0.7540490   0.5605221    1.0000000   0.7866681
+Petal.Width     0.5464611   0.6639987    0.7866681   1.0000000
+--------------------------------------------------------------- 
+iris$Species: virginica
+             Sepal.Length Sepal.Width Petal.Length Petal.Width
+Sepal.Length    1.0000000   0.4572278    0.8642247   0.2811077
+Sepal.Width     0.4572278   1.0000000    0.4010446   0.5377280
+Petal.Length    0.8642247   0.4010446    1.0000000   0.3221082
+Petal.Width     0.2811077   0.5377280    0.3221082   1.0000000
+Ici on a aussi une liste par élément et la fonction cor les comparent deux à deux. Pour sortir un coefficient de corrélation si les variables sont vraiment liées ou pas. Dans Sepal.length et sepal.Length le coefficient est de 1 en même temps c'est les même valeur. Plus le coefficient est proche de 1 ça veut dire que les variables sont fortement liées. Elles évoluent de la même manière dans es deux variables. Si elle est proche de 0 par exemple la longeur des petales et la largeur des sepale. Plus la colération est petite entre ces deux variables. C'est sympa si on veut voir si les variables sont liées.
+
+> by(iris[,-5], iris$Species, mean)
+iris$Species: setosa
+[1] NA
+--------------------------------------------------------------- 
+iris$Species: versicolor
+[1] NA
+--------------------------------------------------------------- 
+iris$Species: virginica
+[1] NA
+Messages d'avis :
+1: Dans mean.default(data[x, , drop = FALSE], ...) :
+  l'argument n'est ni numérique, ni logique : renvoi de NA
+2: Dans mean.default(data[x, , drop = FALSE], ...) :
+  l'argument n'est ni numérique, ni logique : renvoi de NA
+3: Dans mean.default(data[x, , drop = FALSE], ...) :
+  l'argument n'est ni numérique, ni logique : renvoi de NA
+
+La on veut faire le moyenne par groupe. On aura tendance à mettre mean. By va faire un sous-ensemble de notre tableau donc un sous-ensemble de setosa, verginica, versicolor. Ça reste une dataframe et pas des vecteurs. En faite le fonction mean elle attend un vecteur de type numérique
+
+# aggregate(x, by, FUN) x : dataframe, by : c'est un ensemble de valeur il va faire un sous-ensemble de notre tableau, la colonne iris$Species. Elle attend data.frame, soit une liste, FUN : fun qui est notre fonction
+Donc la fonction mean avec aggregate
+
+> aggregate(iris[,-5], as.data.frame(iris$Species), mean)
+  iris$Species Sepal.Length Sepal.Width Petal.Length Petal.Width
+1       setosa        5.006       3.428        1.462       0.246
+2   versicolor        5.936       2.770        4.260       1.326
+3    virginica        6.588       2.974        5.552       2.026
+
+> class(iris$Species)
+[1] "factor"
+
+> aggregate(iris[,-5], as.data.frame(iris$Species), mean)
+  iris$Species Sepal.Length Sepal.Width Petal.Length Petal.Width
+1       setosa        5.006       3.428        1.462       0.246
+2   versicolor        5.936       2.770        4.260       1.326
+3    virginica        6.588       2.974        5.552       2.026
+Je transforme la colonne species en dataframe aggregate. On voit donc bien la moyenne de chaque variable pour chaque espèce d'individu. aggregate permet de traiter le dataframe colonne par colonne. On pourrait ensuite d'utiliser aggregate de la fonction cor pour la corrélation
+
+> aggregate(iris[,-5], as.data.frame(iris$Species), cor)
+Erreur dans FUN(X[[i]], ...) : supply both 'x' and 'y' or a matrix-like 'x'
+Là on aurait une erreur pour la simple est bonne raison. Comme je disais aggregate traite colonne par colonne le dataframe. En faite la fonction cor attend une matrice de valeur et non pas une colonne. Parce qu'en faite il lui faut l'ensemble des variables pour lui faire une colérration. Il va subset des données par espece et ensuite il va envoyer les données par colonne pour faire les calculs. 
+
+Elle ne pourrait pas le faire une seule variable. Voilà la difference entre aggregate et by. aggregate va vraiment traiter le dataframe colonne par colonne 
 
 
 # shortcut qui marche :
