@@ -54,3 +54,10 @@ class(iris$Species)
 aggregate(iris[,-5], as.data.frame(iris$Species), cor)
 
 # Dplyr ; les tibbles
+library(dplyr)
+class(iris)
+
+# tibble
+irisData=as_tibble(iris)
+
+irisData

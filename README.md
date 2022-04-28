@@ -866,7 +866,30 @@ Je transforme la colonne species en dataframe aggregate. On voit donc bien la mo
 Erreur dans FUN(X[[i]], ...) : supply both 'x' and 'y' or a matrix-like 'x'
 Là on aurait une erreur pour la simple est bonne raison. Comme je disais aggregate traite colonne par colonne le dataframe. En faite la fonction cor attend une matrice de valeur et non pas une colonne. Parce qu'en faite il lui faut l'ensemble des variables pour lui faire une colérration. Il va subset des données par espece et ensuite il va envoyer les données par colonne pour faire les calculs. 
 
-Elle ne pourrait pas le faire une seule variable. Voilà la difference entre aggregate et by. aggregate va vraiment traiter le dataframe colonne par colonne 
+Elle ne pourrait pas le faire une seule variable. Voilà la difference entre aggregate et by. aggregate va vraiment traiter le dataframe colonne par colonne.
+
+# Dplyr ; les tibbles
+C'est un package vraiment intéressant développé par Hadley Wickham et c'est franchement un package vraiment optimisé qui permet de faire une manipulation des données de manière très simple. Dplyr sont avantage qu'il a une grammaire et une syntaxe claire et très simple à utiliser. C'est clairement ce qui a de plus rapide en R actuellement encore plus rapide qu'apply, by et aggregate.
+Ce qu'il faut de savoir : il va soit travailler avec dataframe, soit avec sa structure de donnée qui lui est propre qui s'appelle le tibble.
+
+> irisData
+# A tibble: 150 × 5
+   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+          <dbl>       <dbl>        <dbl>       <dbl> <fct>  
+ 1          5.1         3.5          1.4         0.2 setosa 
+ 2          4.9         3            1.4         0.2 setosa 
+ 3          4.7         3.2          1.3         0.2 setosa 
+ 4          4.6         3.1          1.5         0.2 setosa 
+ 5          5           3.6          1.4         0.2 setosa 
+ 6          5.4         3.9          1.7         0.4 setosa 
+ 7          4.6         3.4          1.4         0.3 setosa 
+ 8          5           3.4          1.5         0.2 setosa 
+ 9          4.4         2.9          1.4         0.2 setosa 
+10          4.9         3.1          1.5         0.1 setosa 
+# … with 140 more rows
+Il ne faut pas utiliser head car c'est une classe tibble. L'avantage de tibble c'est que le head est fait automatiquement. Jamais une variable de class tibble s'affichera en entier. Après ce qui est avantageux avec ce type de structure, c'est qu'on connait les dimensions de notre objet. Pas besoin de s'embêter avec un dim> Elle fait 150 lignes et 5 colonnes. Sous chaque colonne on aura le type des variables contenu dans la colonne. dbl : double, fct : facteur car c'est une variable qualicative. 
+
+On va passer à la description de tous les verbes qui sont disponible sous Dplyr.
 
 
 # shortcut qui marche :
