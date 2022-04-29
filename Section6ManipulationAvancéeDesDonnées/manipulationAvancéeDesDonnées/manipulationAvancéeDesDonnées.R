@@ -61,3 +61,31 @@ class(iris)
 irisData=as_tibble(iris)
 
 irisData
+
+# Dplyr : select() 
+# selection pour selectionner des colonnes 
+iris=irisData
+
+?select
+# selectionne les colonnes précisé
+select(iris, Sepal.Length, Petal.Length, Species)
+
+# selectionne de la colone de debut a la colonne de fin inclus
+select(iris, Sepal.Length:Sepal.Width)
+select(iris, Sepal.Length:Petal.Length)
+
+# selectionner sans une colonne
+select(iris, -Species)
+# selectionner sans des colonnes
+select(iris, -Species, -Petal.Length)
+
+# selectionner la colonne qui commence par petal
+select(iris, starts_with("Petal"))
+# selectionner la colonne qui ne commence par sepal
+select(iris, -starts_with("Sepal"))
+
+# selectionner la colonne qui ne fini par length
+select(iris, ends_with("Length"))
+
+# selectionner la colonne qui contient length
+select(iris, contains("Length"))

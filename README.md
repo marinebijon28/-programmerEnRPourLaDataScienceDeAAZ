@@ -891,6 +891,130 @@ Il ne faut pas utiliser head car c'est une classe tibble. L'avantage de tibble c
 
 On va passer à la description de tous les verbes qui sont disponible sous Dplyr.
 
+# Dplyr : select()
+# selection pour selectionner des colonnes 
+Imaginons que je veuille sélectionner uniquement des colonnes dans notre jeu de données
+
+> select(iris, Sepal.Length, Petal.Length, Species)
+# A tibble: 150 × 3
+   Sepal.Length Petal.Length Species
+          <dbl>        <dbl> <fct>  
+ 1          5.1          1.4 setosa 
+ 2          4.9          1.4 setosa 
+ 3          4.7          1.3 setosa 
+ 4          4.6          1.5 setosa 
+ 5          5            1.4 setosa 
+ 6          5.4          1.7 setosa 
+ 7          4.6          1.4 setosa 
+ 8          5            1.5 setosa 
+ 9          4.4          1.4 setosa 
+10          4.9          1.5 setosa 
+# … with 140 more rows
+En premier argument select attend le tibble ou le dataframe qui nous intéresse. Après il attend tous les noms de colonnes que l'on veut afficher. Il me dit bien j'ai 3 colonnes et 150 lignes. C'est simple de sélectionner des colonnes. on a plus besoin de s'embêter les crochets. On donne le jeux de données et les colonnes que l'on a selectionné. 
+
+> select(iris, Sepal.Length:Sepal.Width)
+# A tibble: 150 × 2
+   Sepal.Length Sepal.Width
+          <dbl>       <dbl>
+ 1          5.1         3.5
+ 2          4.9         3  
+ 3          4.7         3.2
+ 4          4.6         3.1
+ 5          5           3.6
+ 6          5.4         3.9
+ 7          4.6         3.4
+ 8          5           3.4
+ 9          4.4         2.9
+10          4.9         3.1
+# … with 140 more rows
+On peut utilisé les deux points comme on a déjà utilisé avec les deux points comme les colonnes de 1 à 3 [1:3].
+DOnc la vous voyez qu'on a bien sélectionner les deux colonnes
+
+> select(iris, -Species)
+# A tibble: 150 × 4
+   Sepal.Length Sepal.Width Petal.Length Petal.Width
+          <dbl>       <dbl>        <dbl>       <dbl>
+ 1          5.1         3.5          1.4         0.2
+ 2          4.9         3            1.4         0.2
+ 3          4.7         3.2          1.3         0.2
+ 4          4.6         3.1          1.5         0.2
+ 5          5           3.6          1.4         0.2
+ 6          5.4         3.9          1.7         0.4
+ 7          4.6         3.4          1.4         0.3
+ 8          5           3.4          1.5         0.2
+ 9          4.4         2.9          1.4         0.2
+10          4.9         3.1          1.5         0.1
+# … with 140 more rows
+on pourrait juste vouloir enlever une colonne. La colonne species nous gène un peu pour faire des statistiques.
+
+> select(iris, starts_with("Petal"))
+# A tibble: 150 × 2
+   Petal.Length Petal.Width
+          <dbl>       <dbl>
+ 1          1.4         0.2
+ 2          1.4         0.2
+ 3          1.3         0.2
+ 4          1.5         0.2
+ 5          1.4         0.2
+ 6          1.7         0.4
+ 7          1.4         0.3
+ 8          1.5         0.2
+ 9          1.4         0.2
+10          1.5         0.1
+# … with 140 more rows
+On pourrait vouloir sélectionner des colonnes selon on un mot dans les noms de colonnes pas avec le nom de colonne en entier. On veut sélectionner une colonne qui commence par sépal. Je vais utiliser une option qui s'appel starts_width commence par Petal. Tu prends toutes les colonnes qui commence par petal.
+
+> select(iris, -starts_with("Sepal"))
+# A tibble: 150 × 3
+   Petal.Length Petal.Width Species
+          <dbl>       <dbl> <fct>  
+ 1          1.4         0.2 setosa 
+ 2          1.4         0.2 setosa 
+ 3          1.3         0.2 setosa 
+ 4          1.5         0.2 setosa 
+ 5          1.4         0.2 setosa 
+ 6          1.7         0.4 setosa 
+ 7          1.4         0.3 setosa 
+ 8          1.5         0.2 setosa 
+ 9          1.4         0.2 setosa 
+10          1.5         0.1 setosa 
+# … with 140 more rows
+Après je voudrais peut-être enlever des colonnes qui commence par Sepal.
+
+> select(iris, ends_with("Length"))
+# A tibble: 150 × 2
+   Sepal.Length Petal.Length
+          <dbl>        <dbl>
+ 1          5.1          1.4
+ 2          4.9          1.4
+ 3          4.7          1.3
+ 4          4.6          1.5
+ 5          5            1.4
+ 6          5.4          1.7
+ 7          4.6          1.4
+ 8          5            1.5
+ 9          4.4          1.4
+10          4.9          1.5
+# … with 140 more rows
+AU lieu de commencer par, on peut finit par. Imaginons que nous voulons toutes les colonnes qui finissent par Length. Select iris et qui termine ends_width Length.
+
+> select(iris, contains("al"))
+# A tibble: 150 × 4
+   Sepal.Length Sepal.Width Petal.Length Petal.Width
+          <dbl>       <dbl>        <dbl>       <dbl>
+ 1          5.1         3.5          1.4         0.2
+ 2          4.9         3            1.4         0.2
+ 3          4.7         3.2          1.3         0.2
+ 4          4.6         3.1          1.5         0.2
+ 5          5           3.6          1.4         0.2
+ 6          5.4         3.9          1.7         0.4
+ 7          4.6         3.4          1.4         0.3
+ 8          5           3.4          1.5         0.2
+ 9          4.4         2.9          1.4         0.2
+10          4.9         3.1          1.5         0.1
+# … with 140 more rows
+Au lieu de commencer ou terminer par un mot. On peut dire contient un mot avec contains. Par exemple on cherche le motif al. Peu importe ou il sera dans le nom de la colonne. Il sera sélectionné
+
 
 # shortcut qui marche :
 command c copier
