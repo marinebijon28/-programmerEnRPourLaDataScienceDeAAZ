@@ -87,5 +87,30 @@ select(iris, -starts_with("Sepal"))
 # selectionner la colonne qui ne fini par length
 select(iris, ends_with("Length"))
 
-# selectionner la colonne qui contient length
-select(iris, contains("Length"))
+# selectionner la colonne qui contient al
+select(iris, contains("al"))
+
+# filter : filtrer selon les individus
+?filter
+# filter avec les filtres sur les colonnes Sepal
+filter(iris, Sepal.Length >= 5, Sepal.Width >= 2)
+
+filter(iris, between(Sepal.Length, 4, 7))
+# Si la fonction between n'exister pas 
+filter(iris, Sepal.Length >= 4, Sepal.Width <= 7)
+
+filter(iris, Species == "setosa")
+filter(iris, Species != "setosa")
+
+# l'espéce sera soit versicolor ou setosa
+filter(iris, Species %in% c("setosa", "versicolor"))
+# donne le même résultat
+filter(iris, (Species == "setosa" | Species == "versicolor"))
+
+# sans la derniere colonne et si une de variable et superieur 5
+filter_all(iris[,-5], any_vars(. > 5))
+# donne le meme resultat
+filter(iris, (Sepal.Length > 5 | Sepal.Width > 5 | Petal.Length > 5 |
+                Petal.Width > 5))
+
+filter_all(iris[,-5], all_vars(. > 5))

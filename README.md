@@ -1015,6 +1015,163 @@ AU lieu de commencer par, on peut finit par. Imaginons que nous voulons toutes l
 # … with 140 more rows
 Au lieu de commencer ou terminer par un mot. On peut dire contient un mot avec contains. Par exemple on cherche le motif al. Peu importe ou il sera dans le nom de la colonne. Il sera sélectionné
 
+# filter : filtrer selon les individus
+
+> filter(iris, Sepal.Length >= 5, Sepal.Width >= 2)
+# A tibble: 128 × 5
+   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+          <dbl>       <dbl>        <dbl>       <dbl> <fct>  
+ 1          5.1         3.5          1.4         0.2 setosa 
+ 2          5           3.6          1.4         0.2 setosa 
+ 3          5.4         3.9          1.7         0.4 setosa 
+ 4          5           3.4          1.5         0.2 setosa 
+ 5          5.4         3.7          1.5         0.2 setosa 
+ 6          5.8         4            1.2         0.2 setosa 
+ 7          5.7         4.4          1.5         0.4 setosa 
+ 8          5.4         3.9          1.3         0.4 setosa 
+ 9          5.1         3.5          1.4         0.3 setosa 
+10          5.7         3.8          1.7         0.3 setosa 
+# … with 118 more rows
+On pourrait par exemple selectionner les individus qui ont des grandes petales. Il me dit qu'en tout, il y a 128 individus avec les filtres passées en paramètre. Il y a 150 individus en tout dans iris.
+
+> filter(iris, between(Sepal.Length, 4, 7))
+# A tibble: 138 × 5
+   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+          <dbl>       <dbl>        <dbl>       <dbl> <fct>  
+ 1          5.1         3.5          1.4         0.2 setosa 
+ 2          4.9         3            1.4         0.2 setosa 
+ 3          4.7         3.2          1.3         0.2 setosa 
+ 4          4.6         3.1          1.5         0.2 setosa 
+ 5          5           3.6          1.4         0.2 setosa 
+ 6          5.4         3.9          1.7         0.4 setosa 
+ 7          4.6         3.4          1.4         0.3 setosa 
+ 8          5           3.4          1.5         0.2 setosa 
+ 9          4.4         2.9          1.4         0.2 setosa 
+10          4.9         3.1          1.5         0.1 setosa 
+# … with 128 more rows
+On pourrait demander une valeur de sepal compris entre deux valeurs. On va utiliser notre jeu de données iris et la on va utiliser une fonction qui s'appelle between. À laquelle on va donnée le nom de la colonne sur laquelle on va appliqué le filtre. puis les valeurs de la colonnes devront être comprisent entre des deux valeurs passées à cette fonction sont incluses. J'ai 138 individus qui rentre dans cette case là.
+
+> filter(iris, Species == "setosa")
+# A tibble: 50 × 5
+   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+          <dbl>       <dbl>        <dbl>       <dbl> <fct>  
+ 1          5.1         3.5          1.4         0.2 setosa 
+ 2          4.9         3            1.4         0.2 setosa 
+ 3          4.7         3.2          1.3         0.2 setosa 
+ 4          4.6         3.1          1.5         0.2 setosa 
+ 5          5           3.6          1.4         0.2 setosa 
+ 6          5.4         3.9          1.7         0.4 setosa 
+ 7          4.6         3.4          1.4         0.3 setosa 
+ 8          5           3.4          1.5         0.2 setosa 
+ 9          4.4         2.9          1.4         0.2 setosa 
+10          4.9         3.1          1.5         0.1 setosa 
+# … with 40 more rows
+On voudrait faire un sous-ensemble dans le tableau suivant l'espèce. Par exemple, on voulait le table pour les espéces qui sont des setosa. Il me donne un aperçut de mon tableau. Il y a 50 individus qui sont setosa.
+
+> filter(iris, Species != "setosa")
+# A tibble: 100 × 5
+   Sepal.Length Sepal.Width Petal.Length Petal.Width Species   
+          <dbl>       <dbl>        <dbl>       <dbl> <fct>     
+ 1          7           3.2          4.7         1.4 versicolor
+ 2          6.4         3.2          4.5         1.5 versicolor
+ 3          6.9         3.1          4.9         1.5 versicolor
+ 4          5.5         2.3          4           1.3 versicolor
+ 5          6.5         2.8          4.6         1.5 versicolor
+ 6          5.7         2.8          4.5         1.3 versicolor
+ 7          6.3         3.3          4.7         1.6 versicolor
+ 8          4.9         2.4          3.3         1   versicolor
+ 9          6.6         2.9          4.6         1.3 versicolor
+10          5.2         2.7          3.9         1.4 versicolor
+# … with 90 more rows
+Je pourrais vouloir tous les individus qui ne sont pas setosa. Au lieu de mettre éauivalent on va mettre différent. On voit donc qu'on a du versicolor et on a 100 individus au lieu de 150
+
+> filter(iris, Species %in% c("setosa", "versicolor"))
+# A tibble: 100 × 5
+   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+          <dbl>       <dbl>        <dbl>       <dbl> <fct>  
+ 1          5.1         3.5          1.4         0.2 setosa 
+ 2          4.9         3            1.4         0.2 setosa 
+ 3          4.7         3.2          1.3         0.2 setosa 
+ 4          4.6         3.1          1.5         0.2 setosa 
+ 5          5           3.6          1.4         0.2 setosa 
+ 6          5.4         3.9          1.7         0.4 setosa 
+ 7          4.6         3.4          1.4         0.3 setosa 
+ 8          5           3.4          1.5         0.2 setosa 
+ 9          4.4         2.9          1.4         0.2 setosa 
+10          4.9         3.1          1.5         0.1 setosa 
+# … with 90 more rows
+Si on veut sélectionner deux groupes. Si je veux sélectionner deux colonnes : setosa et versicolor. Il faudrait que j'utilise un opérateur que l'on a déjà vu %in% et on va lui donnée un vecteur. Je veux que espéces soit versicolor ou setosa. L'ensemble verginica n'est pas là.
+
+> filter(iris, (Species == "setosa" | Species == "versicolor"))
+# A tibble: 100 × 5
+   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+          <dbl>       <dbl>        <dbl>       <dbl> <fct>  
+ 1          5.1         3.5          1.4         0.2 setosa 
+ 2          4.9         3            1.4         0.2 setosa 
+ 3          4.7         3.2          1.3         0.2 setosa 
+ 4          4.6         3.1          1.5         0.2 setosa 
+ 5          5           3.6          1.4         0.2 setosa 
+ 6          5.4         3.9          1.7         0.4 setosa 
+ 7          4.6         3.4          1.4         0.3 setosa 
+ 8          5           3.4          1.5         0.2 setosa 
+ 9          4.4         2.9          1.4         0.2 setosa 
+10          4.9         3.1          1.5         0.1 setosa 
+# … with 90 more rows
+donne le même résultat
+
+> filter_all(iris[,-5], any_vars(. > 5))
+# A tibble: 118 × 4
+   Sepal.Length Sepal.Width Petal.Length Petal.Width
+          <dbl>       <dbl>        <dbl>       <dbl>
+ 1          5.1         3.5          1.4         0.2
+ 2          5.4         3.9          1.7         0.4
+ 3          5.4         3.7          1.5         0.2
+ 4          5.8         4            1.2         0.2
+ 5          5.7         4.4          1.5         0.4
+ 6          5.4         3.9          1.3         0.4
+ 7          5.1         3.5          1.4         0.3
+ 8          5.7         3.8          1.7         0.3
+ 9          5.1         3.8          1.5         0.3
+10          5.4         3.4          1.7         0.2
+# … with 108 more rows
+Si on veut faire sur toutes les colonnes du tibble, on utilise la function filter_all. Je donne species sans la variable species. Si une des variables est supérieur à 5 et si toutes les variables sont en dessous de 5 on ne garde pas l'individu. On voit qu'il ya 118 individus qui ont au moins une variable au-dessus de 5.
+
+> filter(iris, (Sepal.Length > 5 | Sepal.Width > 5 | Petal.Length > 5 |
++                 Petal.Width > 5))
+# A tibble: 118 × 5
+   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+          <dbl>       <dbl>        <dbl>       <dbl> <fct>  
+ 1          5.1         3.5          1.4         0.2 setosa 
+ 2          5.4         3.9          1.7         0.4 setosa 
+ 3          5.4         3.7          1.5         0.2 setosa 
+ 4          5.8         4            1.2         0.2 setosa 
+ 5          5.7         4.4          1.5         0.4 setosa 
+ 6          5.4         3.9          1.3         0.4 setosa 
+ 7          5.1         3.5          1.4         0.3 setosa 
+ 8          5.7         3.8          1.7         0.3 setosa 
+ 9          5.1         3.8          1.5         0.3 setosa 
+10          5.4         3.4          1.7         0.2 setosa 
+# … with 108 more rows
+donne le meme resultat
+
+> filter_all(iris[,-5], all_vars(. > 2))
+# A tibble: 23 × 4
+   Sepal.Length Sepal.Width Petal.Length Petal.Width
+          <dbl>       <dbl>        <dbl>       <dbl>
+ 1          6.3         3.3          6           2.5
+ 2          7.1         3            5.9         2.1
+ 3          6.5         3            5.8         2.2
+ 4          7.6         3            6.6         2.1
+ 5          7.2         3.6          6.1         2.5
+ 6          6.8         3            5.5         2.1
+ 7          5.8         2.8          5.1         2.4
+ 8          6.4         3.2          5.3         2.3
+ 9          7.7         3.8          6.7         2.2
+10          7.7         2.6          6.9         2.3
+# … with 13 more rows
+On a 23 individu ou il y a toutes les valeurs sont supérieur à 2.
+
+
 
 # shortcut qui marche :
 command c copier
