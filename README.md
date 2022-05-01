@@ -1171,6 +1171,48 @@ donne le meme resultat
 # … with 13 more rows
 On a 23 individu ou il y a toutes les valeurs sont supérieur à 2.
 
+# operateur pipe
+L'opérateur pipe qui ets un opérateur pipe qui est très important avec le package Dplyr. Il permet d'enchaîner les verbes de Dplyr. Cette opérateur pipe s'écrit %>%. En gros ce que ça fait, cet qu'il prends la sortie de la première fonction. On va mettre un pipe à côté ce qui veut dire que la sortie va être redirigé vers la deuxième fonctions et ainsi de suite.
+Ça permet d'enchaîner les verbes de faires des choses super lisible et super puissante.
+
+> iris %>%
++ select(Sepal.Length, Petal.Length, Species)
+# A tibble: 150 × 3
+   Sepal.Length Petal.Length Species
+          <dbl>        <dbl> <fct>  
+ 1          5.1          1.4 setosa 
+ 2          4.9          1.4 setosa 
+ 3          4.7          1.3 setosa 
+ 4          4.6          1.5 setosa 
+ 5          5            1.4 setosa 
+ 6          5.4          1.7 setosa 
+ 7          4.6          1.4 setosa 
+ 8          5            1.5 setosa 
+ 9          4.4          1.4 setosa 
+10          4.9          1.5 setosa 
+# … with 140 more rows
+On va mettre l'objet que l'on souhaite donnée entrer. puis le pipe %>%, puis enfin les verbes que l'on souhaite lui donnée. Notre verbe c'est select. On lui dit les colonnes que l'on veut sélectionner. On a plus besoin de mettre iris dans le select. Tou simplement parce quon lui donne déjà iris. Grâce au pipe on envoie iris directement à la fonction.
+On se retrouve du coup avec nos 3 colonnes comme précédemment
+
+> iris %>%
++ select(-Species) %>%
++ filter_all(all_vars(. > 2))
+# A tibble: 23 × 4
+   Sepal.Length Sepal.Width Petal.Length Petal.Width
+          <dbl>       <dbl>        <dbl>       <dbl>
+ 1          6.3         3.3          6           2.5
+ 2          7.1         3            5.9         2.1
+ 3          6.5         3            5.8         2.2
+ 4          7.6         3            6.6         2.1
+ 5          7.2         3.6          6.1         2.5
+ 6          6.8         3            5.5         2.1
+ 7          5.8         2.8          5.1         2.4
+ 8          6.4         3.2          5.3         2.3
+ 9          7.7         3.8          6.7         2.2
+10          7.7         2.6          6.9         2.3
+# … with 13 more rows
+Avant je vous disais avec le filter_all. Je mets avec iris avec , -5, mais enchainant les verbes ya moyen de faire plus propre. On donne iris.  On redirige dans select en enlévant Species. On redirige le traitement de la première fonction dans la deuxième. On voit qu'on se retrouve avec 23 individus et 4 colonnes comme précédemment.
+Le principe du pipe. Je donne iris qui est envoyé a select. select va enlever la variable species. Ensuite filter va récupérer iris sans species et faire son traitement.
 
 
 # shortcut qui marche :

@@ -113,4 +113,12 @@ filter_all(iris[,-5], any_vars(. > 5))
 filter(iris, (Sepal.Length > 5 | Sepal.Width > 5 | Petal.Length > 5 |
                 Petal.Width > 5))
 
-filter_all(iris[,-5], all_vars(. > 5))
+filter_all(iris[,-5], all_vars(. > 2))
+
+# operateur pipe %>%. redirige les sorties a la fonction qui la suit
+iris %>%
+select(Sepal.Length, Petal.Length, Species)
+
+iris %>%
+select(-Species) %>%
+filter_all(all_vars(. > 2))
