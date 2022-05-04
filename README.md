@@ -1214,6 +1214,86 @@ On se retrouve du coup avec nos 3 colonnes comme précédemment
 Avant je vous disais avec le filter_all. Je mets avec iris avec , -5, mais enchainant les verbes ya moyen de faire plus propre. On donne iris.  On redirige dans select en enlévant Species. On redirige le traitement de la première fonction dans la deuxième. On voit qu'on se retrouve avec 23 individus et 4 colonnes comme précédemment.
 Le principe du pipe. Je donne iris qui est envoyé a select. select va enlever la variable species. Ensuite filter va récupérer iris sans species et faire son traitement.
 
+# arrange 
+Donc c'est le verbe de Dplyr() pour faire le sort pour trier
+C'est un peu l'équivalent de order 
+
+> iris %>%
++ arrange(Sepal.Length)
+# A tibble: 150 × 5
+   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+          <dbl>       <dbl>        <dbl>       <dbl> <fct>  
+ 1          4.3         3            1.1         0.1 setosa 
+ 2          4.4         2.9          1.4         0.2 setosa 
+ 3          4.4         3            1.3         0.2 setosa 
+ 4          4.4         3.2          1.3         0.2 setosa 
+ 5          4.5         2.3          1.3         0.3 setosa 
+ 6          4.6         3.1          1.5         0.2 setosa 
+ 7          4.6         3.4          1.4         0.3 setosa 
+ 8          4.6         3.6          1           0.2 setosa 
+ 9          4.6         3.2          1.4         0.2 setosa 
+10          4.7         3.2          1.3         0.2 setosa 
+# … with 140 more rows
+On donne le tibble iris à la fonction arrange pour trier de façon ascendante.
+
+> iris %>%
++ arrange(desc(Sepal.Length))
+# A tibble: 150 × 5
+   Sepal.Length Sepal.Width Petal.Length Petal.Width Species  
+          <dbl>       <dbl>        <dbl>       <dbl> <fct>    
+ 1          7.9         3.8          6.4         2   virginica
+ 2          7.7         3.8          6.7         2.2 virginica
+ 3          7.7         2.6          6.9         2.3 virginica
+ 4          7.7         2.8          6.7         2   virginica
+ 5          7.7         3            6.1         2.3 virginica
+ 6          7.6         3            6.6         2.1 virginica
+ 7          7.4         2.8          6.1         1.9 virginica
+ 8          7.3         2.9          6.3         1.8 virginica
+ 9          7.2         3.6          6.1         2.5 virginica
+10          7.2         3.2          6           1.8 virginica
+# … with 140 more rows
+On donne le tibble iris à la fonction arrange pour trier de façon descendante.
+
+> iris %>%
++ arrange(Sepal.Length, Sepal.Width)
+# A tibble: 150 × 5
+   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+          <dbl>       <dbl>        <dbl>       <dbl> <fct>  
+ 1          4.3         3            1.1         0.1 setosa 
+ 2          4.4         2.9          1.4         0.2 setosa 
+ 3          4.4         3            1.3         0.2 setosa 
+ 4          4.4         3.2          1.3         0.2 setosa 
+ 5          4.5         2.3          1.3         0.3 setosa 
+ 6          4.6         3.1          1.5         0.2 setosa 
+ 7          4.6         3.2          1.4         0.2 setosa 
+ 8          4.6         3.4          1.4         0.3 setosa 
+ 9          4.6         3.6          1           0.2 setosa 
+10          4.7         3.2          1.3         0.2 setosa 
+# … with 140 more rows
+Si on veut ordonner plusieurs variables ce serait possible
+
+> iris %>%
++ select(Petal.Length, Petal.Width, Species) %>%
++ filter(Species == "setosa") %>%
++ arrange(Petal.Length, Petal.Width)
+# A tibble: 50 × 3
+   Petal.Length Petal.Width Species
+          <dbl>       <dbl> <fct>  
+ 1          1           0.2 setosa 
+ 2          1.1         0.1 setosa 
+ 3          1.2         0.2 setosa 
+ 4          1.2         0.2 setosa 
+ 5          1.3         0.2 setosa 
+ 6          1.3         0.2 setosa 
+ 7          1.3         0.2 setosa 
+ 8          1.3         0.2 setosa 
+ 9          1.3         0.3 setosa 
+10          1.3         0.3 setosa 
+# … with 40 more rows
+On donne iris en entier à la fonction select. On choisit les trois colonnes Petal.Length, Petal.Length, Species. On choisit que l'ensemble setosa. La dernière fonction trie par Petal.Length, puis Petal.Width de façon ascendante.
+
+
+
 
 # shortcut qui marche :
 command c copier

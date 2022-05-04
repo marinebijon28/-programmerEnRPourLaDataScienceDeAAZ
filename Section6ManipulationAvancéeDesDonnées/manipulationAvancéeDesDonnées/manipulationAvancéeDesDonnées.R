@@ -122,3 +122,16 @@ select(Sepal.Length, Petal.Length, Species)
 iris %>%
 select(-Species) %>%
 filter_all(all_vars(. > 2))
+
+# arrange()
+# asc
+iris %>%
+arrange(Sepal.Length)
+
+# desc
+iris %>%
+arrange(desc(Sepal.Length))
+
+# plusieurs colonnes
+iris %>%
+arrange(Sepal.Length, Sepal.Width)
