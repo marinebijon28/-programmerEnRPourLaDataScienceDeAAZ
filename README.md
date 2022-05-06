@@ -1292,6 +1292,53 @@ Si on veut ordonner plusieurs variables ce serait possible
 # … with 40 more rows
 On donne iris en entier à la fonction select. On choisit les trois colonnes Petal.Length, Petal.Length, Species. On choisit que l'ensemble setosa. La dernière fonction trie par Petal.Length, puis Petal.Width de façon ascendante.
 
+# summarise
+Donc maintenaant on va voir le verbe summarise qui permet de faire un résumé statistique d'une de nos variables. En fait summarise va prendre une valeur en entrer donc un vecteur. Il va sortir au final une seul valeur qui va résumer cette variable.
+Donc avec summarise, on va pouvoir utiliser les fonctions qu'on a déjà vue : min, sum, max
+
+> iris  %>%
++ summarise(moyenneTaillePetal=mean(Petal.Length))
+# A tibble: 1 × 1
+  moyenneTaillePetal
+               <dbl>
+1               3.76
+On donne iris a summary et on va assigné un nom de colonne à notre valeur obtenu par mean. moyenneTaillePetal c'est 3.76, donc on a tibble qui contient une valeur la moyenne des petals
+
+> iris  %>%
++ summarise(moyenneTaillePetal=mean(Petal.Length),
++ minTaillePetal=min(Petal.Length),
++ maxTaillePetal=max(Petal.Length),
++ total=n())
+# A tibble: 1 × 4
+  moyenneTaillePetal minTaillePetal maxTaillePetal total
+               <dbl>          <dbl>          <dbl> <int>
+1               3.76              1            6.9   150
+> 
+On va vouloir calculer plusieurs résumé statistique. On reprends notre moyenne et on va pouvoir enchaîner des fonctions. On va vouloir la taille minimum des pétals et la taille maximum des pétals. Avec summarise il y a une fonction, la fonction n. Ça permet de calculer l'effectif de notre tableau qui est traité notre vecteur dans cet exemple.
+On va voir la moyenne des tailles des pétals qui ets 3,76. La taille minimum des pétals de 1, la taille maximum 6,9, est un total 150.
+
+> iris  %>%
++ summarise(moyenneTaillePetal=mean(Petal.Length),
++ moyenneTailleSepal=mean(Sepal.Length),
++ minTaillePetal=min(Petal.Length),
++ minTailleSepal=min(Sepal.Length)
++ )
+# A tibble: 1 × 4
+  moyenneTaillePetal moyenneTailleSepal minTaillePetal minTailleSepal
+               <dbl>              <dbl>          <dbl>          <dbl>
+1               3.76               5.84              1            4.3
+Quand j'envoie dans R. J'ai bien 4 colonnes avec les deux moyennes et les deux tailles minimum.
+
+> iris  %>%
++ summarise_each(funs(mean, min), Petal.Length, Sepal.Length)
+# A tibble: 1 × 4
+  Petal.Length_mean Sepal.Length_mean Petal.Length_min Sepal.Length_min
+              <dbl>             <dbl>            <dbl>            <dbl>
+1              3.76              5.84                1              4.3
+Il y a donc une fonction qui a été créé qui s'appel summarise.
+Summarise_each qui va attendre 2 arguments. Funs pour function, on peut lui donner plusieurs fonctions. On va dire qu'on va utiliser mean et min. Ensuite on peut lui donnée une suite de variable ou on veut effectuer les fonctions données en premier paramètre. on lui a pas donnée les noms de colonnes donc il utilise les noms de colonnes de iris avec la fonction utiliser. On a un message d'erreur summarise est deprecated. donc il propose accross.
+
+# group_by
 
 
 

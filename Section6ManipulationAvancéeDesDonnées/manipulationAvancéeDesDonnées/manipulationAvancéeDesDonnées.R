@@ -135,3 +135,39 @@ arrange(desc(Sepal.Length))
 # plusieurs colonnes
 iris %>%
 arrange(Sepal.Length, Sepal.Width)
+
+# plusieurs colonnes
+iris %>%
+select(Petal.Length, Petal.Width, Species) %>%
+filter(Species == "setosa") %>%
+arrange(Petal.Length, Petal.Width)
+
+iris %>%
+  select(Petal.Length, Petal.Width, Species) %>%
+  filter(Species == "setosa") %>%
+  arrange(Petal.Width, Petal.Length)
+
+
+# summarise : résumé statistique d'un vecteur qui retourne une valeur
+# une seule valeur
+iris  %>%
+summarise(moyenneTaillePetal=mean(Petal.Length))
+
+# On va vouloir calculer plusieurs résumé statistique
+iris  %>%
+summarise(moyenneTaillePetal=mean(Petal.Length),
+minTaillePetal=min(Petal.Length),
+maxTaillePetal=max(Petal.Length),
+total=n())
+
+iris  %>%
+summarise(moyenneTaillePetal=mean(Petal.Length),
+moyenneTailleSepal=mean(Sepal.Length),
+minTaillePetal=min(Petal.Length),
+minTailleSepal=min(Sepal.Length)
+)
+
+iris  %>%
+summarise_each(funs(mean, min), Petal.Length, Sepal.Length)
+
+# group_by
