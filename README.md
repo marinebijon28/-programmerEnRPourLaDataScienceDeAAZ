@@ -1339,6 +1339,40 @@ Il y a donc une fonction qui a été créé qui s'appel summarise.
 Summarise_each qui va attendre 2 arguments. Funs pour function, on peut lui donner plusieurs fonctions. On va dire qu'on va utiliser mean et min. Ensuite on peut lui donnée une suite de variable ou on veut effectuer les fonctions données en premier paramètre. on lui a pas donnée les noms de colonnes donc il utilise les noms de colonnes de iris avec la fonction utiliser. On a un message d'erreur summarise est deprecated. donc il propose accross.
 
 # group_by
+Maintenant on va voir notre group_by, c'est le concept split a plane et combine. En fait ce que group by va faire c'est qu'il va splitter selon une variable catégorielle. Une variable qualitative par exemple ou une sous dataframe avec cette variable là et ça nous permettra de faire des statistiques uniquement sur les sous-groupe et non pas sur le tableau entier. Ce qui est pratique sur les analyses statistiques.
+Le but de group_by, c'est de splitter un tableau de faire un sous-ensemble selon une variable. D'appliquer une fonction dessus. Le gros avantage qui va sortir un résultat qui est groupé pour chaque groupe
+
+> iris %>%
++ group_by(Species) %>%
++ summarise(moyenneTaillePetal=mean(Petal.Length),
++ minTaillePetal=min(Petal.Length),
++ maxTaillePetal=max(Petal.Length),
++ total=n())
+# A tibble: 3 × 5
+  Species    moyenneTaillePetal minTaillePetal maxTaillePetal total
+  <fct>                   <dbl>          <dbl>          <dbl> <int>
+1 setosa                   1.46            1              1.9    50
+2 versicolor               4.26            3              5.1    50
+3 virginica                5.55            4.5            6.9    50
+On va commencé par par lui donnée d'iris. Groupe by il faut lui donnée la variable sur laquelle on veut grouper notre tableau donc species. C'est notre variable catégorielle ou variable qualitative qui permet de créer des groupes. Ensuite on va utiliser summarise et on va mettre ce qu'on a utilisé plus haut d'ailleurs. On va faire le mettre summarise comme avant sauf que maintenant un va grouper par espèce.
+Group by va faire un tableau par espèce. Il va appliquer la fonction a chaque sous tableau. Ensuite, il va sortir un résultat combiner. 
+L'avantage du group by, c'est qu'on va voir un tableau, mais séparer par groupe. 
+
+> iris %>%
++ group_by(Species) %>%
++ filter(Petal.Length > 5) %>%
++ summarise(n())
+# A tibble: 2 × 2
+  Species    `n()`
+  <fct>      <int>
+1 versicolor     1
+2 virginica     41
+On pourrait utiliser le verbe filter avec group_by. Je donne iris en entrée. Je group by par espèce et la je vais faire un filter sur Petal.Length au-dessus de 5. Le nombre d'individu qui correspond au filtre. On a un versicolor ou Petal.Length supérieur a 5 et 41 verginica
+
+# mutate
+
+
+
 
 
 

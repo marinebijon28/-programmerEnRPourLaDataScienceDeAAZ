@@ -171,3 +171,14 @@ iris  %>%
 summarise_each(funs(mean, min), Petal.Length, Sepal.Length)
 
 # group_by
+iris %>%
+group_by(Species) %>%
+summarise(moyenneTaillePetal=mean(Petal.Length),
+minTaillePetal=min(Petal.Length),
+maxTaillePetal=max(Petal.Length),
+total=n())
+
+iris %>%
+group_by(Species) %>%
+filter(Petal.Length > 5) %>%
+summarise(n())
