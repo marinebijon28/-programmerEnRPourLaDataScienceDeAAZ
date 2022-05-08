@@ -1370,10 +1370,64 @@ L'avantage du group by, c'est qu'on va voir un tableau, mais séparer par groupe
 On pourrait utiliser le verbe filter avec group_by. Je donne iris en entrée. Je group by par espèce et la je vais faire un filter sur Petal.Length au-dessus de 5. Le nombre d'individu qui correspond au filtre. On a un versicolor ou Petal.Length supérieur a 5 et 41 verginica
 
 # mutate
+Ça permet d'ajouter des variables donc des colonnes. Ça va aussi permettre de supprimer des colonnes ou de modifier des variables.
 
+> iris %>%
++ mutate(sommeLongueurLargeurPetale=Petal.Length + Petal.Width,
++ sommeLongueurLargeurSepale=Sepal.Length + Sepal.Width) 
+# A tibble: 150 × 7
+   Sepal.Length Sepal.Width Petal.Length Petal.Width Species sommeLongueurLargeurPetale sommeLongueurLargeurSep…
+          <dbl>       <dbl>        <dbl>       <dbl> <fct>                        <dbl>                    <dbl>
+ 1          5.1         3.5          1.4         0.2 setosa                         1.6                      8.6
+ 2          4.9         3            1.4         0.2 setosa                         1.6                      7.9
+ 3          4.7         3.2          1.3         0.2 setosa                         1.5                      7.9
+ 4          4.6         3.1          1.5         0.2 setosa                         1.7                      7.7
+ 5          5           3.6          1.4         0.2 setosa                         1.6                      8.6
+ 6          5.4         3.9          1.7         0.4 setosa                         2.1                      9.3
+ 7          4.6         3.4          1.4         0.3 setosa                         1.7                      8  
+ 8          5           3.4          1.5         0.2 setosa                         1.7                      8.4
+ 9          4.4         2.9          1.4         0.2 setosa                         1.6                      7.3
+10          4.9         3.1          1.5         0.1 setosa                         1.6                      8  
+# … with 140 more rows
+On donne iris en entrée, on va ajouter une colonne qui s'appelle sommeLongueurLargeurPetal qui est la somme de Petal.Length et Petal.Width. on va faire pareil pour sepal. On a notre tableau iris plus les deux colonnes que l'on a ajouté
 
+> iris %>%
++ mutate(Species=NULL, Sepal.Width=NULL) 
+# A tibble: 150 × 3
+   Sepal.Length Petal.Length Petal.Width
+          <dbl>        <dbl>       <dbl>
+ 1          5.1          1.4         0.2
+ 2          4.9          1.4         0.2
+ 3          4.7          1.3         0.2
+ 4          4.6          1.5         0.2
+ 5          5            1.4         0.2
+ 6          5.4          1.7         0.4
+ 7          4.6          1.4         0.3
+ 8          5            1.5         0.2
+ 9          4.4          1.4         0.2
+10          4.9          1.5         0.1
+# … with 140 more rows
+On va vouloir supprimer la colonne species. donc on met le nom de la colonne dans mutate et on lui assigne null. On fait pareil avec la colonne Sepal.Width. On voit donc les trois variables défini dans le tableau.
 
+> iris %>%
++ mutate(Sepal.Length=Sepal.Length*2) 
+# A tibble: 150 × 5
+   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+          <dbl>       <dbl>        <dbl>       <dbl> <fct>  
+ 1         10.2         3.5          1.4         0.2 setosa 
+ 2          9.8         3            1.4         0.2 setosa 
+ 3          9.4         3.2          1.3         0.2 setosa 
+ 4          9.2         3.1          1.5         0.2 setosa 
+ 5         10           3.6          1.4         0.2 setosa 
+ 6         10.8         3.9          1.7         0.4 setosa 
+ 7          9.2         3.4          1.4         0.3 setosa 
+ 8         10           3.4          1.5         0.2 setosa 
+ 9          8.8         2.9          1.4         0.2 setosa 
+10          9.8         3.1          1.5         0.1 setosa 
+# … with 140 more rows
+Si on veut modifier une colonne on ecrit le nom de la colonne et le traitement qu'on veut lui faire. on voit qu'on fait bien fois deux sur les sepal.Length
 
+# exercice
 
 
 # shortcut qui marche :

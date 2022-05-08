@@ -182,3 +182,19 @@ iris %>%
 group_by(Species) %>%
 filter(Petal.Length > 5) %>%
 summarise(n())
+
+# mutate : ajouter, supprimer ou de modifier
+#ajouter une ou plusieurs variables
+iris %>%
+mutate(sommeLongueurLargeurPetale=Petal.Length + Petal.Width,
+sommeLongueurLargeurSepale=Sepal.Length + Sepal.Width) 
+
+# supprimer une ou des variables
+iris %>%
+mutate(Species=NULL, Sepal.Width=NULL) 
+
+# modifier une variable
+iris %>%
+mutate(Sepal.Length=Sepal.Length*2) 
+
+# exercice
