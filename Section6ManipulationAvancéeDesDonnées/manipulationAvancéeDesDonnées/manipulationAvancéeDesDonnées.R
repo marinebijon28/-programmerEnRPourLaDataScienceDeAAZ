@@ -143,9 +143,9 @@ filter(Species == "setosa") %>%
 arrange(Petal.Length, Petal.Width)
 
 iris %>%
-  select(Petal.Length, Petal.Width, Species) %>%
-  filter(Species == "setosa") %>%
-  arrange(Petal.Width, Petal.Length)
+select(Petal.Length, Petal.Width, Species) %>%
+filter(Species == "setosa") %>%
+arrange(Petal.Width, Petal.Length)
 
 
 # summarise : résumé statistique d'un vecteur qui retourne une valeur
@@ -198,3 +198,59 @@ iris %>%
 mutate(Sepal.Length=Sepal.Length*2) 
 
 # exercice
+
+# lecture du fichier fast food aux US
+fastFood=read.csv("FastFoodRestaurants.csv")
+head(fastFood)
+
+# transformation en tibble
+fastFoodTibble=as_tibble(fastFood)
+
+# quelles sont les 5 villes avec le plus de fast-food
+fastFoodTibble %>%
+group_by(city) %>%
+summarise(nombreDeRestaurants=length(city)) %>%
+arrange(desc(nombreDeRestaurants)) %>%
+head(n=5) 
+
+# Quels sont les fastFoods les plus présent dans les cinq villes
+FastFoodCity=fastFoodTibble %>%
+group_by(city) %>%
+summarise(nombreDeRestaurants=length(city)) %>%
+arrange(desc(nombreDeRestaurants)) %>%
+head(n=5) %>%
+pull(city)
+
+fastFoodTibble %>%
+filter(city %in% FastFoodCity) %>%
+group_by(name) %>%
+summarise(nombreDeFastFood=length(name)) %>%
+arrange(desc(nombreDeFastFood))
+
+# Quels sont les fast food avec le plus de restaurants aux US ?
+fastFoodTibble %>%
+group_by(name) %>%
+summarise(nombreDeFastFood=length(name), pourcentageDeFastFood=length(name)*
+            100/10000) %>%
+arrange(desc(nombreDeFastFood))
+
+# Dans quelle ville y a-t-il le plus de McDonald's ?
+fastFoodTibble %>%
+filter(name %in% "McDonald's") %>%
+group_by(city) %>%
+summarise(nombreMcDonals=length(city)) %>% 
+arrange(desc(nombreMcDonals))
+
+# Où se situe New-York par rapport aux 5 villes avec le plus de fast food ?
+fastFoodTibble %>% 
+group_by(city) %>%
+filter(city %in% "New York") %>%
+summarise(nombreDeFastFood=length(city))
+
+# fast food les plus présent a New York
+fastFoodTibble %>%
+filter(city %in% "New York") %>%
+group_by(name) %>%
+summarise(nombreDeFastFood=length(name), pourcentageDeFastFood=length(name)*
+            100/10000) %>%
+arrange(desc(nombreDeFastFood))

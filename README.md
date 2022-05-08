@@ -1428,6 +1428,133 @@ On va vouloir supprimer la colonne species. donc on met le nom de la colonne dan
 Si on veut modifier une colonne on ecrit le nom de la colonne et le traitement qu'on veut lui faire. on voit qu'on fait bien fois deux sur les sepal.Length
 
 # exercice
+On va faire du data meaning.
+
+# quelles sont les 5 villes avec le plus de fast-food
+> fastFoodTibble %>%
++ group_by(city) %>%
++ summarise(nombreDeRestaurants=length(city)) %>%
++ arrange(desc(nombreDeRestaurants)) %>%
++ head(n=5)
+# A tibble: 5 × 2
+  city       nombreDeRestaurants
+  <chr>                    <int>
+1 Cincinnati                 119
+2 Las Vegas                   72
+3 Houston                     63
+4 Miami                       58
+5 Denver                      52
+On groupe par city pour avoir un sous-ensemble ppar ville. Puis on crée une colonne avec la longueur. Enfin on trie de façon décroissante le nombre de restaurant. Puis on limite au 5 premières lignes.
+
+# Quels sont les fastFoods les plus présent dans les cinq villes
+> FastFoodCity=fastFoodTibble %>%
++ group_by(city) %>%
++ summarise(nombreDeRestaurants=length(city)) %>%
++ arrange(desc(nombreDeRestaurants)) %>%
++ head(n=5) %>%
++ pull(city)
+On récupère le résultat de la requête du-dessus qu'on met dans une variable avec seulement les city.
+
+> fastFoodTibble %>%
++ filter(city %in% FastFoodCity) %>%
++ group_by(name) %>%
++ summarise(nombreDeFastFood=length(name)) %>%
++ arrange(desc(nombreDeFastFood))
+# A tibble: 75 × 2
+   name           nombreDeFastFood
+   <chr>                     <int>
+ 1 Burger King                  49
+ 2 McDonald's                   49
+ 3 Taco Bell                    25
+ 4 Wendy's                      24
+ 5 KFC                          21
+ 6 Domino's Pizza               16
+ 7 Subway                       15
+ 8 White Castle                 15
+ 9 Pizza Hut                    13
+10 Arby's                       11
+# … with 65 more rows
+Je filtre les villes qui sont dans le vecteurs dons les 5 villes ou il y a le plus de fast food. Je fais des sous ensemble par nom de restaurant. Puis je crée une colonne avec le nombre de ce fast food. Puis j'ordonne de façon décroissante sur la colonne avec le nombre de fast food.
+
+# Quels sont les fast food avec le plus de restaurants aux US ?
+> fastFoodTibble %>%
++ group_by(name) %>%
++ summarise(nombreDeFastFood=length(name), pourcentageDeFastFood=length(name)*
++             100/10000) %>%
++ arrange(desc(nombreDeFastFood))
+# A tibble: 548 × 3
+   name           nombreDeFastFood pourcentageDeFastFood
+   <chr>                     <int>                 <dbl>
+ 1 McDonald's                 1886                 18.9 
+ 2 Burger King                1154                 11.5 
+ 3 Taco Bell                   873                  8.73
+ 4 Wendy's                     731                  7.31
+ 5 Arby's                      518                  5.18
+ 6 KFC                         421                  4.21
+ 7 Domino's Pizza              345                  3.45
+ 8 Subway                      322                  3.22
+ 9 SONIC Drive In              226                  2.26
+10 Hardee's                    192                  1.92
+# … with 538 more rows
+On crée des sous-ensemble par fast food. Puis on crée deux colonnes une avec le nombre de restaurant et l'autre le pourcentage fast food. Puis on range de façon décroissante par rapport au nombre de fast food. 
+
+# Dans quelle ville y a-t-il le plus de McDonald's ?
+> fastFoodTibble %>%
++ filter(name %in% "McDonald's") %>%
++ group_by(city) %>%
++ summarise(nombreMcDonals=length(city)) %>% 
++ arrange(desc(nombreMcDonals))
+# A tibble: 1,248 × 2
+   city          nombreMcDonals
+   <chr>                  <int>
+ 1 Cincinnati                19
+ 2 Houston                   11
+ 3 Louisville                10
+ 4 Las Vegas                  9
+ 5 Minneapolis                9
+ 6 Chicago                    8
+ 7 Evansville                 8
+ 8 Greenville                 8
+ 9 Oklahoma City              8
+10 Phoenix                    8
+# … with 1,238 more rows
+On trie les noms de restaurant en gardant les McDonalds. Puis on groupe par ville. Puis on crée une colonne avec le nombre de McDonals on compte le nombre de McDonalds. Puis on trie de façon descendante le nombre de McDonalds.
+
+# Où se situe New-York par rapport aux 5 villes avec le plus de fast food ?
+> fastFoodTibble %>% 
++ group_by(city) %>%
++ filter(city %in% "New York") %>%
++ summarise(nombreDeFastFood=length(city))
+# A tibble: 1 × 2
+  city     nombreDeFastFood
+  <chr>               <int>
+1 New York               36
+On groupe par city puis on filtre sur New York. Puis on crée la colonne avec le nombre de fast food.
+
+# fast food les plus présent a New York
+> fastFoodTibble %>%
++ filter(city %in% "New York") %>%
++ group_by(name) %>%
++ summarise(nombreDeFastFood=length(name), pourcentageDeFastFood=length(name)*
++             100/10000) %>%
++ arrange(desc(nombreDeFastFood))
+# A tibble: 13 × 3
+   name                   nombreDeFastFood pourcentageDeFastFood
+   <chr>                             <int>                 <dbl>
+ 1 Subway                                8                  0.08
+ 2 McDonald's                            6                  0.06
+ 3 Burger King                           5                  0.05
+ 4 Domino's Pizza                        5                  0.05
+ 5 Chipotle Mexican Grill                2                  0.02
+ 6 Dunkin' Donuts                        2                  0.02
+ 7 Five Guys                             2                  0.02
+ 8 Fuku                                  1                  0.01
+ 9 Little Caesars Pizza                  1                  0.01
+10 Pizza Hut                             1                  0.01
+11 Popeye's                              1                  0.01
+12 SUBWAY                                1                  0.01
+13 SUBWAY®                               1                  0.01
+on filtre avec la ville new York. Puis on groupe avec le nom des fast food. On crée deux colonne une avec le nombre de fast food et une avec le pourcentage de fast food.
 
 
 # shortcut qui marche :
