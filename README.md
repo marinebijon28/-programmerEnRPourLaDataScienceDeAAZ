@@ -1556,7 +1556,38 @@ On groupe par city puis on filtre sur New York. Puis on crée la colonne avec le
 13 SUBWAY®                               1                  0.01
 on filtre avec la ville new York. Puis on groupe avec le nom des fast food. On crée deux colonne une avec le nombre de fast food et une avec le pourcentage de fast food.
 
+## Section 7 : Visualisation avancées des données
 
+# Créer son premier graphique avec la fonction plot 
+# plot
+> plot(iris$Sepal.Length, iris$Sepal.Width, xlab = "Longueur", ylab = "Largeur", 
++      col="blueviolet")
+Plot va créer ce graphique là. 
+
+# lines
+> lines(iris$Petal.Length, iris$Petal.Width, col="skyblue1")
+On peut l'utiliser autant de fois que l'on veut après plot pour rajouter des colonnes sur le graphique. Quand on utilise lines, il crée des lignes entre les points rajoutés.
+
+> lines(iris$Petal.Length, iris$Petal.Width, col="skyblue1", type="p")
+Pour rajouter les colonnes avec des points sur le graphique au lieu des lignes.
+
+> plot(iris$Sepal.Length, iris$Sepal.Width, xlab = "Longueur", ylab = "Largeur", 
++ col="blueviolet", xlim = c(min(iris$Petal.Length, iris$Sepal.Length), 
++ c(max(iris$Petal.Length, iris$Sepal.Length))), ylim = c(min(iris$Petal.Width, 
++ iris$Sepal.Width), c(max(iris$Petal.Width, iris$Sepal.Width))))
+> lines(iris$Petal.Length, iris$Petal.Width, col="slateblue4", type="p")
+Si les valeurs rajoutés par lines sont plus grande que celle renseigne sur plot. Elle n'apparaitront pas sur le graphique. C'est pour cela qu'on doit configurer les limites du graphiques.
+Donc on créer deux vecteurs : un pour les x avec un min et un max et autre pour les y avec un min et un max.
+
+> title(main="Longeur en fonction de largeur", col.main="blue")
+On veut mettre un titre à un graphique, choisir sa couleur, et d'autres options.
+
+> lines(iris$Petal.Length, iris$Petal.Width, col="slateblue4", type="p", pch=22)
+Pour changer les ronds en points par exemple.
+
+> legend(1, 4.2, c("sepal", "petal"), col=c("blueviolet", "slateblue4"), 
++ pch=21:22)
+Si je veux rajouter une légende. Elle attend des coordonnes x et y où placer la legende. Puis le nom des colonnes dans l'ordre où on les a tracé. Puis les points utilisé
 # shortcut qui marche :
 command c copier
 command v coller
