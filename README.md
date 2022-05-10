@@ -1588,6 +1588,38 @@ Pour changer les ronds en points par exemple.
 > legend(1, 4.2, c("sepal", "petal"), col=c("blueviolet", "slateblue4"), 
 + pch=21:22)
 Si je veux rajouter une légende. Elle attend des coordonnes x et y où placer la legende. Puis le nom des colonnes dans l'ordre où on les a tracé. Puis les points utilisé
+
+# Créez des graphiques plus élaborés ggplot2
+Ce package a été développé par Hadley Wickham. Il a aussi développer Ddplyr. C'est quelqu'un qui a fait beaucoup pour R qui a falicité la programmation sous R. La génération facile de résultat complexe. Donc en fait Ggplot2. 
+Il fonctionne avec des grammaires des graphiques. On va vraiment essayer de séparer tous les composants que ce soit les données, les couleurs, les labels et etc. Tout va être correctement séparé et facilement séparé
+
+> library("ggplot2")
+Donc il faut le charger donc on utilise library car c'est package.
+
+# plot = data  : on donne le tableau + aesthetics : permet de définir tout ce qui est forme, couleur, label, etc + gyometrie : qui permet de définir le type de graphique qu'on veut faire
+> g<-ggplot(iris, aes(x=Petal.Length, y=Petal.Width))
+> g
+On donne le tableau iris. Puis on utilise aes pour l'esthétique. Comme iris est chargé on a juste a donné les noms de colonnes en x et y.on tape g et entréer pour afficher le graphique. On a le graphique créer mais on a pas de points.
+
+> g<-g+geom_point()
+> g
+Donc on reprends le graphique + geom_point pour avoir les points. Des colonnes dans les axes.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # shortcut qui marche :
 command c copier
 command v coller

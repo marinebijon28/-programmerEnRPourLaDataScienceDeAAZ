@@ -41,3 +41,18 @@ lines(iris$Petal.Length, iris$Petal.Width, col="slateblue4", type="p", pch=22)
 # legend
 legend(1, 4.2, c("sepal", "petal"), col=c("blueviolet", "slateblue4"), 
 pch=21:22)
+
+# Créez des graphiques plus élaborés ggplot2
+library("ggplot2")
+
+?ggplot
+# plot = data + aesthetic + gyometrie
+# plot = data  : on donne le tableau + 
+# aesthetics : permet de définir tout ce qui est forme, couleur, label, etc +
+# gyometrie : qui permet de définir le type de graphique qu'on veut faire
+
+g<-ggplot(iris, aes(x=Petal.Length, y=Petal.Width))
+# affichage
+g
+g<-g+geom_point()
+g
