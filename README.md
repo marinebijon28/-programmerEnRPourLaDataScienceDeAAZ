@@ -1605,17 +1605,35 @@ On donne le tableau iris. Puis on utilise aes pour l'esthétique. Comme iris est
 > g
 Donc on reprends le graphique + geom_point pour avoir les points. Des colonnes dans les axes.
 
+# ggplot2 : les couleurs, les formes et les tailles
 
+# couleur selon les especes
+> g<-ggplot(iris, aes(x=Petal.Length, y=Petal.Width, color=Species))+geom_point()
+> g
+on a rajouté les couleurs par espèce. On voit les points qui ont une couleur et la légende a droite.
 
+# changer la forme des points
+> g<-ggplot(iris, aes(x=Petal.Length, y=Petal.Width, color=Species, shape=Species))+geom_point()
+> g
+On a changé le style de points et une couleur en fonction de chaque espèce. On retrouve la légende a droite
 
+# modifier la taille des points
+> g<-ggplot(iris, aes(x=Petal.Length, y=Petal.Width, color=Species, 
++ shape=Species))+geom_point(size=3)
+> g
+geom_point prends en paramètre la taille des points pour créer les points selon cette taille.
 
+# Creer un gradiant de couleurs
+> g<-ggplot(iris, aes(x=Petal.Length, y=Petal.Width, color=Petal.Length, 
++ shape=Species))+geom_point(size=3)
+> g
+On créé un gradiant de couleur en fonction de la taille Petal.Length
 
-
-
-
-
-
-
+> g<-ggplot(iris, aes(x=Petal.Length, y=Petal.Width, color=Petal.Length, 
++ shape=Species))+geom_point(size=3)
+> g<-g+scale_color_gradient(low="blue", high="red")
+> g
+On créé un radiant de couleur de la plus basse des valeurs a la plus haute 
 
 
 

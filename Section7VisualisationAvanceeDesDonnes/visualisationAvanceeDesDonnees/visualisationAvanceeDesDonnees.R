@@ -56,3 +56,30 @@ g<-ggplot(iris, aes(x=Petal.Length, y=Petal.Width))
 g
 g<-g+geom_point()
 g
+
+# ggplot2 : les couleurs, les formes et les tailles
+
+# couleur selon les especes
+g<-ggplot(iris, aes(x=Petal.Length, y=Petal.Width, color=Species))+
+  geom_point()
+g
+
+# changer la forme des points
+g<-ggplot(iris, aes(x=Petal.Length, y=Petal.Width, color=Species, 
+shape=Species))+geom_point()
+g
+
+# changer la taille des points
+g<-ggplot(iris, aes(x=Petal.Length, y=Petal.Width, color=Species, 
+shape=Species))+geom_point(size=3)
+g
+
+# Creer un gradiant de couleurs
+g<-ggplot(iris, aes(x=Petal.Length, y=Petal.Width, color=Petal.Length, 
+shape=Species))+geom_point(size=3)
+g
+
+g<-ggplot(iris, aes(x=Petal.Length, y=Petal.Width, color=Petal.Length, 
+shape=Species))+geom_point(size=3)
+g<-g+scale_color_gradient(low="blue", high="red")
+g
