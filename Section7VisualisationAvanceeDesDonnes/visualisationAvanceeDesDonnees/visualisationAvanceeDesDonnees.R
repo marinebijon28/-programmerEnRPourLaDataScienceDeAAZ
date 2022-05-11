@@ -83,3 +83,45 @@ g<-ggplot(iris, aes(x=Petal.Length, y=Petal.Width, color=Petal.Length,
 shape=Species))+geom_point(size=3)
 g<-g+scale_color_gradient(low="blue", high="red")
 g
+
+# ggplot2 : La légende (introduction des thèmes)
+
+# modifier le fond du cadrant 
+g<-g+theme_minimal()
+g
+
+g<-g+theme_dark()
+g
+
+# modifier la position de la légende 
+g<-g+theme(legend.position = "bottom")
+g
+
+g<-g+theme(legend.position = "top")
+g
+
+g<-g+theme(legend.position = "right")
+g
+
+# pour ne pas afficher la légende
+g<-g+theme(legend.position = "none")
+g
+
+# cacher le titre de la légende
+g<-g+theme(legend.title = element_blank())
+
+# modifier couleur, texture du titre de la legende
+g<-g+theme(legend.title = element_text(color="red", size=15, face="bold"))
+g
+
+# modifier couleur, texture, taille des labels de la legende
+g<-g+theme(legend.text=(element_text(color="blue", size=8, face="bold.italic")))
+g
+
+# Ajouter un cadre a la legende
+g<-g+theme(legend.background=(element_rect(fill="grey")))
+g
+
+g<-g+theme(legend.background=(element_rect(fill="grey", size=2, linetype=
+"dotted")))
+g

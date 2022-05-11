@@ -1635,6 +1635,60 @@ On créé un gradiant de couleur en fonction de la taille Petal.Length
 > g
 On créé un radiant de couleur de la plus basse des valeurs a la plus haute 
 
+# ggplot2 : La légende (introduction des thèmes)
+aes c'est toute la partie esthétique : la couleur des points, la forme. après si on veut vraiment changer le graphique la forme, le cadrant. on va utiliser ce que l'on appelle les thèmes. Je vais vous montrer les thèmes qu'on a sur modifier la légende.
+
+# modifier le fond du cadrant 
+> g<-g+theme
+On voit tout les thèmes
+
+> g<-g+theme_minimal()
+> g
+On a plus le fond gris mais un fond blanc.
+
+> g<-g+theme_dark()
+> g
+On a maintenant un fond gris foncée.
+
+# modifier la position de la légende
+> g<-g+theme(legend.position = "bottom")
+> g
+On positionne la légende en bas.
+
+> g<-g+theme(legend.position = "top")
+> g
+On positionne la légende en haut.
+
+> g<-g+theme(legend.position = "none")
+> g
+On n'affiche plus la légende
+
+> g<-g+theme(legend.title = element_blank())
+> g
+cacher le titre de la légende
+
+> g<-g+theme(legend.title = element_text(color="red", size=9, face="bold"))
+> g
+modifier couleur, texture du titre de la legende. on lui dit que le titre de la légende doit être rouge, de taille 9, et en gras.
+
+> g<-g+theme(legend.text=(element_text(color="blue", size=8, face="bold.italic")))
+> g
+modifier couleur, texture, taille des labels de la legende. On lui met une couleur blue, la taille a 8, et en gras italic
+
+> g<-g+theme(legend.background=(element_rect(fill="grey")))
+> g
+Ajouter un cadre gris a la legende
+
+> g<-g+theme(legend.background=(element_rect(fill="grey", size=2, linetype=
++ "dotted")))
+> g
+Ajouter un cadre gris pointiller a la legende
+
+
+
+
+
+
 
 
 
