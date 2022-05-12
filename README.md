@@ -1653,7 +1653,7 @@ On a maintenant un fond gris foncée.
 # modifier la position de la légende
 > g<-g+theme(legend.position = "bottom")
 > g
-On positionne la légende en bas.
+On positionne la légende en bas.Cela est possible grace a legende.position
 
 > g<-g+theme(legend.position = "top")
 > g
@@ -1665,24 +1665,71 @@ On n'affiche plus la légende
 
 > g<-g+theme(legend.title = element_blank())
 > g
-cacher le titre de la légende
+cacher le titre de la légende. Cela est possible grace a legende.title
 
 > g<-g+theme(legend.title = element_text(color="red", size=9, face="bold"))
 > g
 modifier couleur, texture du titre de la legende. on lui dit que le titre de la légende doit être rouge, de taille 9, et en gras.
 
+
 > g<-g+theme(legend.text=(element_text(color="blue", size=8, face="bold.italic")))
 > g
-modifier couleur, texture, taille des labels de la legende. On lui met une couleur blue, la taille a 8, et en gras italic
+modifier couleur, texture, taille des labels de la legende. On lui met une couleur blue, la taille a 8, et en gras italic. Cela est possible grace a legende.text
 
 > g<-g+theme(legend.background=(element_rect(fill="grey")))
 > g
-Ajouter un cadre gris a la legende
+Ajouter un cadre gris a la legende. Cela est possible grace a legende.background
 
 > g<-g+theme(legend.background=(element_rect(fill="grey", size=2, linetype=
 + "dotted")))
 > g
 Ajouter un cadre gris pointiller a la legende
+
+# ggplot2 : axes et titres
+> g<-g+xlab("Longueur des petales")+ylab("Largeur des petales")+
++ ggtitle("Longueur des Petales en fonction de la largeur des petales")
+> g
+xlab permet de donnée un titre a l'axe des abscisses et ylab permet de donnée un titre a l'axe des ordonnées. ggtitle permet de données un titre au graphique
+
+> g<-g+theme(plot.title=element_text(color="steelblue", size=10, face="bold"))
+> g
+Met le texte en blue avec une taille de 10 et en gras. Grace a plot.title
+
+> g<-g+theme(axis.title=element_text(color="steelblue", size=10, face="bold"))
+> g
+Change le nom des axes en bleu sa taille et le met en gras. Grace a axis.title
+
+
+> g<-g+theme(axis.text=element_text(color="steelblue", size=10, face="bold", 
++ angle=45))
+> g
+Change le nom des axes en bleu sa taille et le met en gras. Puis mets les repères des axes inclinés au lieu d'être droit. axis.text
+
+> g<-g+theme(axis.line=element_line(color="steelblue", size=2, linetype="dotted"))
+> g
+On a changé la couleur des textes en blue, changé sa size a 2, et mis des points.
+
+> g<-g+facet_wrap(~Species)
+> g
+Le tild permet de dire en fonction du nom de la colonne passée en paramètre. Permet de faire un graphique avec 3 colonnes séparés.
+
+> g<-g+facet_wrap(~Species, ncol=1)
+> g
+Permet d'avoir une colonne avec 3 graphiques en ligne
+
+> g<-g+facet_wrap(~Species)+theme(strip.text=element_text(color="steelblue", 
++ size=10, face="bold"))
+> g
+Vue que c'est un élément text on utilise la fonction thème.Pour modifier les facet on utilise la fonction stripe. Pour le texte on utilise element_text. On change les éléments texte des espèces sur le graphe.
+
+> g<-g+theme(strip.background=element_rect(color="steelblue", size=1, 
++ linetype="solid"))
+> g
+ajout d'un cadre autour des especes. on utilise toujours strip car on a utilisé facet. Vue qu'on change le fonc on utilise background. element_rect pour le rectangle.
+
+
+
+
 
 
 

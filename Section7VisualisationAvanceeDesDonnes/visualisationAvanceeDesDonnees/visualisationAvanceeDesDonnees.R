@@ -125,3 +125,45 @@ g
 g<-g+theme(legend.background=(element_rect(fill="grey", size=2, linetype=
 "dotted")))
 g
+
+# ggplot2 : axes et titres
+# modifications des axes et titres
+g<-g+xlab("Longueur des petales")+ylab("Largeur des petales")+
+ggtitle("Longueur des Petales en fonction de la largeur des petales")
+g
+
+# modifications de la couleur du titre, sa taille, etc..
+g<-g+theme(plot.title=element_text(color="steelblue", size=10, face="bold"))
+g
+
+# modification de la couleur des noms des axes, sa taille, etc>>
+g<-g+theme(axis.title=element_text(color="steelblue", size=10, face="bold"))
+g
+
+g<-g+theme(axis.text=element_text(color="steelblue", size=10, face="bold", 
+angle=45))
+g
+
+g<-g+theme(axis.line=element_line(color="steelblue", size=2, linetype="dotted"))
+g
+
+# ggplot2 : combiner plusieurs graphes (facet)
+# facet_wrap -> combiner des graphes
+
+# separer en trois colonnes
+g<-g+facet_wrap(~Species)
+g
+
+#
+g<-g+facet_wrap(~Species, ncol=1)
+g
+
+# modification du texte des especes du grqphe
+g<-g+facet_wrap(~Species)+theme(strip.text=element_text(color="steelblue", 
+size=10, face="bold"))
+g
+
+# ajout d'un cadre autour des especes
+g<-g+theme(strip.background=element_rect(color="steelblue", size=1, 
+linetype="solid"))
+g
