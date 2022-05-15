@@ -1727,13 +1727,35 @@ Vue que c'est un élément text on utilise la fonction thème.Pour modifier les 
 > g
 ajout d'un cadre autour des especes. on utilise toujours strip car on a utilisé facet. Vue qu'on change le fonc on utilise background. element_rect pour le rectangle.
 
+# ajouter des annotations aux graphiques
+On ne vas plus utilisés la fonction thème car on est à l'extérieur du graphique. On va utiliser la fonction annotate
 
+> g<-g+annotate("text", x=c(2,4,6), y=0.7, label=c("setosa",  "versicolor", 
++ "setosa"))
+> g
+On rajoute une légende dans le graphique. On ajoute donc du texte dans la fonction annotate sur les abscisses 2, 4 et 6. tous sur la même ligne des ordonnées avec le nom de toutes les espèces dans l'ordre ou elles apparaissent sur le graphique.
 
+> g<-g+annotate("rect", xmin=0.5, xmax=2.1, ymin=0, ymax=0.65)
+> g
+Ajouter un rectangle opaque à l'intérieur du graphique sur un groupe d'espèces par exemple.
 
+> g<-g+annotate("rect", xmin=0.5, xmax=2.1, ymin=0, ymax=0.65, alpha=0.2)
+> g
+Ajouter un rectangle transparent à l'intérieur du graphique sur un groupe d'espèces par exemple.
 
+> g<-g+annotate("rect", xmin=0.5, xmax=2.1, ymin=0, ymax=0.65, alpha=0.2, 
++ color="steelblue", size=2)
+> g
+Ajouter une bordure rectangulaire à l'intérieur du graphique sur un groupe d'espèces par exemple. On peut définir la bordure avec la couleur et sa taille 
 
+> g<-g+annotate("segment", x=0.5, xend=4, y=1.5, yend=0)
+> g
+Ajouter un segment à l'intérieur du graphique pour séparer un groupe d'espèces par exemple. 
 
-
+> g<-g+annotate("segment", x=0.5, xend=4, y=1.5, yend=0, color="steelblue", 
++ size=2, alpha=0.2)
+> g
+Ajouter un segment de couleur steelblue avec une size de 2 et transparente à l'intérieur du graphique pour séparer un groupe d'espèces par exemple. 
 
 
 

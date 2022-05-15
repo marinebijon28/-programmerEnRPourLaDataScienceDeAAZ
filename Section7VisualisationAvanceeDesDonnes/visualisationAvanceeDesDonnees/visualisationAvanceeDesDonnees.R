@@ -167,3 +167,41 @@ g
 g<-g+theme(strip.background=element_rect(color="steelblue", size=1, 
 linetype="solid"))
 g
+
+# graphique de base
+g<-ggplot(iris, aes(x=Petal.Length, y=Petal.Width, color=Petal.Length, 
+                    shape=Species))+geom_point(size=3)
+g<-g+scale_color_gradient(low="blue", high="red")
+g
+g<-g+theme_minimal()
+g
+
+# ajouter des annotations aux graphiques
+g<-g+annotate("text", x=c(2,4,6), y=0.7, label=c("setosa",  "versicolor", 
+"setosa"))
+g
+
+# si on veut ajouter de la couleur, la taille des caracteres, fontsize,
+g<-g+annotate("text", x=c(2,4,6), y=0.7, label=c("setosa",  "versicolor", 
+"setosa"), color="steelblue", size=3, fontface="bold")
+g
+
+# permet de mettre un rectangle opaque pour souligner un groupe dans le 
+# graphique
+g<-g+annotate("rect", xmin=0.5, xmax=2.1, ymin=0, ymax=0.65)
+g
+
+# permet de mettre un rectangle transparent pour souligner un groupe dans le 
+# graphique
+g<-g+annotate("rect", xmin=0.5, xmax=2.1, ymin=0, ymax=0.65, alpha=0.2)
+g
+
+# ajoute une bordure rectangulaire
+g<-g+annotate("rect", xmin=0.5, xmax=2.1, ymin=0, ymax=0.65, alpha=0.2, 
+color="steelblue", size=2)
+g
+
+# ajouter un segment colorer pour separer le graphique
+g<-g+annotate("segment", x=0.5, xend=4, y=1.5, yend=0, color="steelblue", 
+size=2, alpha=0.2)
+g
