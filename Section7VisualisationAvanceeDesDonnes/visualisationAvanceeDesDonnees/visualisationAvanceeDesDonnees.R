@@ -325,3 +325,21 @@ g<-g+theme(legend.title = element_blank())
 g<-g+scale_fill_brewer(palette="Paired")
 g
 dev.off()
+
+# bonus : rendre votre graphique interactif avec Plotly
+
+# install
+library("plotly")
+
+# j'envoie le graphique a plotly
+ggplotly(g)
+
+# boxplot
+g<-ggplot(iris, aes(x=Species, y=Petal.Length, fill=Species))+geom_boxplot()
+g
+# ajouter un titre a un boxplot
+g<-g+ggtitle("Boxplot de la longueur des petales selon l'espece")+xlab("espece")
++ylab("longueur des petales")
+g
+# j'envoie le graphique a plotly
+ggplotly(g)

@@ -1858,6 +1858,16 @@ Enlève le titre de la légende
 > g
 change les couleurs du graphique
 
+> ggplotly(g)
+rend le graphique interactif
+
+
+
+
+
+
+
+
 # shortcut qui marche :
 command c copier
 command v coller
