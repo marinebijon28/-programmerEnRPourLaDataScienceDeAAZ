@@ -205,3 +205,123 @@ g
 g<-g+annotate("segment", x=0.5, xend=4, y=1.5, yend=0, color="steelblue", 
 size=2, alpha=0.2)
 g
+
+# ggplot2 : Les differents types de graphes (geoms)
+
+# histograme sur les donnees iris
+g<-ggplot(iris, aes(x=Petal.Length))+geom_histogram(binwidth=0.5)
+g
+
+# histogramme colorise en fonction de l'espece
+g<-ggplot(iris, aes(x=Petal.Length, fill=Species))+geom_histogram(binwidth=0.5)
+g
+
+# contour des histogrammes pour separer les colonnes
+g<-ggplot(iris, aes(x=Petal.Length, fill=Species))+geom_histogram(color="white",
+binwidth=0.5)
+g
+
+# exporter au format png
+png("histogramme_iris.png")
+g<-ggplot(iris, aes(x=Petal.Length, fill=Species))+geom_histogram(color="white",
+binwidth=0.5)
+g
+dev.off()
+
+# boxplot
+g<-ggplot(iris, aes(x=Species, y=Petal.Length, fill=Species))+geom_boxplot()
+g
+
+# ajouter un titre a un boxplot
+g<-g+ggtitle("Boxplot de la longueur des petales selon l'espece")+xlab("espece")
++ylab("longueur des petales")
+g
+
+# exporter au format pdf
+pdf("boxplot_iris.pdf")
+g<-ggplot(iris, aes(x=Species, y=Petal.Length, fill=Species))+geom_boxplot()
+g<-g+ggtitle("Boxplot de la longueur des petales selon l'espece")+xlab("espece")+
+  ylab("longueur des petales")
+g
+dev.off()
+
+# Exercice
+
+library("ggplot2")
+library("dplyr")
+
+fastFood=read.csv("FastFoodRestaurants.csv")
+fastFoodTibble=as_tibble(fastFood)
+
+# Quels sont les 10 villes ou il a le plus de fast food ?
+FastFoodCity=fastFoodTibble %>%
+group_by(city) %>%
+summarise(nombreDeRestaurants=length(city)) %>%
+arrange(desc(nombreDeRestaurants)) %>%
+head(n=10) %>%
+pull(city)
+
+# tibble avec les 10 villes
+fastFoodTibble10Villes=fastFoodTibble %>%
+filter(city %in% FastFoodCity) 
+
+# les dix fast food les présent dans ces dix villes
+listFastFood=fastFoodTibble10Villes %>%
+group_by(name) %>%
+summarise(nombreDeRestaurants=length(name)) %>%
+arrange(desc(nombreDeRestaurants)) %>%
+head(n=10) %>%
+pull(name)
+
+# on récupère le noms des 10 restaurants les plus présents dans les 10 villes où
+# il y a le plus de fast food
+fastFoodTibble10Villes10FastFood=fastFoodTibble10Villes %>%
+filter(name %in% listFastFood)
+
+# barplot
+g<-ggplot(fastFoodTibble10Villes10FastFood, aes(city, fill=name))+geom_bar()
+g
+
+# nom d'axe et titre de graphique
+g<-g+xlab("Les 10 capitales de fast-food")+
+ylab("Les 10 restaurants les plus implentés")+
+ggtitle("Représentation des fast foods les plus implentées 
+dans les 10 capitales du fast-foods")
+g
+
+# pour centrer un title
+g<-g+theme(plot.title = element_text(hjust=0.5))
+g
+
+# changer l'inclination des nom des villes a 45° et en gras, taille des 
+# caractères
+g<-g+theme(axis.text = element_text(face = "bold", size = 7, angle = 45))
+g
+
+# on veut changer l'échelle du graphique
+g<-g+ylim(0, 100)
+g
+
+# enlever le titre de la légende
+g<-g+theme(legend.title = element_blank())
+g
+
+# r color brewer palette
+# changer la couleur de la palette
+g<-g+scale_fill_brewer(palette="Paired")
+g
+
+# exporter pdf
+pdf("fastFood.pdf")
+g<-ggplot(fastFoodTibble10Villes10FastFood, aes(city, fill=name))+geom_bar()
+g<-g+xlab("Les 10 capitales de fast-food")+
+  ylab("Les 10 restaurants les plus implentés")+
+  ggtitle("Représentation des fast foods les plus implentées 
+dans les 10 capitales du fast-foods")
+g<-g+theme(plot.title = element_text(hjust=0.5))
+g<-g+theme(axis.text = element_text(face = "bold", size = 7, angle = 45))
+g<-g+ylim(0, 100)
+g<-g+theme(legend.title = element_blank())
+g<-g+scale_fill_brewer(palette="Paired")
+g
+dev.off()

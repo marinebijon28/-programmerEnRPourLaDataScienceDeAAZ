@@ -1757,9 +1757,106 @@ Ajouter un segment à l'intérieur du graphique pour séparer un groupe d'espèc
 > g
 Ajouter un segment de couleur steelblue avec une size de 2 et transparente à l'intérieur du graphique pour séparer un groupe d'espèces par exemple. 
 
+# ggplot2 : Les differents types de graphes (geoms)
 
+> g<-ggplot(iris, aes(x=Petal.Length))+geom_histogram(binwidth=0.5)
+> g
+Pour les histogrammes on a besoin que d'une valeure et on utilise la fonction geom_histogramme. Pour chaque longueur de pétale on a le nombre d'individu. Le binwidth est l'unité sur laquelle compter de 0.5 en 0.5 sur la longueur des petal
 
+> g<-ggplot(iris, aes(x=Petal.Length, fill=Species))+geom_histogram(binwidth=0.5)
+> g
+On colorise l'histogramme en fonction des especes grace a fill des Species
 
+> g<-ggplot(iris, aes(x=Petal.Length, fill=Species))+geom_histogram(color="white",
++ binwidth=0.5)
+> g
+Permet de faire des contours entre les colonnes de l'histogramme grace a color="white"
+
+> png("histogramme_iris.png")
+> g<-ggplot(iris, aes(x=Petal.Length, fill=Species))+geom_histogram(color="white",
++ binwidth=0.5)
+> g
+> dev.off()
+permet d'esporter le graphique au format png.
+
+> g<-ggplot(iris, aes(x=Species, y=Petal.Length, fill=Species))+geom_boxplot()
+> g
+un boxplot c'est comme une summarise. Ça permet de voir la distribution de donn2es la median, les quartiles. Un boxplot c'est une boite a moustache. Le trait au milieu est la median. La partie en-dessous est le premier quartile jusqu'à la median et au-dessus de la median jusqu'à la fin c'est le troisième quartile. Les points sont des valeures extreme aui peuvent être des fausses valeures.
+
+> g<-g+ggtitle("Boxplot de la longueur des petales selon l'espece")+xlab("espece")+
++ ylab("longueur des petales")
+> g
+donne un titre au graphique et un nom a l'axe des abcisse et l'axe des ordonnées
+
+# Exercise
+
+# Quels sont les 10 villes ou il a le plus de fast food ?
+> FastFoodCity=fastFoodTibble %>%
++ group_by(city) %>%
++ summarise(nombreDeRestaurants=length(city)) %>%
++ arrange(desc(nombreDeRestaurants)) %>%
++ head(n=10) %>%
++ pull(city)
+On affecte tous les noms des villes dans fastoFoodCity. On groupe par ville et on crée une colonne par ville avec le nombre de restaurant dans une nouvelle colonne. Puis on range par ordre décroissant le nombre de restaurant par ville. Puis on prends les 10 premières villes.
+
+# tibble avec les 10 villes
+> fastFoodTibble10Villes=fastFoodTibble %>%
++ filter(city %in% FastFoodCity) 
+On récupère les dix villes sous formes de tibble
+
+# les dix fast food les présent dans ces dix villes
+> listFastFood=fastFoodTibble10Villes %>%
++ group_by(name) %>%
++ summarise(nombreDeRestaurants=length(name)) %>%
++ arrange(desc(nombreDeRestaurants)) %>%
++ head(n=10) %>%
++ pull(name)
+On assigne dans listFastFood le nom des restaurants. On regroupe par nom de restaurant et on compte le nombre de restaurant en l'assignant dans une nouvelle colonne. On prends le noms des dix premiers restaurants.
+
+# on récupère le noms des 10 restaurants les plus présents dans les 10 villes où
+# il y a le plus de fast food
+> fastFoodTibble10Villes10FastFood=fastFoodTibble10Villes %>%
++ filter(name %in% listFastFood)
+
+# barplot
+> g<-ggplot(fastFoodTibble10Villes10FastFood, aes(city, fill=name))+geom_bar()
+> g
+Un barplot c'est un graphique de bar. Plus un fast food est présent dans la ville plus la partie dans la bar qui lui est assigné est plus grande.
+
+# nom d'axe et titre de graphique
+> g<-g+xlab("Les 10 capitales de fast-food")+
++ ylab("Les 10 restaurants les plus implentés")+
++ ggtitle("Représentation des fast foods les plus implentées 
++ dans les 10 capitales du fast-foods")
+> g
+Pour nommer les axes et le titre peut être coupé en appyant sur entrée et le mettant a la ligne ou mettant un \n dans la phrase là où on veut couper. \n veut dire retoure à la ligne.
+
+# pour centrer un title
+> g<-g+theme(plot.title = element_text(hjust=0.5))
+> g
+Pour centrer le titre du graphique
+
+# changer l'inclination des nom des villes a 45° et en gras, taille des 
+# caractères
+> g<-g+theme(axis.text = element_text(face = "bold", size = 7, angle = 45))
+> g
+Pour changer les valeurs x en changeant pour qu'elles soient plus lisible.
+
+# on veut changer l'échelle du graphique
+> g<-g+ylim(0, 100)
+> g
+On donne la limite maximale de l'axe des ordonnées qui est à 100.
+
+# enlever le titre de la légende
+> g<-g+theme(legend.title = element_blank())
+> g
+Enlève le titre de la légende
+
+# r color brewer palette
+# changer la couleur de la palette
+> g<-g+scale_fill_brewer(palette="Paired")
+> g
+change les couleurs du graphique
 
 # shortcut qui marche :
 command c copier
