@@ -1871,9 +1871,23 @@ des nouvelles données pour déterminer des caractéristiques.
 
 Donc nous on va travailler sur de l'apprentisage superviser. On va essayer de classer des individus dans des groupes. 
 
+# Données : prédire la souscription d'un client à un produit bancaire
 
+# affiche les duree d'appels
+> g<-ggplot(bank_data, aes(x=y, y=duration, fill=y))+geom_boxplot()
+> g
+Permet de voir les duree d'appels en fonction de s'ils ont souscrit un service a la banque
 
+# affiche en fonction de l'age
+> g<-ggplot(bank_data, aes(x=y, y=age, fill=y))+geom_boxplot()
+> g
+> ggplotly(g)
+Permet de voir l'age en fonction de s'ils ont souscrit un service a la banque
 
+# affiche les differentes categorie en fonction du moyen de les contacter
+> g<-ggplot(bank_data, aes(y, fill=contact))+geom_bar()
+> g
+> ggplotly(g)
 
 
 
