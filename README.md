@@ -1861,6 +1861,15 @@ change les couleurs du graphique
 > ggplotly(g)
 rend le graphique interactif
 
+# Qu'est-ce que l'apprentissage automatique (machine learning)
+Le machine learning qui permet de mettre en place des algorithmes qui vont 
+pouvoir être appliquer sur des données et pouvoir déterminer des 
+caractéristiques. Le machine learning va s'appyer sur des données 
+d'apprentissage. En gros il va apprendre l'algorithme de machine learning 
+prendre des règles d'apprentissage. Il va ensuite appliquer c'est règles sur 
+des nouvelles données pour déterminer des caractéristiques. 
+
+Donc nous on va travailler sur de l'apprentisage superviser. On va essayer de classer des individus dans des groupes. 
 
 
 
