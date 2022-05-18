@@ -1928,8 +1928,20 @@ Afin de pouvoir faire des traitements on le transforme en dataframe
 # creer un variable data_bank.train avec les vecteurs aléatoire
 > bank_data.train=dummyVariablesData[indices, ]
 
+# traitement des classes desequilibrees et normalisation 
+# normalisation des donnees sur le jeux de test
+> dataPreprocessValue=preProcess(bank_data.train, method=c("center", "scale"))
+> bank_data.test.scaled=predict(dataPreprocessValue, bank_data.test)
 
+# equilibrage des donnees
+> table(bank_data.train.scaled[,"Souscription"])
 
+  No  Yes 
+2801  363
+> bank_data.train.scaled.downsample=downSample(x=bank_data.train.scaled[,
+colnames(bank_data.train.scaled) %ni% "Souscription"], 
+y=as.factor(bank_data.train.scaled$"Souscription"))
+downsample va equilibre les donnees avec la valeur la plus basse et upsample les donnes la plus haute de souscription pour faire sous echantillonnage
 
 
 # shortcut qui marche :

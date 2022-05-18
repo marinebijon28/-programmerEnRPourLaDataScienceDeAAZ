@@ -28,6 +28,8 @@ g
 ggplotly(g)
 
 # Creation d'un jeu de données d'entrainement et de test 
+library("ggplot2")
+library("lattice")
 library("caret")
 
 # transformation des variables catégorielles en valeurs numériques
@@ -68,3 +70,37 @@ bank_data.test=dummyVariablesData[-indices, ]
 
 dim(bank_data.train)
 dim(bank_data.test)
+
+# traitement des classes desequilibrees et normalisation 
+# normalisation des donnees sur le jeux de test
+dataPreprocessValue=preProcess(bank_data.train, method=c("center", "scale"))
+bank_data.test.scaled=predict(dataPreprocessValue, bank_data.test)
+
+# equilibrage des donnees
+# caret : downsample et upsample
+table(bank_data.train.scaled[,"Souscription"])
+
+set.seed(3033)
+'%ni%' = Negate("%in%")
+
+# downsample
+bank_data.train.scaled.downsample=downSample(x=bank_data.train.scaled[,
+colnames(bank_data.train.scaled) %ni% "Souscription"], 
+y=as.factor(bank_data.train.scaled$"Souscription"))
+
+bank_data.train.scaled.downsample$"yyes"=NULL
+
+# renommer la colonne class en souscription
+names(bank_data.train.scaled.downsample)[names(bank_data.train.scaled.downsample) == "Class"]="Souscription"
+?names
+
+# upsample
+bank_data.train.scaled.upsample=upSample(x=bank_data.train.scaled[,
+colnames(bank_data.train.scaled) %ni% "Souscription"], 
+y=as.factor(bank_data.train.scaled$"Souscription"))
+
+bank_data.train.scaled.upsample$"yyes"=NULL
+
+# renommer la colonne class en souscription
+names(bank_data.train.scaled.upsample)[names(bank_data.train.scaled.upsample) == "Class"]="Souscription"
+?names
