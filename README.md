@@ -1889,6 +1889,47 @@ Permet de voir l'age en fonction de s'ils ont souscrit un service a la banque
 > g
 > ggplotly(g)
 
+# Creation d'un jeu de données d'entrainement et de test 
+Il faut transformer toute les variables catégorielles en numériques. Puisqu'on ne peut pas faire de modélisation sur les catégories catégorielles. 
+
+Caret est une librairie pour le machine learning. Caret contient tous les algorithmes possibles.
+
+# transformation des variables catégorielles en valeurs numériques
+> dummyVariables=dummyVars(~., data=bank_data)
+# traitement qu'on va utiliser sur nos variables 
+> dummyVariablesData=predict(dummyVariables, newdata = bank_data)
+Quand on veut transforme des variables catégorielles en variables numériques
+
+On voit qu'il y a plus de données. Toutes les variables numériques n'ont pas changer. Les variables catégorielles ont été redécoupé afin d'avoir des valeurs numériques
+
+# donne une matrice
+> class(dummyVariablesData)
+Les matrices acceptes qu'un jeux de données
+
+# tranforme en dataframe
+> dummyVariablesData=as.data.frame(dummyVariablesData)
+Afin de pouvoir faire des traitements on le transforme en dataframe
+
+# Permet de creer une colonne souscription avec soit yes soit no en fonction de la colonne 
+# yno
+> dummyVariablesData$"Souscription"=ifelse(dummyVariablesData$"yno" == 1, "No", 
+"Yes")
+
+# enlève les deux colonnes yno et yes
+> dummyVariablesData$"yno"=NULL
+> dummyVariablesData$"yyes"=NULL
+
+# garde 70 % du jeux d'entraînement
+> training_size=floor(0.7*nrow(dummyVariablesData))
+
+# il melange tous les indices de dummyVariablesData de longueur training_size
+> indices=sample(seq_len(nrow(dummyVariablesData)), size=training_size)
+
+# creer un variable data_bank.train avec les vecteurs aléatoire
+> bank_data.train=dummyVariablesData[indices, ]
+
+
+
 
 
 # shortcut qui marche :
