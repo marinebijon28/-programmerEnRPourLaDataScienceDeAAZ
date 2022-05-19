@@ -16,12 +16,17 @@ https://cran.r-project.org/
 Pour télécharger l'IDE on va sur google on tape RStudio, la version Desktop free.
 
 ## Découverte de l'interface RStudio
-En tapant dans l'onglet source un code en faisant command + entrée ça le colle dans la ligne de commande et ça l'exécute et affiche le résultat. C'est dans la console qu'on executera notre code.
+Vous voyez trois parties. Il y a une quatrième partie très importante. C'est la partie script. On clique sur le + et R Script. Les 4 parties sont magniables, c'est-à-dire que je peux tout déplacer.
 
-Dans l'onglet environment qu'on affichera les objets. Dans l'onglet à côté History qu'on retrouve les historiques de commandes.
+En haut à gauche que j'appelle la partie script c'est là où on va mettre toute notre partie script sans que celui-ci soit interprété. C'est un éditeur de code. C'est un fichier qu'on peut sauvegarder, ou chercher du texte avec la loupe. Pour interpréter le code on le surligne avec la souris puis commande + entrée ça le colle dans la ligne de commande. Ça l'exécute et affiche le résultat. 
 
-Ensuite on a files dans lequel on va pouvoir naviguer. On a la parti plot c'est ici qu'on va afficher les graphiques. La partie package ce sont les packages installé dans R. C'est ici qu'on en a déjà plein, c'est que R s'installe avec tout un ensemble d'outil qui permet de faire beaucoup de chose avec R. Ensuite, il y a l'aide c'est important quand on commencera à utiliser les fonctions. Si je tape dans l'aide print ou dans la console ?print, je vois toute une documentation. 
+La deuxième partie c'est dans la console qu'on exécutera notre code.
 
+Dans la troisième partie qui est utilisée quand on crée des objets. L'onglet environment affichera les objets. Dans l'onglet à côté History qu'on retrouve les historiques de commandes.
+
+Ensuite, la dernière partie, on a files dans lequel on va pouvoir naviguer et voir les fichiers. On a la partie plot c'est ici qu'on va afficher les graphiques. La partie package ce sont les packages installés dans R. C'est ici qu'on en a déjà plein, lors de l'installation R installe tout un ensemble d'outil qui permet de faire beaucoup de choses avec R. Ensuite, il y a l'aide c'est important quand on commencera à utiliser les fonctions. Si je tape dans l'aide print ou dans la console ?print dans la console, je vois toute une documentation sur la partie droite. 
+
+## Création d'un projet
 > install.packages("randomForest", DEPENDANCIES=T)
 essai de l'URL 'https://cran.rstudio.com/bin/macosx/contrib/4.1/randomForest_4.7-1.tgz'
 Content type 'application/x-gzip' length 256755 bytes (250 KB)
