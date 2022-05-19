@@ -1,12 +1,16 @@
 #### formationProgrammerEnRPourLaDataScienceDeAAZUdemy
 
-### Introduction et mise en place du cours
-## Installation de R et Rstudio
-R c'est un langage de programmation et un logiciel libre qui est dédié au statistique ou data science. C'est un outil utilisé les staticiens ou la science des données, data scientisticien. R est un langage de programmation interprété. C'est-à-dire qu'on va taper des lignes de commandes qui vont être directement interprété et les résultats vont être générer directement sur notre écran. Le désavantage de R, c'est son interface. C'est un écran noir qui va taper des lignes de commandes et donc il y a un outil qui a été développé par RStudio. R studio c'est un IDE (environnement de développement intégrer) qui va se mettre au-dessus de R et qui va permettre d'avoir une belle interface graphique et beaucoup plus simple pour ce qui est de la génération des résultats et  de l'analyse.
+### Section 1 : Introduction et mise en place du cours
+## Installation de R et RStudio
+R c'est un langage de programmation et un logiciel libre qui est dédié aux statistiques ou data science. C'est un outil utilisé les statisticiens ou la science des données, data scientiste. R est un langage de programmation interprété. 
 
-On va comment télécharger R le langage de programmation et Rstudio qui est l'environnement de développement intégrer.
+C'est-à-dire qu'on va taper des lignes de commandes qui vont être directement interprété et les résultats vont être généré directement sur notre écran. Le désavantage de R, c'est son interface. C'est son écran noir qui va taper des lignes de commandes et donc il y a un outil qui a été développé par RStudio.
 
-Pour télécharger vous aller sur google vous allez taper R cran pour télécharger le langage de programmation. Sur le premier loin The Comprehensive R Archive Network. R cran c'est le site de référence de R on retrouve toute la documentation.
+RStudio c'est un IDE (Environnement de Développement Intégré) qui va se mettre au-dessus de R et qui va permettre d'avoir une belle interface graphique et beaucoup plus simple pour ce qui est de la génération des résultats et  de l'analyse.
+
+On va commencer par télécharger R le langage de programmation et Rstudio qui est l'environnement de développement intégrer.
+
+Pour télécharger vous allez sur google vous allez taper R cran pour télécharger le langage de programmation. Sur le premier lien The Comprehensive R Archive Network. R cran c'est le site de référence de R. On retrouve toute la documentation.
 https://cran.r-project.org/
 
 Pour télécharger l'IDE on va sur google on tape RStudio, la version Desktop free.
