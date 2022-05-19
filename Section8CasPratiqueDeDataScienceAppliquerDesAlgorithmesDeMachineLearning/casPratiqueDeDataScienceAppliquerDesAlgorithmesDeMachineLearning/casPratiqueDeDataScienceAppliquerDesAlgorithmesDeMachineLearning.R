@@ -72,8 +72,12 @@ dim(bank_data.train)
 dim(bank_data.test)
 
 # traitement des classes desequilibrees et normalisation 
+bank_data.train$"yyes"=NULL
+bank_data.test$"yyes"=NULL
 # normalisation des donnees sur le jeux de test
 dataPreprocessValue=preProcess(bank_data.train, method=c("center", "scale"))
+# scaled veut dire mis à l'échelle
+bank_data.train.scaled=predict(dataPreprocessValue, bank_data.train)
 bank_data.test.scaled=predict(dataPreprocessValue, bank_data.test)
 
 # equilibrage des donnees
@@ -89,6 +93,7 @@ colnames(bank_data.train.scaled) %ni% "Souscription"],
 y=as.factor(bank_data.train.scaled$"Souscription"))
 
 bank_data.train.scaled.downsample$"yyes"=NULL
+dummyVariablesData$"yyes"=NULL
 
 # renommer la colonne class en souscription
 names(bank_data.train.scaled.downsample)[names(bank_data.train.scaled.downsample) == "Class"]="Souscription"
@@ -104,3 +109,16 @@ bank_data.train.scaled.upsample$"yyes"=NULL
 # renommer la colonne class en souscription
 names(bank_data.train.scaled.upsample)[names(bank_data.train.scaled.upsample) == "Class"]="Souscription"
 ?names
+
+# Entrainer un modèle avec Caret : méthode Naives Bayes
+set.seed(3033)
+trainControlData=trainControl(method="repeatedcv", number=10, repeats = 3)
+
+bank_data.train.scaled$"yyes"=NULL
+
+# on utilise nos données desequilibres
+naiveBayesDesequilibree=train(Souscription ~., 
+data=bank_data.train.scaled, method="nb", preProcess=NULL)
+
+print(naiveBayesDesequilibree)
+warnings(50)

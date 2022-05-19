@@ -1,8 +1,17 @@
 #### formationProgrammerEnRPourLaDataScienceDeAAZUdemy
 
-### Introduction
-R c'est un langage de programmation et un logiciel libre qui est dédié au statistique ou data science. C'est un outil utilisé les staticiens ou la science des données, data manager, data scientiste. R est un langage de programmation interprété. C'est-à-dire des lignes de commandes qui vont être directement interprété et les résultats vont être générer directement sur notre écran. Le désavantage de R, c'est un écran noir qui va taper des lignes de commandes et donc il y a un outil qui a été développé par R studio. R studio cc'est un IDE qui va se mettre au-dessus de R et qui va permettre d'avoir une belle interface graphique et beaucoup plus simple pour ce qui est de la génération des résultats et l'analyse. R cran pour télécharger le langage. 
+### Introduction et mise en place du cours
+## Installation de R et Rstudio
+R c'est un langage de programmation et un logiciel libre qui est dédié au statistique ou data science. C'est un outil utilisé les staticiens ou la science des données, data scientisticien. R est un langage de programmation interprété. C'est-à-dire qu'on va taper des lignes de commandes qui vont être directement interprété et les résultats vont être générer directement sur notre écran. Le désavantage de R, c'est son interface. C'est un écran noir qui va taper des lignes de commandes et donc il y a un outil qui a été développé par RStudio. R studio c'est un IDE (environnement de développement intégrer) qui va se mettre au-dessus de R et qui va permettre d'avoir une belle interface graphique et beaucoup plus simple pour ce qui est de la génération des résultats et  de l'analyse.
 
+On va comment télécharger R le langage de programmation et Rstudio qui est l'environnement de développement intégrer.
+
+Pour télécharger vous aller sur google vous allez taper R cran pour télécharger le langage de programmation. Sur le premier loin The Comprehensive R Archive Network. R cran c'est le site de référence de R on retrouve toute la documentation.
+https://cran.r-project.org/
+
+Pour télécharger l'IDE on va sur google on tape RStudio, la version Desktop free.
+
+## Découverte de l'interface RStudio
 En tapant dans l'onglet source un code en faisant command + entrée ça le colle dans la ligne de commande et ça l'exécute et affiche le résultat. C'est dans la console qu'on executera notre code.
 
 Dans l'onglet environment qu'on affichera les objets. Dans l'onglet à côté History qu'on retrouve les historiques de commandes.
@@ -1942,6 +1951,19 @@ Afin de pouvoir faire des traitements on le transforme en dataframe
 colnames(bank_data.train.scaled) %ni% "Souscription"], 
 y=as.factor(bank_data.train.scaled$"Souscription"))
 downsample va equilibre les donnees avec la valeur la plus basse et upsample les donnes la plus haute de souscription pour faire sous echantillonnage
+
+# Entrainer un modèle avec Caret : méthode Naives Bayes
+La méthode Naives Bayes est un algortithme de machine learning le plus utilisés
+
+On définit une méthode de controle de notre modèle avec repeatdvc, on coupe notre jeux de données en 10. Il y a 90% de notre jeux va être notre jeux de test. 10% de jeux qui va servir de test. Cette cross validation va nous servir de savoir si notre modèle se trompe ou pas. On le répète 3 fois.
+
+On va donner notre variables a prédire donc souscription et les autres variables sont des variables prédictives. Puis notre jeux de données
+
+
+
+
+
+
 
 
 # shortcut qui marche :
