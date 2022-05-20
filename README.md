@@ -4,7 +4,7 @@
 ## Installation de R et RStudio
 R c'est un langage de programmation et un logiciel libre qui est dédié aux statistiques ou data science. C'est un outil utilisé les statisticiens ou la science des données, data scientiste. R est un langage de programmation interprété. 
 
-C'est-à-dire qu'on va taper des lignes de commandes qui vont être directement interprété et les résultats vont être généré directement sur notre écran. Le désavantage de R, c'est son interface. C'est son écran noir qui va taper des lignes de commandes et donc il y a un outil qui a été développé par RStudio.
+C'est-à-dire qu'on va taper des lignes de commandes qui vont être directement interprété et les résultats vont être généré directement sur notre écran. Le désavantage de R, c'est son interface. C'est un écran noir qui va taper des lignes de commandes et donc il y a un outil qui a été développé par RStudio.
 
 RStudio c'est un IDE (Environnement de Développement Intégré) qui va se mettre au-dessus de R et qui va permettre d'avoir une belle interface graphique et beaucoup plus simple pour ce qui est de la génération des résultats et  de l'analyse.
 
@@ -26,7 +26,10 @@ Dans la troisième partie qui est utilisée quand on crée des objets. L'onglet 
 
 Ensuite, la dernière partie, on a files dans lequel on va pouvoir naviguer et voir les fichiers. On a la partie plot c'est ici qu'on va afficher les graphiques. La partie package ce sont les packages installés dans R. C'est ici qu'on en a déjà plein, lors de l'installation R installe tout un ensemble d'outil qui permet de faire beaucoup de choses avec R. Ensuite, il y a l'aide c'est important quand on commencera à utiliser les fonctions. Si je tape dans l'aide print ou dans la console ?print dans la console, je vois toute une documentation sur la partie droite. 
 
-## Création d'un projet
+## Création d'un projet sous RStudio
+On va aller dans file > New Project > R Directory. Quand on arrive ici on va choisir un chemin dans lequel ranger notre dossier. En cliquant sur Browse vous pouvez le mettre où vous le voulez. R va nous créer un dossier où mettre le script. Évitez de mettre des espaces ou nom de fichier. Utilisez la méthode camelCase. R nous a mis dans notre dossier qu'on a créée.
+
+## Installation des packages R pour la data science
 > install.packages("randomForest", DEPENDANCIES=T)
 essai de l'URL 'https://cran.rstudio.com/bin/macosx/contrib/4.1/randomForest_4.7-1.tgz'
 Content type 'application/x-gzip' length 256755 bytes (250 KB)
