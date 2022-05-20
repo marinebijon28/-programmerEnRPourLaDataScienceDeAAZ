@@ -1,8 +1,9 @@
 #### formationProgrammerEnRPourLaDataScienceDeAAZUdemy
 
 ### Section 1 : Introduction et mise en place du cours
+
 ## Installation de R et RStudio
-R c'est un langage de programmation et un logiciel libre qui est dédié aux statistiques ou data science. C'est un outil utilisé les statisticiens ou la science des données, data scientiste. R est un langage de programmation interprété. 
+R c'est un langage de programmation et un logiciel libre qui est dédié aux statistiques ou data science. C'est un outil utilisé les statisticiens ou la science des données, data scientist. R est un langage de programmation interprété. 
 
 C'est-à-dire qu'on va taper des lignes de commandes qui vont être directement interprété et les résultats vont être généré directement sur notre écran. Le désavantage de R, c'est son interface. C'est un écran noir qui va taper des lignes de commandes et donc il y a un outil qui a été développé par RStudio.
 
@@ -27,25 +28,31 @@ Dans la troisième partie qui est utilisée quand on crée des objets. L'onglet 
 Ensuite, la dernière partie, on a files dans lequel on va pouvoir naviguer et voir les fichiers. On a la partie plot c'est ici qu'on va afficher les graphiques. La partie package ce sont les packages installés dans R. C'est ici qu'on en a déjà plein, lors de l'installation R installe tout un ensemble d'outil qui permet de faire beaucoup de choses avec R. Ensuite, il y a l'aide c'est important quand on commencera à utiliser les fonctions. Si je tape dans l'aide print ou dans la console ?print dans la console, je vois toute une documentation sur la partie droite. 
 
 ## Création d'un projet sous RStudio
-On va aller dans file > New Project > R Directory. Quand on arrive ici on va choisir un chemin dans lequel ranger notre dossier. En cliquant sur Browse vous pouvez le mettre où vous le voulez. R va nous créer un dossier où mettre le script. Évitez de mettre des espaces ou nom de fichier. Utilisez la méthode camelCase. R nous a mis dans notre dossier qu'on a créée.
+On va aller dans File > New Project > R Directory. Quand on arrive ici on va choisir un chemin dans lequel ranger notre dossier. En cliquant sur Browse vous pouvez le mettre où vous le voulez. R va nous créer un dossier où mettre le script. Évitez de mettre des espaces ou nom de fichier. Utilisez la méthode camelCase. R nous a mis dans notre dossier qu'on a créée.
 
-## Installation des packages R pour la data science
-> install.packages("randomForest", DEPENDANCIES=T)
-essai de l'URL 'https://cran.rstudio.com/bin/macosx/contrib/4.1/randomForest_4.7-1.tgz'
-Content type 'application/x-gzip' length 256755 bytes (250 KB)
-==================================================
-downloaded 250 KB
+## Installation des packages R essentiels pour la data science
+On va pouvoir installer des packages nécessaires pour faire de la data science.
 
+Un package c'est un ensemble de fonction qui va nous permettre de faire de la manipulation de données, soit de faire de la visualisation sous forme de graphique plus ou moins complexe ou encore faire des analyses statistiques qui ne sont pas disponibles dans les packages de base.
 
-The downloaded binary packages are in
-	/var/folders/7m/g02qtkp570n659501s43sbc80000gp/T//RtmpDkKWHM/downloaded_packages
-on a donc déjà une fonction  qui s'appelle install.packages qui va installer des packages l'argument "dplyr". C'est argument obligatoire de cette fonction elle contient le nom du packet à installer et on a un argument en options
+# ddplyr
+Le package qui commence à être de plus en plus utilisé et qui n'est pas très vieux que ça. Il est très puissant pour les grands jeux de données. C'est le package ddplyr.
 
-ggplot2
-un package qui permet de fqire de super bequ graphique et très performant 
+> install.packages(pkgs="dplyr", dependencies=T)
 
-plotly
-permet de rendre les graphiques dynamiques
+On a donc déjà une fonction  qui s'appelle install.packages() qui va installer des packages. Elle attend deux arguments, "dplyr" qui est le nom du package. C'est l'argument obligatoire de cette fonction. On a une option qui n'est pas obligatoire qui permet d'installer tous les packages que ddplyr dépends.
+
+Il y a beaucoup de packages qui utilisent d'autres packages pour pouvoir fonctionner. Les personnes qui vont développer ddplyr. Ils ne vont pas ré-encoder toutes les fonctions qui existent déjà.
+
+# ggplot2
+un package qui permet de faire de super beau graphique et très performant.
+
+# plotly
+Ça permet de rendre les graphiques dynamiques.
+
+On va installer tous les packages nécessaires pour faire des analyses statistiques dédiées à la data science. Pour savoir s'ils sont installé on les retrouve dans l'onglet Packages.
+
+Une fois qu'on les a installé R ne les a pas dans son environnement. Ils sont téléchargé mais pas charger dans l'environnement. Pour les charger dans l'environnement il faut utiliser la fonction library(). Pour savoir s'ils sont télécharger on retrouve le checkbutton cocher dans l'onglet Packages.
 
 ### Débuter avec R
 > class(3.5)
