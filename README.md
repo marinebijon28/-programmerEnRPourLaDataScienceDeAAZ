@@ -50,27 +50,52 @@ un package qui permet de faire de super beau graphique et très performant.
 # plotly
 Ça permet de rendre les graphiques dynamiques.
 
-On va installer tous les packages nécessaires pour faire des analyses statistiques dédiées à la data science. Pour savoir s'ils sont installé on les retrouve dans l'onglet Packages.
+On va installer tous les packages nécessaires pour faire des analyses statistiques dédiées à la data science. Pour savoir s'ils sont installés on les retrouve dans l'onglet Packages.
 
-Une fois qu'on les a installé R ne les a pas dans son environnement. Ils sont téléchargé mais pas charger dans l'environnement. Pour les charger dans l'environnement il faut utiliser la fonction library(). Pour savoir s'ils sont télécharger on retrouve le checkbutton cocher dans l'onglet Packages.
+Une fois qu'on les a installés R ne les a pas dans son environnement. Ils sont téléchargés mais pas charger dans l'environnement. Pour les charger dans l'environnement il faut utiliser la fonction library(). Pour savoir s'ils sont téléchargés on retrouve le checkbutton cocher dans l'onglet Packages.
 
 ### Débuter avec R
+
+## Les types de données (character, int, double, booléens, données manquantes...)
+Un type ça représente l'organisation des données.
+
+Une classe ça représente ce que l'on veut faire avec.
+
+Par exemple une fonction attend toujours en argument une classe particulière de données.
+
+La première classe qu'on va voire c'est la class"" numérique qui représente les nombres et les chiffres en R.
+
+Pour savoir de quelle classe appartient une valeur. On utilise la fonction class() qui attend une valeur.
+
 > class(3.5)
 [1] "numeric"
-la fonction class qui permet de dire la class du paramètre
+
+La fonction typeof permet de donner le type d'une valeur.
 
 > typeof(3.5)
 [1] "double"
-le fonction typeof permet de donner le type du paramètre
-
-La class numeric contient 2 types de données les int (integer : ce sont les nombres entiers) et les double. C'est un type de donnée qui prends moins de place dans la mémoire que les doubles
 
 > typeof(3)
 [1] "double"
-Le type de base est double
+
+La classe numérique contient 2 types de données les int (integer : ce sont les nombres entiers) et les double (les doubles qui représentent les chiffres à virgule ou chiffre flottant). Integer c'est un type de donnée qui prend moins de place dans la mémoire que les doubles.
+
+Le type de base est double.
+
 > typeof(as.integer(3))
 [1] "integer"
-Pour le transformer en integer as.integer() du nombre double.
+
+Pour le transformer en integer as.integer() et en argument un double.
+
+La seconde class c'est la classe caractère.
+
+> class("hello")
+
+Pour avoir une variable de type caractère il faut mettre notre texte entre guillemet ou entre simple guillemet.
+
+Après on a le type de variable booléen. On a deux types de valeurs soit TRUE ou FALSE.
+
+NA est un type de donnée quand on a des valeurs manquantes.
 
 ### Variable
 > monCaractere = "a"
