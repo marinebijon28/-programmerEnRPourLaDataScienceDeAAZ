@@ -97,7 +97,7 @@ Après on a le type de variable booléen. On a deux types de valeurs soit TRUE o
 
 NA est un type de donnée quand on a des valeurs manquantes.
 
-### Les variables
+## Les variables
 Une variable c'est un nom dans lequel on va pouvoir stocker une valeur ou un ensemble de valeurs. Une fois qu'on l'aura stocker dans une variable. Une fois qu'on l'aura stocker dans une variable on pourra le réutiliser n'importe où dans le script.
 
 > myCharacter = "a"
@@ -125,38 +125,54 @@ Les commentaires quand on commence un script de plus en plus grand. On va vouloi
 
 Quand on tape entrer on voit le commentaire qui n'est pas interprété et la ligne qui suit.
 
-> monPremierNombre=10
-> monDeuxiemeNombre=4
-> monPremierNombre + monDeuxiemeNombre
+## Opération arithmétique
+R c'est une calculatrice qu'un langage de programmation. On va pouvoir faire des additions, des soustractions, des divisions, etc...
+
+> myFirstNumber = 10
+> mySecondNumber = 4
+
+# L'opérateur arithmétique + permet de faire des opérations.
+C'est valable avec les valeurs de type numérique.
+
+Je pourrais faire 10 + 4
+
+> 10 + 4
 [1] 14
-L'opérateur arithmétique + parmet de faire des opérations.
 
-> monCaractere + monCaractere
-Erreur dans monCaractere + monCaractere : 
+> myFirstNumber + mySecondNumber
+[1] 14
+
+Il prend donc les valeurs et les additionnent
+
+
+> myCharacter + myCharacter
+
+Erreur dans myCharacter + myCharacter : 
   argument non numérique pour un opérateur binaire
-On ne peut pas utiliser l'opérateur arithmétique + puisque ce sont des strings
+  
+On ne peut pas utiliser l'opérateur arithmétique + puisque ce sont des types caractère.
 
-> monPremierNombre - monDeuxiemeNombre
+# L'opérateur arithmétique - permet de faire des soustractions.
+> myFirstNumber - mySecondNumber
 [1] 6
-L'opérateur arithmétique - permet de faire des soustractions.
 
-> monPremierNombre / monDeuxiemeNombre
+# L'opérateur arithmétique / permet de faire des divisions.
+> myFirstNumber / mySecondNumber
 [1] 2.5
-L'opérateur arithmétique / permet de faire des divisions.
 
-> monPremierNombre ** monDeuxiemeNombre
+# L'opérateur arithmétique ** permet de faire des puissances.
+> myFirstNumber ** mySecondNumber
 [1] 10000
-L'opérateur puissance ** permet de faire des puissances.
 
-> monPremierNombre * monDeuxiemeNombre
+# L'opérateur arithmétique * permet de faire des multiplications.
+> myFirstNumber * mySecondNumber
 [1] 40
-L'opérateur * permet de faire des multiplications.
 
-> monPremierNombre %% monDeuxiemeNombre
+# L'opérateur arithmétique %% permet de faire récupérer le reste des divisions.
+> myFirstNumber %% mySecondNumber
 [1] 2
-L'opérateur %% permet de récupérer le reste d'une division
 
-### Les vecteurs
+## Les vecteurs
 > c(1, 2, 3)
 [1] 1 2 3
 La on a déclarer un vecteur qui vaut 1, 2, 3. Le vecteur est ordonnée suivant comment on le déclare.

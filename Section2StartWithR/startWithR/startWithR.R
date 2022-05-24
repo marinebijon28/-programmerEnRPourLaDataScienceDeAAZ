@@ -45,20 +45,36 @@ myBoolean
 
 # Commentaire
 
-monPremierNombre=10
-monDeuxiemeNombre=4
+## Opération arithmétique
 
-monPremierNombre + monDeuxiemeNombre
+myFirstNumber = 10
+mySecondNumber = 4
 
-monCaractere + monCaractere
+# + permet de faire des opérations avec des valeurs numériques.
 
-monPremierNombre - monDeuxiemeNombre
+10 + 4
 
-monPremierNombre / monDeuxiemeNombre
-monPremierNombre ** monDeuxiemeNombre
-monPremierNombre * monDeuxiemeNombre
-monPremierNombre %% monDeuxiemeNombre
+myFirstNumber + mySecondNumber
 
+# erreur myCharacter est de type charactère
+myCharacter + myCharacter
+
+# - permet de faire des soustractions avec des valeurs numériques.
+myFirstNumber - mySecondNumber
+
+# L'opérateur arithmétique / permet de faire des divisions.
+myFirstNumber / mySecondNumber
+
+# L'opérateur arithmétique ** permet de faire des puissances.
+myFirstNumber ** mySecondNumber
+
+# L'opérateur arithmétique * permet de faire des multiplications.
+myFirstNumber * mySecondNumber
+
+# L'opérateur arithmétique %% permet de faire récupérer le reste des divisions
+myFirstNumber %% mySecondNumber
+
+## Les vecteurs
 c(1, 2, 3)
 c(3, 2, 1)
 c("a", 8, 5)
