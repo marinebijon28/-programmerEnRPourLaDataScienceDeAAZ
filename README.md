@@ -97,24 +97,33 @@ Après on a le type de variable booléen. On a deux types de valeurs soit TRUE o
 
 NA est un type de donnée quand on a des valeurs manquantes.
 
-### Variable
-> monCaractere = "a"
-rien ne s'affiche mais dans l'onglet en haut à droite Environnement on voit les variables avec leurs nom et leurs valeur. monCaractere est le nom du vecteur qui contient "a".
+### Les variables
+Une variable c'est un nom dans lequel on va pouvoir stocker une valeur ou un ensemble de valeurs. Une fois qu'on l'aura stocker dans une variable. Une fois qu'on l'aura stocker dans une variable on pourra le réutiliser n'importe où dans le script.
 
-> class(monCaractere)
+> myCharacter = "a"
+
+Là on a rangé "a" dans myCharacter. Si je la lance, il ne se passe rien. R a bien été interprété, mais il ne se passe rien dans la console. Dans l'onglet en haut à droite Environnement on voit une nouvelle variable avec le nom de la variable et sa valeur. myCharacter est le nom de la variable qui contient "a".
+
+> class(myCharacter)
 [1] "character"
-On peut rappeler cette variable n'importe ou dans le code. Elle est de type character vue que la valeur est une string.
 
-> monBooleen=3<1
-On voit que la variable est présente dons l'onglet environnement et qu'elle vaut FALSE
+On peut rappeler cette variable n'importe où dans le code. Elle est de type character vu que la valeur est de type character.
 
-> monBooleen
+> myBoolean = 3 < 1
+
+On voit que la variable est présente dons l'onglet environnement et qu'elle vaut FALSE. Elle contient le résultat de la vérification 3 est inférieur à 1.
+
+> myBoolean
 [1] FALSE
-En appelant la variable on peut voir sa valeur
 
-> # monvariable monCaractere
-> monCaractere = "a"
-Quand on tape entrer on voit le commentaire qui n'est pas interpréter et la ligne qui suit.
+En appelant la variable on peut voir sa valeur s'afficher dans la console
+
+Les commentaires quand on commence un script de plus en plus grand. On va vouloir le commenter. C'est-à-dire qu'on va vouloir ajouter du texte qui ne sera pas interprété par R. Ça nous permettra de nous retrouver dans notre script.
+
+> # a a été affecter à la variable myCharacter
+> myCharacter = "a"
+
+Quand on tape entrer on voit le commentaire qui n'est pas interprété et la ligne qui suit.
 
 > monPremierNombre=10
 > monDeuxiemeNombre=4

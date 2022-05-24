@@ -1,3 +1,5 @@
+### Introductionet mise en place du cours
+
 ## Installation des packages R essentiels pour la data science
 
 # Installation de package

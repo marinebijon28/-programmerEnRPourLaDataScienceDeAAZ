@@ -1,6 +1,6 @@
-## Débuter avec R
+### Débuter avec R
 
-# Les types de données (character, int, double, booléens, données manquantes...)
+## Les types de données (character, int, double, booléens, données manquantes...)
 
 # Permet d'afficher une classe
 ?class
@@ -33,12 +33,17 @@ FALSE
 ?NA
 NA
 
-# monvariable monCaractere
-monCaractere = "a"
+## Les variables
 
-class(monCaractere)
-monBooleen=3<1
-monBooleen
+# a a été affecter à la variable myCharacter
+myCharacter = "a"
+class(myCharacter)
+
+# FALSE a été affecter à la variable myBoolean
+myBoolean = 3 < 1
+myBoolean
+
+# Commentaire
 
 monPremierNombre=10
 monDeuxiemeNombre=4
