@@ -173,28 +173,42 @@ On ne peut pas utiliser l'opérateur arithmétique + puisque ce sont des types c
 [1] 2
 
 ## Les vecteurs
+La structure par défaut dans R c'est les vecteurs. Toutes les variables qu'on a créée avant sont des vecteurs. Un vecteur c'est une valeur ou un ensemble de valeur ordonnée qui sont rangé ensemble.
+
+Un vecteur peut être créée avec la fonction c. Elle attend une suite de valeur.
+
 > c(1, 2, 3)
 [1] 1 2 3
-La on a déclarer un vecteur qui vaut 1, 2, 3. Le vecteur est ordonnée suivant comment on le déclare.
+
+Là on a déclaré un vecteur qui vaut 1, 2, 3. Le vecteur est ordonné suivant comme on la déclarer. Il respecte l'ordre qu'on lui donne.
 
 > c(3, 2, 1)
 [1] 3 2 1
+
 Il n'y a pas d'ordre numérique
 
 > c("a", 8, 5)
 [1] "a" "8" "5"
-Si il y a une valeur character dans le vecteur toutes les valeur se transform en caractere.
 
-> monVecteur = c(1, 2, 3)
-Je déclare et initialise une variable contenant un vecteur de type numeric
+Ce qu'il faut savoir dans les vecteurs c'est qu'il y a qu'un seul type de valeur. C'est-à-dire qu'on ne peut pas mélanger des valeurs numériques et caractères.
 
-> class(monVecteur)
+S'il y a une valeur caractère dans le vecteur toutes les valeurs se transforment en caractère. On ne pourrait pas faire des traitements pour des types numériques.
+
+> myVector = c(1, 2, 3)
+
+Notre vecteur on peut le mettre en variable.
+
+Je déclare et initialise une variable contenant un vecteur de type numérique
+
+> class(myVector)
 [1] "numeric"
+
 > class(c("a", 8, 5))
 [1] "character"
+
 Vérifie le type de données dans le vecteur
 
-### Opération du vecteur
+## Opération sur les vecteurs
 
 > monVecteur1 = seq(from=1, to=10)
 > monVecteur1

@@ -75,15 +75,25 @@ myFirstNumber * mySecondNumber
 myFirstNumber %% mySecondNumber
 
 ## Les vecteurs
+?c
+# Création de vecteur
 c(1, 2, 3)
+
+# Il n'y pas d'ordre
 c(3, 2, 1)
+
+# Qu'un seul type valeur dans le vecteur
 c("a", 8, 5)
 c(5, "a", 5)
 
-monVecteur = c(1, 2, 3)
-class(monVecteur)
+# Ranger le vecteur dans une variable
+myVector = c(1, 2, 3)
+
+class(myVector)
+
 class(c("a", 8, 5))
 
+## Opération sur les vecteurs
 monVecteur1 = seq(from=1, to=10)
 monVecteur2 = rep(10, times=10)
 monVecteur2
