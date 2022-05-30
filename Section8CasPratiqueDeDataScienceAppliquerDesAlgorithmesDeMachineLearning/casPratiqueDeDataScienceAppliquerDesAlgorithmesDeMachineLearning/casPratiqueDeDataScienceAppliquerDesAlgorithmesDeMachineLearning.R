@@ -178,3 +178,6 @@ head(prediction_naive_Bayes_downsample)
 # création de la matrice de confusion
 head(data_bank.test.scaled[,ncol(data_bank.test.scaled)])
 confusionMatrix(prediction_SVM_desequilibree, as.factor(data_bank.test.scaled[,ncol(data_bank.test.scaled)]))
+
+# varImp
+varImp(naive_Bayes_downsample, scale=F)
