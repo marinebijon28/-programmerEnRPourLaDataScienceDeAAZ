@@ -1,5 +1,7 @@
 # Données : prédire la souscription d'un client à un produit bancaire
 
+install.packages("caret", T=dependencies)
+
 # lecture du fichier de données de banque
 # sep permet de dire que le séparateur est ;
 bank_data=read.csv("bank/bank.csv", sep=";")
@@ -51,74 +53,113 @@ dummyVariablesData$"Souscription"=ifelse(dummyVariablesData$"yno" == 1, "No",
 "Yes")
 
 # enlève les deux colonnes yno et yes
-dummyVariablesData$"yno"=NULL
-dummyVariablesData$"yyes"=NULL
+dummyVariablesData$"yno" = NULL
+dummyVariablesData$"yyes" = NULL
 
 ?set.seed
 #random
 set.seed(3033)
+
 # garde 70 % du jeux d'entraînement
-training_size=floor(0.7*nrow(dummyVariablesData))
+trainingSize=floor(0.7*nrow(dummyVariablesData))
+
+head(trainingSize)
+nrow(dummyVariablesData)
 
 # il melange tous les indices de dummyVariablesData de longueur training_size
-indices=sample(seq_len(nrow(dummyVariablesData)), size=training_size)
+indices=sample(seq_len(nrow(dummyVariablesData)), size=trainingSize)
+length(indices)
+head(indices)
 
 # creer un variable data_bank.train avec les vecteurs aléatoires
-bank_data.train=dummyVariablesData[indices, ]
+data_bank.train=dummyVariablesData[indices, ]
 #creer un variable data_bank.test sans les vecteurs aléatoires
-bank_data.test=dummyVariablesData[-indices, ]
+data_bank.test=dummyVariablesData[-indices, ]
 
-dim(bank_data.train)
-dim(bank_data.test)
+dim(data_bank.train)
+dim(data_bank.test)
 
 # traitement des classes desequilibrees et normalisation 
-bank_data.train$"yyes"=NULL
-bank_data.test$"yyes"=NULL
+
 # normalisation des donnees sur le jeux de test
-dataPreprocessValue=preProcess(bank_data.train, method=c("center", "scale"))
+
+dataPreprocessValue=preProcess(data_bank.train, method=c("center", "scale"))
+
 # scaled veut dire mis à l'échelle
-bank_data.train.scaled=predict(dataPreprocessValue, bank_data.train)
-bank_data.test.scaled=predict(dataPreprocessValue, bank_data.test)
+data_bank.train.scaled = predict(dataPreprocessValue, data_bank.train)
+data_bank.test.scaled = predict(dataPreprocessValue, data_bank.test)
+
+head(data_bank.train.scaled)
 
 # equilibrage des donnees
 # caret : downsample et upsample
-table(bank_data.train.scaled[,"Souscription"])
+table(data_bank.train.scaled[,"Souscription"])
 
 set.seed(3033)
+
 '%ni%' = Negate("%in%")
 
 # downsample
-bank_data.train.scaled.downsample=downSample(x=bank_data.train.scaled[,
-colnames(bank_data.train.scaled) %ni% "Souscription"], 
-y=as.factor(bank_data.train.scaled$"Souscription"))
-
-bank_data.train.scaled.downsample$"yyes"=NULL
-dummyVariablesData$"yyes"=NULL
+head(data_bank.train.scaled[, colnames(data_bank.train.scaled) %ni% "Souscription"])
+data_bank.train.scaled.downsample = downSample(x=data_bank.train.scaled[, colnames(data_bank.train.scaled) %ni% "Souscription"], y=as.factor(data_bank.train.scaled$"Souscription"))
+head(data_bank.train.scaled.downsample)
+dim(data_bank.train.scaled.downsample)
+dim(data_bank.train.scaled)
 
 # renommer la colonne class en souscription
-names(bank_data.train.scaled.downsample)[names(bank_data.train.scaled.downsample) == "Class"]="Souscription"
+names(data_bank.train.scaled.downsample)[names(data_bank.train.scaled.downsample) == "Class"]="Souscription"
 ?names
+head(data_bank.train.scaled.downsample)
+
+table(data_bank.train.scaled.downsample[,"Souscription"])
+
+
 
 # upsample
-bank_data.train.scaled.upsample=upSample(x=bank_data.train.scaled[,
-colnames(bank_data.train.scaled) %ni% "Souscription"], 
-y=as.factor(bank_data.train.scaled$"Souscription"))
-
-bank_data.train.scaled.upsample$"yyes"=NULL
-
+data_bank.train.scaled.upsample=upSample(x=data_bank.train.scaled[, colnames(data_bank.train.scaled) %ni% "Souscription"], y=as.factor(data_bank.train.scaled$"Souscription"))
+head(data_bank.train.scaled.upsample)
 # renommer la colonne class en souscription
-names(bank_data.train.scaled.upsample)[names(bank_data.train.scaled.upsample) == "Class"]="Souscription"
+names(data_bank.train.scaled.upsample)[names(data_bank.train.scaled.upsample) == "Class"]="Souscription"
+head(data_bank.train.scaled.upsample)
 ?names
+table(data_bank.train.scaled.upsample[,"Souscription"])
+
 
 # Entrainer un modèle avec Caret : méthode Naives Bayes
-set.seed(3033)
-trainControlData=trainControl(method="repeatedcv", number=10, repeats = 3)
 
-bank_data.train.scaled$"yyes"=NULL
+set.seed(3033)
+trainControlData=trainControl(method="repeatedcv", number = 10, repeats = 3)
 
 # on utilise nos données desequilibres
-naiveBayesDesequilibree=train(Souscription ~., 
-data=bank_data.train.scaled, method="nb", preProcess=NULL)
+?train
+naive_Bayes_desequilibree=train(Souscription ~., data=data_bank.train.scaled, method="naive_bayes", preProcess=NULL)
 
-print(naiveBayesDesequilibree)
-warnings(50)
+print(naive_Bayes_desequilibree)
+
+# prédiction avec notre modèle sur le jeux de données tests
+prediction_naive_Bayes_desequilibree = predict(naive_Bayes_desequilibree, newdata = data_bank.test.scaled[,-ncol(data_bank.test.scaled)])
+head(prediction_naive_Bayes_desequilibree)
+
+# création de la matrice de confusion
+head(data_bank.test.scaled[,ncol(data_bank.test.scaled)])
+confusionMatrix(prediction_naive_Bayes_desequilibree, as.factor(data_bank.test.scaled[,ncol(data_bank.test.scaled)]))
+
+# Sur les données downSample
+# Entrainer un modèle avec Caret : méthode Naives Bayes
+
+set.seed(3033)
+trainControlData=trainControl(method="repeatedcv", number = 10, repeats = 3)
+
+# on utilise nos données desequilibres
+?train
+naive_Bayes_downsample=train(Souscription ~., data=data_bank.train.scaled.downsample, method="naive_bayes", preProcess=NULL)
+
+print(naive_Bayes_downsample)
+
+# prédiction avec notre modèle sur le jeux de données tests
+prediction_naive_Bayes_downsample = predict(naive_Bayes_downsample, newdata = data_bank.test.scaled[,-ncol(data_bank.test.scaled)])
+head(prediction_naive_Bayes_desequilibree)
+
+# création de la matrice de confusion
+head(data_bank.test.scaled[,ncol(data_bank.test.scaled)])
+confusionMatrix(prediction_naive_Bayes_desequilibree, as.factor(data_bank.test.scaled[,ncol(data_bank.test.scaled)]))
