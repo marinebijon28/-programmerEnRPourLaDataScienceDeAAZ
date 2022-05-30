@@ -158,8 +158,23 @@ print(naive_Bayes_downsample)
 
 # prédiction avec notre modèle sur le jeux de données tests
 prediction_naive_Bayes_downsample = predict(naive_Bayes_downsample, newdata = data_bank.test.scaled[,-ncol(data_bank.test.scaled)])
-head(prediction_naive_Bayes_desequilibree)
+head(prediction_naive_Bayes_downsample)
 
 # création de la matrice de confusion
 head(data_bank.test.scaled[,ncol(data_bank.test.scaled)])
-confusionMatrix(prediction_naive_Bayes_desequilibree, as.factor(data_bank.test.scaled[,ncol(data_bank.test.scaled)]))
+confusionMatrix(prediction_naive_Bayes_downsample, as.factor(data_bank.test.scaled[,ncol(data_bank.test.scaled)]))
+
+## SVM
+# modélisation SVM
+set.seed(3033)
+trainControlData=trainControl(method="repeatedcv", number = 10, repeats = 3)
+SVM_desequilibree=train(Souscription ~., data=data_bank.train.scaled, method="svmLinear", preProcess=NULL)
+print(SVM_desequilibree)
+
+# prédiction avec notre modèle sur le jeux de données tests
+prediction_SVM_desequilibree = predict(SVM_desequilibree, newdata = data_bank.test.scaled[,-ncol(data_bank.test.scaled)])
+head(prediction_naive_Bayes_downsample)
+
+# création de la matrice de confusion
+head(data_bank.test.scaled[,ncol(data_bank.test.scaled)])
+confusionMatrix(prediction_SVM_desequilibree, as.factor(data_bank.test.scaled[,ncol(data_bank.test.scaled)]))
