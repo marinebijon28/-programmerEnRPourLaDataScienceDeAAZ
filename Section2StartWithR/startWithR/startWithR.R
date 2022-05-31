@@ -93,42 +93,66 @@ class(myVector)
 
 class(c("a", 8, 5))
 
-## Opération sur les vecteurs
-monVecteur1 = seq(from=1, to=10)
-monVecteur2 = rep(10, times=10)
-monVecteur2
+## Opérations sur les vecteurs
 
-monVecteur1 + 1
-monVecteur1 * 10
-monVecteur1 * monVecteur2
+# Creation de vecteur seq : une séquance de 1 à 10
+?seq
+myVector1 = seq(from = 1, to = 10)
+myVector1
 
+# Creation de vecteur req : la valeur 10, 10 fois
+myVector2 = rep(10, times=10)
+myVector2
 
-monVecteur2 = 10;
-monVecteur1 / monVecteur2
+# Addition sur tout le vecteur 
+myVector1 + 1
 
-monVecteur2 = c(1, 2, 3)
-monVecteur1 / monVecteur2
+# Multiplication sur le vecteur
+myVector1 * 10
 
+# Multiplication par un autre vecteur
+myVector1 * myVector2
 
-monVecteur2 = seq(from=6, to=15)
-monVecteur1 - monVecteur2
+myVector2 = 10;
 
-concatenation=c(monVecteur1, monVecteur2)
+# Division des vecteurs
+myVector1 / myVector2
+
+# Erreur : les vecteurs ne sont pas de même taille
+myVector2 = c(1, 2, 3)
+myVector1 / myVector2
+
+# Soustraction de deux vecteurs
+myVector2 = seq(from=6, to=15)
+myVector1 - myVector2
+
+# Concaténation de vecteur 2
+concatenation=c(myVector1, myVector2)
 concatenation
 
-monVecteur2
-monVecteur2[2]
+## Manipuler les vecteurs grâce aux indexs
+myVector2
 
-monVecteur2[1:3]
-monVecteur2[c(1, 6 , 2)]
+# Un seul index
+myVector2[2]
 
-superieur=monVecteur2 > 8
-superieur
+# Plusieurs indexs à la suite
+myVector2[1 : 3]
 
-monVecteur2[superieur]
+# Plusieurs indexs ne se suivant pas
+myVector2[c(1, 6, 2)]
 
-#affiche la moyenne
-mean(monVecteur2)
+# Affecte les valeurs de retour de cette condition dans cette variable
+superior=myVector2 > 8
+superior
+
+# Affiche les variables supérieures à 8
+myVector2[superior]
+
+## Qu'est-ce qu'une fonction en R ?
+
+# mean : affiche la moyenne
+mean(myVector2)
 
 ?mean
 

@@ -52,7 +52,11 @@ un package qui permet de faire de super beau graphique et très performant.
 
 On va installer tous les packages nécessaires pour faire des analyses statistiques dédiées à la data science. Pour savoir s'ils sont installés on les retrouve dans l'onglet Packages.
 
-Une fois qu'on les a installés R ne les a pas dans son environnement. Ils sont téléchargés mais pas charger dans l'environnement. Pour les charger dans l'environnement il faut utiliser la fonction library(). Pour savoir s'ils sont téléchargés on retrouve le checkbutton cocher dans l'onglet Packages.
+Une fois qu'on les a installés R ne les a pas dans son environnement. Ils sont téléchargés mais pas charger dans l'environnement. 
+
+> library("dplyr")
+
+Pour les charger dans l'environnement il faut utiliser la fonction library(). Pour savoir s'ils sont téléchargés on retrouve le checkbutton cocher dans l'onglet Packages.
 
 ### Débuter avec R
 
@@ -98,7 +102,7 @@ Après on a le type de variable booléen. On a deux types de valeurs soit TRUE o
 NA est un type de donnée quand on a des valeurs manquantes.
 
 ## Les variables
-Une variable c'est un nom dans lequel on va pouvoir stocker une valeur ou un ensemble de valeurs. Une fois qu'on l'aura stocker dans une variable. Une fois qu'on l'aura stocker dans une variable on pourra le réutiliser n'importe où dans le script.
+Une variable c'est un nom dans lequel on va pouvoir stocké une valeur ou un ensemble de valeurs. Une fois qu'on l'aura stocker dans une variable. Une fois qu'on l'aura stocké dans une variable on pourra le réutiliser n'importe où dans le script.
 
 > myCharacter = "a"
 
@@ -173,7 +177,7 @@ On ne peut pas utiliser l'opérateur arithmétique + puisque ce sont des types c
 [1] 2
 
 ## Les vecteurs
-La structure par défaut dans R c'est les vecteurs. Toutes les variables qu'on a créée avant sont des vecteurs. Un vecteur c'est une valeur ou un ensemble de valeur ordonnée qui sont rangé ensemble.
+La structure par défaut dans R c'est les vecteurs. Toutes les variables qu'on a créées avant sont des vecteurs. Un vecteur c'est une valeur ou un ensemble de valeur ordonnée qui sont rangé ensemble.
 
 Un vecteur peut être créée avec la fonction c. Elle attend une suite de valeur.
 
@@ -208,81 +212,106 @@ Je déclare et initialise une variable contenant un vecteur de type numérique
 
 Vérifie le type de données dans le vecteur
 
-## Opération sur les vecteurs
+## Opérations sur les vecteurs
+On va voir comment faire des opérations sur des vecteurs c'est-à-dire les additionner, les multiplier, voir même les concaténer. On va créer un premier vecteur. 
 
-> monVecteur1 = seq(from=1, to=10)
-> monVecteur1
+Je vais vous montrer une fonction autre que le c qui permet de créer des vecteurs c'est seq. Il va créer un vecteur de tel valeur à telle valeur. Pour ça on lui met from de 1 jusqu'à 10. Il contient bien les valeurs de 1 à 10.
+
+> myVector1 = seq(from = 1, to = 10)
+> myVector1
  [1]  1  2  3  4  5  6  7  8  9 10
-Permet de créer un vecteur de int de 1 jusqu'à 10.
 
-> monVecteur2 = rep(10, times=10)
-> monVecteur2
+Il y a une autre dernière fonction qu'on peut utiliser c'est rep. Rep va permettre de répéter autant de fois qu'on veut une même valeur.
+
+> myVector2 = rep(10, times=10)
+> myVector2
  [1] 10 10 10 10 10 10 10 10 10 10
-Permet de créer un vecteur de type numeric. La fonction rep permet de répéter la valeur un nombre de fois définis.
 
-> monVecteur1 + 1
+Si je voulais augmenter toutes les valeurs du vecteur 1.
+
+# Addition sur tout le vecteur 
+> myVector1 + 1
  [1]  2  3  4  5  6  7  8  9 10 11
- L'opération a ajouté + 1 a toutes les valeurs du vecteurs.
 
-> monVecteur1 * 10
+L'opération a ajouté * 10 a toutes les valeurs du vecteurs.
+
+# Multiplication sur le vecteur
+myVector1 * 10
+
+On pourrait vouloir multiplier le vecteur 1 par le vecteur 2. J'obtiens le même résultat, car il  y a que des valeurs à 10.
+
+> myVector1 * myVector2
  [1]  10  20  30  40  50  60  70  80  90 100
- L'opération a ajouté * 10 a toutes les valeurs du vecteurs.
+ 
+> myVector2 = 10;
 
-> monVecteur1 * monVecteur2
- [1]  10  20  30  40  50  60  70  80  90 100
-Il se passe la même chose parce qu'on a pas assigné le résultat au vecteur 1 et comme on multiplie le vecteur1 par le vecteur2 qui contient que des valeurs égales à 10 ça donne le même résultat.
+Je pourrais faire mon vecteur à 10 et obtenir la même chose. Toutes les variables du vecteur 1 ont été divisé par 10. Les opérations sur vecteurs sont possibles s'il n'y a qu'une valeur ou un vecteur de même taille.
 
-> monVecteur2 = 10;
-on réinitialise la variable à 10
-
-> monVecteur1 / monVecteur2
+# Division des vecteurs
+> myVector1 / myVector2
  [1] 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0
-Toutes les variables du vecteur 1 ont été divisé par 10. Les opérations sur vecteurs sont possibles s'il n'y a qu'une valeur ou de même taille.
 
-> monVecteur2 = c(1, 2, 3)
-> monVecteur1 / monVecteur2
+# Erreur : les vecteurs ne sont pas de même taille
+> myVector1 / myVector2
  [1]  1.0  1.0  1.0  4.0  2.5  2.0  7.0  4.0  3.0 10.0
 Message d'avis :
-Dans monVecteur1/monVecteur2 :
+Dans myVector1/myVector2 :
   la taille d'un objet plus long n'est pas multiple de la taille d'un objet plus court
-Si on essait on obtient cette erreur.
 
-> monVecteur2 = seq(from=6, to=15)
-> monVecteur1 - monVecteur2
+On a deux vecteurs de même longueur donc on peut faire cette opération.
+  
+# Soustraction de deux vecteurs
+> myVector2 = seq(from=6, to=15)
+> myVector1 - myVector2
  [1] -5 -5 -5 -5 -5 -5 -5 -5 -5 -5
- On a deux vecteurs de même longeur donc on peut faire cette opération
 
-> concatenation=c(monVecteur1, monVecteur2)
-Permet de concatener donc ajouter a concaténation vecteur1 et vecteur2
+Permet de concaténer donc créer un vecteur avec vecteur1 et vecteur2. Ils n'ont pas besoin d'être de la même taille.
+
+# Concaténation de vecteur 2
+> concatenation=c(myVector1, myVector2)
+> concatenation
+ [1]  1  2  3  4  5  6  7  8  9 10  6  7  8  9 10 11 12 13 14 15
 
 ### Manipuler les vecteurs grâce aux indexs
+On va voir comment parcourir les vecteurs grâce à leurs indexs.
 
-> monVecteur2
+> myVector2
  [1]  6  7  8  9 10 11 12 13 14 15
-> monVecteur2[2]
-[1] 7
-affiche la valeur à cette index dans le vecteur
 
-> monVecteur2[1:3]
+Je dois écrire le nom de la variable et entre crochet le numéro de l'index.
+
+# Un seul index
+> myVector2
+ [1]  6  7  8  9 10 11 12 13 14 15
+
+affiche les valeurs des indexs compris entre les crochets. Les deux points signifie qu'il y a plus d'une valeur. On veut de cette valeur là à celle là, incluant tous les nombres entre les deux et celles là comprise.
+
+# Plusieurs indexs à la suite
+> myVector2[1 : 3]
 [1] 6 7 8
-affiche les vecteurs compris entre les indexs compris entre les crochets
 
-> monVecteur2[c(1, 6, 2)]
+Il y a une autre façon de sélectionner des indexs ne se suivant pas dans un vecteur. Le vecteur C permet de sélectionner plusieurs index dans l'ordre où on les marquent quand on le déclare.
+
+# Plusieurs indexs ne se suivant pas
+> myVector2[c(1, 6, 2)]
 [1]  6 11  7
-affiche les valeurs des index fournit dans la fonction c
 
-> superieur=monVecteur2 > 8
-> superieur
- [1] FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
-[10]  TRUE
-affecte à cette variable pour toutes les valeurs du vecteurs si cette condition est vérifié
+affecte à cette variable pour toutes les valeurs du vecteurs par le retour de cette condition.
 
-> monVecteur2[superieur]
+# Affecte les valeurs de retour de cette condition dans cette variable
+> superior=myVector2 > 8
+> superior
+ [1] FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+
+affiche toutes les valeurs supérieures à 8. Superior contient soit vrai soit faux en fonction du retour de la condition. Seules les valeurs a true sont affichées
+
+# Affiche les variables supérieures à 8
+> myVector2[superior]
 [1]  9 10 11 12 13 14 15
-affiche toutes les valeurs supérieur à 8 grace à la condition plus haut. Chaque index de supérieur est soit vrai soit faux
 
-### Qu'est ce qu'une fonction en R
-> #affiche la moyenne
+### Qu'est-ce qu'une fonction en R ?
+
+# Affiche la moyenne
 > mean(monVecteur2)
 [1] 10.5
 calcule la moyenne pour toutes les valeurs du vecteur
