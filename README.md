@@ -328,7 +328,7 @@ Une fonction peut avoir beaucoup de paramètre. Pour afficher la page de documen
 > ?mean
 
 ### Utiliser les fonctions fournis par R
-Je vais vous monter les fonctions utiles pour pouvoir manipuler les vecteurs que ce soit pour savoir la taille du vecteur, pour donner un nom à chaque valeur, pour savoir la moyenne de se vecteur, la somme, la taille des distributions.
+Je vais vous monter les fonctions utiles pour pouvoir manipuler les vecteurs que ce soit pour savoir la taille du vecteur, pour donner un nom à chaque valeur, pour savoir la moyenne de ce vecteur, la somme, la taille des distributions.
 
 # Length : pour savoir la taille du vecteur
 > length(myVector2)
@@ -340,14 +340,15 @@ Il n'y a pas de nom pour les valeurs dans ce vecteur
 > names(myVector2)
 NULL
 
-Paste permet de d'ajouter "ma valeur" plus la valeur du vecteur2 avec un séparateur espace.
+Paste permet d'ajouter "ma valeur" plus la valeur du vecteur2 avec un séparateur espace.
+
 # Pastes : permet de concaténer du texte
 > paste("ma valeur", myVector2, sep=" ")
  [1] "ma valeur 6"  "ma valeur 7"  "ma valeur 8"  "ma valeur 9" 
  [5] "ma valeur 10" "ma valeur 11" "ma valeur 12" "ma valeur 13"
  [9] "ma valeur 14" "ma valeur 15"
 
-Puisque qu'il y a la fonction names devant c'est le nom au valeur du vecteur qui est modifié par la valeur de retour par paste.
+Puisque qu'il y a la fonction names devant c'est le nom de la valeur du vecteur qui est modifié par la valeur de retour par paste.
 
 # Names + Paste : permet de donner un nom aux valeurs du vecteurs
 > names(myVector2)=paste("ma valeur", myVector2, sep=" ")
@@ -399,11 +400,11 @@ ma valeur 11 ma valeur 12 ma valeur 13 ma valeur 14 ma valeur 15
 > min(myVector2)
 [1] 6
 
-# Max : affiche la valeur le plus grande 
+# Max : affiche la valeur la plus grande 
 > max(myVector2)
 [1] 15
 
-permet d'afficher un résumé du vecteur2
+permet d'afficher un résumé :
 - min
 - 1er quantil
 - la médianne
@@ -422,14 +423,21 @@ permet d'afficher un résumé du vecteur2
 [1] 10.5
 
 ### Qu'est-ce qu'un package R ?
-> library("ggplot2")
-Il n'y a pas de message de chargement donc le package est installé
+Si vous vous souvenez bien on a installé des packages R en début du cours. Un package c'est un ensemble de fonction. 
 
+Généralement le package a un objectif globale : manipuler des données, faire des graphiques, certaines analyses statistiques et à l'intérieur de ce package. Il y aura un certain nombre de fonctions qui permettent de faire des analyses essentielles pour ce package. 
+
+On avait utilisé la fonction install.packages() de faire librairie et le nom du package.
+
+# Library : charge le packet dans l'environnement local
+> library("ggplot2")
+
+# Search : affiche les packets chargés dans l'environnement
 > search()
- [1] ".GlobalEnv"        "package:ggplot2"   "tools:rstudio"     "package:stats"    
- [5] "package:graphics"  "package:grDevices" "package:utils"     "package:datasets" 
- [9] "package:methods"   "Autoloads"         "org:r-lib"         "package:base"     
-affiche tous les packages installés
+ [1] ".GlobalEnv"        "package:ggplot2"   "tools:rstudio"    
+ [4] "package:stats"     "package:graphics"  "package:grDevices"
+ [7] "package:utils"     "package:datasets"  "package:methods"  
+[10] "Autoloads"         "org:r-lib"         "package:base"    
 
 ### Savoir utiliser l'aide de R
 > ?print

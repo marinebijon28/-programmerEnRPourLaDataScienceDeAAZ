@@ -210,15 +210,22 @@ summary(myVector2)
 median(myVector2)
 
 ## Qu'est-ce qu'un package R ?
+
+# Charge le packet dans l'environnement local
 library("ggplot2")
+
+# Affiche les packets chargés dans l'environnement
 search()
+
+## Savoir utiliser l'aide de R
+
 ?print
 help("print")
 help.start()
 help.search("mean")
 
 
-# EXERCISE
+## Exercice
 
 names(MoyenneDeLaClasse)=c("Pedro", "Baptiste", "Amaury", "Flora", "Kevin", "Markus",
                            "Rozenn", "Raphael", "Jordan", "Victoire", "Thomas", "Julia",
