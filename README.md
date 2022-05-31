@@ -310,18 +310,22 @@ affiche toutes les valeurs supérieures à 8. Superior contient soit vrai soit f
 [1]  9 10 11 12 13 14 15
 
 ### Qu'est-ce qu'une fonction en R ?
+Une fonction en R c'est un peu comme une machine. C'est un ensemble de code à l'intérieur d'un fichier qui va effectuer diverses manipulations.
 
-# Affiche la moyenne
-> mean(monVecteur2)
+Une fonction attend quelque chose en entrée. Ça peut être une vecteur, une matrice, ou dataFrame. Ça va mouliner, le code va être effectuer dessus et en sorti on aura un code différent de cette objet.
+
+Généralement le nom de cette fonction défini ce qu'elle fait. Une fonction on écrit son nom et des parenthèses. Puis entre les parenthèses on met les paramètres qu'elle va utiliser pour effectuer son traitement.
+
+Mean va afficher la moyenne sur un vecteur
+
+# Mean : affiche la moyenne
+> mean(myVector2)
 [1] 10.5
-calcule la moyenne pour toutes les valeurs du vecteur
 
+Une fonction peut avoir beaucoup de paramètre. Pour afficher la page de documentation de cette fonction. on écrit ? et le nom de la fonction
+
+# Affiche la documentation
 > ?mean
-affiche la page de documentation de cette fonction
-
-mean(x, trim = 0, na.rm = FALSE, ...)
-na.rm = FALSE
-permet d'éviter les valeurs qui sont null
 
 ### Utiliser les fonctions fournis par R
 > length(monVecteur2)

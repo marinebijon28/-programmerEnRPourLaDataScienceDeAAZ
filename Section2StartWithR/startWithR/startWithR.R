@@ -151,26 +151,29 @@ myVector2[superior]
 
 ## Qu'est-ce qu'une fonction en R ?
 
-# mean : affiche la moyenne
+# Mean : affiche la moyenne
+?mean
 mean(myVector2)
 
+# Affiche la documentation
 ?mean
 
-length(monVecteur2)
+## Utiliser les fonctions fournis par R
+length(myVector2)
 
-names(monVecteur2)
-names(monVecteur2)=paste("ma valeur", monVecteur2, sep=" ")
-monVecteur2
-names(monVecteur2)
+names(myVector2)
+names(myVector2)=paste("ma valeur", myVector2, sep=" ")
+myVector2
+names(myVector2)
 
-sort(monVecteur2)
-sort(monVecteur2, TRUE)
+sort(myVector2)
+sort(myVector2, TRUE)
 
-rank(monVecteur2)
-sum(monVecteur2)
+rank(myVector2)
+sum(myVector2)
 
-min(monVecteur2)
-max(monVecteur2)
+min(myVector2)
+max(myVector2)
 
 summary(monVecteur2)
 
