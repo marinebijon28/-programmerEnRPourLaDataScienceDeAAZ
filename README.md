@@ -312,9 +312,9 @@ affiche toutes les valeurs supérieures à 8. Superior contient soit vrai soit f
 ### Qu'est-ce qu'une fonction en R ?
 Une fonction en R c'est un peu comme une machine. C'est un ensemble de code à l'intérieur d'un fichier qui va effectuer diverses manipulations.
 
-Une fonction attend quelque chose en entrée. Ça peut être une vecteur, une matrice, ou dataFrame. Ça va mouliner, le code va être effectuer dessus et en sorti on aura un code différent de cette objet.
+Une fonction attend quelque chose en entrée. Ça peut être un vecteur, une matrice, ou dataFrame. Ça va mouliner, le code va être effectué dessus et en sorti on aura un code différent de cet objet.
 
-Généralement le nom de cette fonction défini ce qu'elle fait. Une fonction on écrit son nom et des parenthèses. Puis entre les parenthèses on met les paramètres qu'elle va utiliser pour effectuer son traitement.
+Généralement le nom de cette fonction définie ce qu'elle fait. Une fonction on écrit son nom et des parenthèses. Puis entre les parenthèses on met les paramètres qu'elle va utiliser pour effectuer son traitement.
 
 Mean va afficher la moyenne sur un vecteur
 
@@ -322,74 +322,87 @@ Mean va afficher la moyenne sur un vecteur
 > mean(myVector2)
 [1] 10.5
 
-Une fonction peut avoir beaucoup de paramètre. Pour afficher la page de documentation de cette fonction. on écrit ? et le nom de la fonction
+Une fonction peut avoir beaucoup de paramètre. Pour afficher la page de documentation de cette fonction. On écrit ? et le nom de la fonction
 
 # Affiche la documentation
 > ?mean
 
 ### Utiliser les fonctions fournis par R
-> length(monVecteur2)
+Je vais vous monter les fonctions utiles pour pouvoir manipuler les vecteurs que ce soit pour savoir la taille du vecteur, pour donner un nom à chaque valeur, pour savoir la moyenne de se vecteur, la somme, la taille des distributions.
+
+# Length : pour savoir la taille du vecteur
+> length(myVector2)
 [1] 10
-permet d'affciher la taille de ce vecteur
 
-> names(monVecteur2)
+Il n'y a pas de nom pour les valeurs dans ce vecteur
+
+# Names : permet d'afficher le nom du vecteur 
+> names(myVector2)
 NULL
-affiche les nom des valeurs de ce vecteur.
-il n'y a pas de nom pour les valeurs dans ce vecteur
 
-> names(monVecteur2)=paste("ma valeur", monVecteur2, sep=" ")
-> monVecteur2
- ma valeur 6  ma valeur 7  ma valeur 8  ma valeur 9 ma valeur 10 ma valeur 11 ma valeur 12 
-           6            7            8            9           10           11           12 
-ma valeur 13 ma valeur 14 ma valeur 15 
-          13           14           15 
-permet de d'ajouter "ma valeur" en index pour le vecteur2 avec un séparateur espace
+Paste permet de d'ajouter "ma valeur" plus la valeur du vecteur2 avec un séparateur espace.
+# Pastes : permet de concaténer du texte
+> paste("ma valeur", myVector2, sep=" ")
+ [1] "ma valeur 6"  "ma valeur 7"  "ma valeur 8"  "ma valeur 9" 
+ [5] "ma valeur 10" "ma valeur 11" "ma valeur 12" "ma valeur 13"
+ [9] "ma valeur 14" "ma valeur 15"
 
-> names(monVecteur2)
- [1] "ma valeur 6"  "ma valeur 7"  "ma valeur 8"  "ma valeur 9"  "ma valeur 10"
- [6] "ma valeur 11" "ma valeur 12" "ma valeur 13" "ma valeur 14" "ma valeur 15"
- affiche les noms des clés du vecteur2
+Puisque qu'il y a la fonction names devant c'est le nom au valeur du vecteur qui est modifié par la valeur de retour par paste.
 
- > sort(monVecteur2)
- ma valeur 6  ma valeur 7  ma valeur 8  ma valeur 9 ma valeur 10 ma valeur 11 ma valeur 12 
-           6            7            8            9           10           11           12 
-ma valeur 13 ma valeur 14 ma valeur 15 
-          13           14           15 
-affiche mon vecteur2 trié
+# Names + Paste : permet de donner un nom aux valeurs du vecteurs
+> names(myVector2)=paste("ma valeur", myVector2, sep=" ")
+> myVector2
+ ma valeur 6  ma valeur 7  ma valeur 8  ma valeur 9 ma valeur 10 
+           6            7            8            9           10 
+ma valeur 11 ma valeur 12 ma valeur 13 ma valeur 14 ma valeur 15 
+          11           12           13           14           15 
+> names(myVector2)
+ [1] "ma valeur 6"  "ma valeur 7"  "ma valeur 8"  "ma valeur 9" 
+ [5] "ma valeur 10" "ma valeur 11" "ma valeur 12" "ma valeur 13"
+ [9] "ma valeur 14" "ma valeur 15"
 
-> ?sort
-affiche la doc de la fonction
+# Sort : trie le vecteur dans l'ordre croissant
+> sort(myVector2)
+ ma valeur 6  ma valeur 7  ma valeur 8  ma valeur 9 ma valeur 10 
+           6            7            8            9           10 
+ma valeur 11 ma valeur 12 ma valeur 13 ma valeur 14 ma valeur 15 
+          11           12           13           14           15 
 
-> sort(monVecteur2, decreasing = TRUE)
-> sort(monVecteur2, TRUE)
-ma valeur 15 ma valeur 14 ma valeur 13 ma valeur 12 ma valeur 11 ma valeur 10  ma valeur 9 
-          15           14           13           12           11           10            9 
- ma valeur 8  ma valeur 7  ma valeur 6 
-           8            7            6 
-Avec l'option decreasing on peut trier par ordre décroissant en passant l'option a true
+Avec l'option decreasing on peut trier par ordre décroissant en passant l'option a true.
 
-> rank(monVecteur2)
- ma valeur 6  ma valeur 7  ma valeur 8  ma valeur 9 ma valeur 10 ma valeur 11 ma valeur 12 
-           1            2            3            4            5            6            7 
-ma valeur 13 ma valeur 14 ma valeur 15 
-           8            9           10 
-affiche la position de clé valeur dans le vecteur
+# Sort : trie le vecteur dans l'ordre décroissant
+> sort(myVector2, TRUE)
+ma valeur 15 ma valeur 14 ma valeur 13 ma valeur 12 ma valeur 11 
+          15           14           13           12           11 
+ma valeur 10  ma valeur 9  ma valeur 8  ma valeur 7  ma valeur 6 
+          10            9            8            7            6 
+> sort(myVector2, decreasing=TRUE)
+ma valeur 15 ma valeur 14 ma valeur 13 ma valeur 12 ma valeur 11 
+          15           14           13           12           11 
+ma valeur 10  ma valeur 9  ma valeur 8  ma valeur 7  ma valeur 6 
+          10            9            8            7            6 
 
-> sum(monVecteur2)
+Rank affiche les indexs et le nom des valeurs sans sa valeur.
+
+# Rank : permet d'afficher les indexs de chaque variable
+> rank(myVector2)
+ ma valeur 6  ma valeur 7  ma valeur 8  ma valeur 9 ma valeur 10 
+           1            2            3            4            5 
+ma valeur 11 ma valeur 12 ma valeur 13 ma valeur 14 ma valeur 15 
+           6            7            8            9           10 
+
+# Sum : permet de faire la somme des valeurs du vecteur
+> sum(myVector2)
 [1] 105
-affiche la somme de toutes les valeurs dans ce vecteur
 
-> min(monVecteur2)
+# Min : affiche la valeur la plus petite
+> min(myVector2)
 [1] 6
-permet d'afficher la valeur minimale de ce vecteur
 
-> max(monVecteur2)
+# Max : affiche la valeur le plus grande 
+> max(myVector2)
 [1] 15
-permet d'afficher la valeur maximale de ce vecteur
 
-> summary(monVecteur2)
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-   6.00    8.25   10.50   10.50   12.75   15.00 
 permet d'afficher un résumé du vecteur2
 - min
 - 1er quantil
@@ -398,9 +411,15 @@ permet d'afficher un résumé du vecteur2
 - 3eme quantil 
 - max
 
-> median(monVecteur2)
+# Summary : pour résumer l'objet
+> summary(myVector2)
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   6.00    8.25   10.50   10.50   12.75   15.00 
+
+# Median : affiche la médianne
+> ?median
+> median(myVector2)
 [1] 10.5
-affiche la median du vecteur2
 
 ### Qu'est-ce qu'un package R ?
 > library("ggplot2")

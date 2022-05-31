@@ -159,26 +159,57 @@ mean(myVector2)
 ?mean
 
 ## Utiliser les fonctions fournis par R
+
+# Length : pour savoir la taille du vecteur
+?length
 length(myVector2)
 
+# Names : permet d'afficher le nom du vecteur
+?names
 names(myVector2)
+
+# Pastes : permet de concaténer du texte
+?paste
+paste("ma valeur", myVector2, sep=" ")
+
+# Names + Paste : permet de donner un nom aux valeurs du vecteurs
 names(myVector2)=paste("ma valeur", myVector2, sep=" ")
 myVector2
 names(myVector2)
 
+# Sort : trie le vecteur dans l'ordre croissant
+?sort
 sort(myVector2)
+
+# Sort : trie le vecteur dans l'ordre décroissant
+sort(myVector2, decreasing=TRUE)
 sort(myVector2, TRUE)
 
+# Rank : permet d'afficher les indexs de chaque variable
+?rank
 rank(myVector2)
+
+# Sum : permet de faire la somme des valeurs du vecteur
+?sum
 sum(myVector2)
 
+# Min : affiche la valeur la plus petite
+?min
 min(myVector2)
+
+# Max : affiche la valeur le plus grande 
+?max
 max(myVector2)
 
-summary(monVecteur2)
+# Summary : pour résumer l'objet
+?summary
+summary(myVector2)
 
-median(monVecteur2)
+# Median : affiche la médianne
+?median
+median(myVector2)
 
+## Qu'est-ce qu'un package R ?
 library("ggplot2")
 search()
 ?print
