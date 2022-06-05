@@ -440,18 +440,65 @@ On avait utilisé la fonction install.packages() de faire librairie et le nom du
 [10] "Autoloads"         "org:r-lib"         "package:base"    
 
 ### Savoir utiliser l'aide de R
-> ?print
-affiche dans l'onglet en bas a droite l'aide de la fonction en anglais 
+Je vais vous montrer comment utiliser l'aide avec R. Dans les chapitres précédents, je vous ait peut-être montré l'aide avec le point d'interrogation avec le nom de la fonction qui permet d'accéder l'aide de cette fonction. 
+
+On va voir plus en détail l'aide de R. Le petit inconvénient l'aide de R est exclusivement en anglais. C'est une communauté très large et dynamique sur les forums français et pas mal de documentation en français. Là on va voir celle qui est accessible par RStudio.
+
+On la vu précédemment ?mean qui permet d'ouvrir l'aide de la fonction mean en bas à gauche. Il y a la partie description qui nous dit que c'est une fonction qui permet de calculer la moyenne arithmétique. Ensuite, il y a une partie usage qui permet de savoir comment utiliser cette fonction. Donc, la fonction mean attend x qui est un vecteur et c'est globalement le seul argument qu'elle attend.
+
+> ?mean
+
+Donc, par défaut c'est la commande qui est lancée par défaut. Donc, ici on a juste x qui est un vecteur par défaut il y aura juste trim à 0 et le na.rm qui est à false.
+
+# Default S3 method:
+mean(x, trim = 0, na.rm = FALSE, ...)
+
+Ensuite, il y a les arguments, qui sont disponibles avec cette fonction avec une description de chaque argument et donc la valeur que ces arguments peuvent prendre. 
+
+  Arguments
+    x	
+    An R object. Currently there are methods for numeric/logical vectors and date, date-time and time interval objects. Complex vectors are allowed for trim = 0, only.
+
+    trim	
+    the fraction (0 to 0.5) of observations to be trimmed from each end of x before the mean is computed. Values of trim outside that range are taken as the nearest endpoint.
+
+    na.rm	
+    a logical evaluating to TRUE or FALSE indicating whether NA values should be stripped before the computation proceeds.
+
+    ...	
+    further arguments passed to or from other methods.
+
+Ensuite, il y a une description de la valeur en sortie de cette fonction. Ici c'est selon, l'option trim. Ici il y a différent type de moyenne.
+
+  Value
+    If trim is zero (the default), the arithmetic mean of the values in x is computed, as a numeric or complex vector of length one. If x is not logical (coerced to numeric), numeric (including integer) or complex, NA_real_ is returned, with a warning.
+
+    If trim is non-zero, a symmetrically trimmed mean is computed with a fraction of trim observations deleted from each end before the mean is computed.
+
+Ensuite, il y a la référence par qui elle a été codée. Ensuite, dans les see also. Les fonctions un peu similaire que vous pouvez aller regarder.
+
+À la fin il y a toujours un petit exemple que vous pouvez aller regarder. Donc, c'est un peu comme ce qu'on avait fait mean et un vecteur x. 
+
+  Examples
+    Run examples
+
+    x <- c(0:10, 50)
+    xm <- mean(x)
+    c(xm, mean(x, trim = 0.10))
+
+Il y a une autre manière d'afficher cette aide, c'est en utilisant help je mets mean entre parenthèse. Ca va afficher l'aide.
 
 > help(print)
 > help("print")
-c'est la deuxième fonction pour afficher l'aide. Il y a deux manière de l'utiliser
+
+Ensuite, on peut utiliser la fonction help.start sans argument.
+Donc, on voit qu'il y a une page help qui vient de s'afficher. Donc, il y a des liens cliquables qui permettent d'afficher le manuel de R. Par exemple si je clique sur introduction a R. Je vais avoir plein de chapitre sur R. En fait, R c'est vraiment bien documenter.
 
 > help.start()
-renvoie une page html avec des liens cliquable pour afficher l'aide de R
+
+La dernière chose qui est possible. C'est quand par exemple j'ai envie de calculer une moyenne, mais je ne connais pas de fonction qui permet de faire ça. Permet de voir toutes les fonctions avec ce mot clé. Il va afficher toutes les fonctions qui contiennent le mot mean qui pourrait potentiellement répondre à ma question. Du coup je vais chercher la-dedans tout ce qui pourrait répondre à ma question.
 
 > help.search("mean")
-permet de voir toutes les fonctions avec ce mot clé
 
 ### Qu'est-ce qu'une matrice en R ?
 Les vecteurs sont une sorte de tableau a une dimension. Une matrice c'est un tableau a 2 dimensions. IL y aura plusieurs colonnes et plusieurs lignes. Les matrices ne peut contenir que deux types de données soit numeric soit character

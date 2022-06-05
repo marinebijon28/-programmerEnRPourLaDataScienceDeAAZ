@@ -219,9 +219,22 @@ search()
 
 ## Savoir utiliser l'aide de R
 
+# Pour ouvrir l'aide de la fonction
+?mean
+
+# Default S3 method:
+mean(x, trim = 0, na.rm = FALSE, ...)
+
 ?print
+
+# Affiche l'aide de print
 help("print")
+help(print)
+
+# Affiche toute l'aide de R
 help.start()
+
+# Permet de chercher une fonction avec un mot clé
 help.search("mean")
 
 
